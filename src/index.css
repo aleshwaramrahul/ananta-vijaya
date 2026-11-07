@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overscroll-behavior: none;
+}
+
+main > :first-child {
+  margin-top: 0 !important;
+}
+
+main > :last-child {
+  margin-bottom: 0 !important;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes floatProduct {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.floating-product {
+  animation: floatProduct 5s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Gentle luxury floating effect for editorial sanctuary images */
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-gentle-float {
+  animation: gentleFloat 6s ease-in-out infinite;
+}
+
+/* Subtle breathing glow */
+@keyframes softPulseGlow {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(1.05);
+  }
+}
+
+.animate-soft-glow {
+  animation: softPulseGlow 4.5s ease-in-out infinite;
+}
+
+/* Slow serene spin for background mandalas */
+@keyframes slowSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-slow-spin {
+  animation: slowSpin 160s linear infinite;
+}
+
+/* Gentle leaf sway */
+@keyframes leafSway {
+  0%, 100% {
+    transform: rotate(-4deg) translateY(0px);
+  }
+  50% {
+    transform: rotate(4deg) translateY(-5px);
+  }
+}
+
+.animate-leaf-sway {
+  animation: leafSway 7s ease-in-out infinite;
+}
