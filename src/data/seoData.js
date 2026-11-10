@@ -127,13 +127,13 @@ export const PRODUCT_SEO = {
     description: "Experience deep pore clarification and meditative tranquility with Lotica Glow Vibhudi Soap, infused with consecrated temple ash and Krishna Tulsi.",
     keywords: "Vibhudi Soap, Vibhuti Soap, Vibhudi inspired soap, Traditional Vibhudi soap, Sacred ash soap, Krishna Tulsi soap, Lotica Glow",
     canonical: `${SITE_URL}/products/vibhudi-soap`,
-    price: "249",
+    price: "150",
     currency: "INR",
     availability: "https://schema.org/InStock",
     rating: "5.0",
     reviewCount: 184,
     imageAlt: "Lotica Glow Vibhudi Soap product packaging",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDSVS8HEVM89-MBcnmX0PVXNKk4HsautT7T3V2L8hupVEvVao6qZT2oooT_fX388TDpVkYanPyIl4ox9ABoy_dCV8u4_9jHMZ5bSL6jcAQ3IN5J2HoaogXecxigyJ1hSCwkXf62ph4-x-Wq-0p8xUTapBCr04vNy-uGL-ZOtIHWJgn3W4UmgqnoacbYApgzemNYmg1HlV8j0VM_ipzlOzqmtuyG0l3cyhiXiGL0jC3thp7bVmapHf21IA"
+    image: `${SITE_URL}/images/3d/vibhudi.png`
   },
   "bilvam-soap": {
     id: "bilvam",
@@ -145,13 +145,13 @@ export const PRODUCT_SEO = {
     description: "Purify and cool your skin with Lotica Glow Bilvam Soap, formulated with auspicious Bilva (Bael) leaf extract and cooling vetiver roots.",
     keywords: "Bilvam Soap, Bilva Leaf Soap, Bilvam inspired soap, Traditional Bilvam soap, Bael leaf soap, Vetiver soap, Lotica Glow",
     canonical: `${SITE_URL}/products/bilvam-soap`,
-    price: "249",
+    price: "150",
     currency: "INR",
     availability: "https://schema.org/InStock",
     rating: "4.9",
     reviewCount: 156,
     imageAlt: "Lotica Glow Bilvam Soap product packaging",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBfolV1LLaXtImFD1RJED9kb67IiyTeUMFOLn7F0PdnKf7x4i0EZi0GcvIp2WyFRU345kGCkvaVs_U-riFWenoDGxLhE8_8DPAt-JfaoIfJahD9fp6SQdSenpZmDlD0fIBxIlt0kgEIJ-_oXOeQfRTWUts2l4aBKhDObZvb6dZ_aORjAhakYFQt0cgsvCjs_txWzdtrgKMc9P85WxpCpbaEZ3aV93mPj9z9PRs6lsbYhuJ5mdWDMnd5lQ"
+    image: `${SITE_URL}/images/3d/bilvam.png`
   },
   "kamalam-soap": {
     id: "kamalam",
@@ -163,13 +163,13 @@ export const PRODUCT_SEO = {
     description: "Restore your skin's natural radiance and moisture with Lotica Glow Kamalam Soap, infused with sacred pink lotus flavonoids and wild damask rose water.",
     keywords: "Kamalam Soap, Lotus Inspired Soap, Kamalam personal care, Floral inspired soap, Wild rose soap, Lotus soap India, Lotica Glow",
     canonical: `${SITE_URL}/products/kamalam-soap`,
-    price: "249",
+    price: "150",
     currency: "INR",
     availability: "https://schema.org/InStock",
     rating: "4.9",
     reviewCount: 128,
     imageAlt: "Lotica Glow Kamalam Soap product packaging",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCesOYXGP9LnYp5qJLNQ6D1Qypte5dvZ_CsIi_XkXSWGr07UyQDaWGvt7xY7drIJ9L9H0_mGcuh-9RNU4b9CmAlSzC3XMFXTD31k4esRfIoePG4OuLOUOzKUTAbwh9gggQaw5azXy3MYE0MiA8asw1_FqK6NCc1wPvKsYE9J-nddCf462yizZYF56zovCcTVGuIrt-vZjoIKFNv_1f0TSZSoF2GmyhsnZG7FPIkyn_q3xVlZCpMQ5Vs8g"
+    image: `${SITE_URL}/images/3d/kamalam.png`
   },
   "kadamba-soap": {
     id: "kadamba",
@@ -181,13 +181,13 @@ export const PRODUCT_SEO = {
     description: "Nourish and soften dry skin with Lotica Glow Kadamba Soap, combining golden Kadamba blossoms, wild forest honey, and unrefined kokum butter.",
     keywords: "Kadamba Soap, Kadambam Soap, Kadamba inspired soap, Traditional Kadamba soap, Honey blossom soap, Kokum butter soap, Lotica Glow",
     canonical: `${SITE_URL}/products/kadamba-soap`,
-    price: "249",
+    price: "150",
     currency: "INR",
     availability: "https://schema.org/InStock",
     rating: "4.8",
     reviewCount: 94,
     imageAlt: "Lotica Glow Kadamba Soap product packaging",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBVmdbd_bOv7DSQeUt1O4WIQ8d07_Jx-ORQXLM4-3muFdtS_kG1ET4uv9QTTTkX6JcS1wBIaq__Skv-H6nLlLECGBsV4tmsChQzjUbDtOjJ7DXV8wNtjoFwTkXH7elasXuaPloJId_7KwUu2MQ9PFszsAM2ANOD2G6oIYm_JSaOUo26w1VORXI-ZHxi6_EKUbPE2atOolg8p3CP0DURns9voCyFtkZ2fFX12xsSvJBWsMVUc6Q6suiKQw"
+    image: `${SITE_URL}/images/3d/kadamba.png`
   },
   "rudraksha-soap": {
     id: "rudraksha",
@@ -199,13 +199,13 @@ export const PRODUCT_SEO = {
     description: "Awaken vital prana and sensory harmony with Lotica Glow Rudraksha Soap, enriched with sacred Rudraksha extract and Himalayan cedarwood.",
     keywords: "Rudraksha Soap, Rudraksha inspired soap, Traditional Rudraksha soap, Premium devotional soap, Himalayan cedar soap, Lotica Glow",
     canonical: `${SITE_URL}/products/rudraksha-soap`,
-    price: "249",
+    price: "150",
     currency: "INR",
     availability: "https://schema.org/InStock",
     rating: "4.9",
     reviewCount: 112,
     imageAlt: "Lotica Glow Rudraksha Soap product packaging",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAAclUCm04GaDvbK0bXL289HD3OJ7qQuiJEK3peM8anDL8UoGMc7Tyu4qzvErh9WxXQ70dq8jPTNhFWGRmDnZVlWuKULgYxw7NnAGS1omr7hO0ilFQLJUg5zO_MUwyHAkrrK_fyJy6-90Fe5tTvBFtcH2fjEt4qd_UP_iAAnF3nXqpAlq8mrFkauIquLZuLO1Gcnt8u86X6K688aapasC_rUqvNffFRJDDZUDGCwG0ymnXQfyqfN0hozg"
+    image: `${SITE_URL}/images/3d/rudraksha.png`
   },
   "divine-collection-gift-box": {
     id: "divine-collection",
@@ -223,7 +223,7 @@ export const PRODUCT_SEO = {
     rating: "5.0",
     reviewCount: 64,
     imageAlt: "Lotica Glow Divine Collection premium five-soap gift box",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCesOYXGP9LnYp5qJLNQ6D1Qypte5dvZ_CsIi_XkXSWGr07UyQDaWGvt7xY7drIJ9L9H0_mGcuh-9RNU4b9CmAlSzC3XMFXTD31k4esRfIoePG4OuLOUOzKUTAbwh9gggQaw5azXy3MYE0MiA8asw1_FqK6NCc1wPvKsYE9J-nddCf462yizZYF56zovCcTVGuIrt-vZjoIKFNv_1f0TSZSoF2GmyhsnZG7FPIkyn_q3xVlZCpMQ5Vs8g"
+    image: `${SITE_URL}/images/3d/bilvam.png`
   }
 };
 

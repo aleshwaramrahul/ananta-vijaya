@@ -1,3 +1,47 @@
+import bilvamImg from '../assets/images/3d/bilvam.png';
+import kadambaImg from '../assets/images/3d/kadamba.png';
+import kamalamImg from '../assets/images/3d/kamalam.png';
+import rudrakshaImg from '../assets/images/3d/rudraksha.png';
+import vibhudiImg from '../assets/images/3d/vibhudi.png';
+import singleStonePedestalImg from '../assets/images/single_stone_pedestal.png';
+import templeArchImg from '../assets/images/temple_arch.png';
+
+// 3D Packaging Textures
+import kamalamFront from '../assets/textures/kamalam/front.jpg';
+import kamalamBack from '../assets/textures/kamalam/back.jpg';
+import kamalamTop from '../assets/textures/kamalam/top.jpg';
+import kamalamBottom from '../assets/textures/kamalam/bottom.jpg';
+import kamalamLeft from '../assets/textures/kamalam/left.jpg';
+import kamalamRight from '../assets/textures/kamalam/right.jpg';
+
+import kadambaFront from '../assets/textures/kadamba/front.jpg';
+import kadambaBack from '../assets/textures/kadamba/back.jpg';
+import kadambaTop from '../assets/textures/kadamba/top.jpg';
+import kadambaBottom from '../assets/textures/kadamba/bottom.jpg';
+import kadambaLeft from '../assets/textures/kadamba/left.jpg';
+import kadambaRight from '../assets/textures/kadamba/right.jpg';
+
+import bilvamFront from '../assets/textures/bilvam/front.jpg';
+import bilvamBack from '../assets/textures/bilvam/back.jpg';
+import bilvamTop from '../assets/textures/bilvam/top.jpg';
+import bilvamBottom from '../assets/textures/bilvam/bottom.jpg';
+import bilvamLeft from '../assets/textures/bilvam/left.jpg';
+import bilvamRight from '../assets/textures/bilvam/right.jpg';
+
+import vibhudiFront from '../assets/textures/vibhudi/front.jpg';
+import vibhudiBack from '../assets/textures/vibhudi/back.jpg';
+import vibhudiTop from '../assets/textures/vibhudi/top.jpg';
+import vibhudiBottom from '../assets/textures/vibhudi/bottom.jpg';
+import vibhudiLeft from '../assets/textures/vibhudi/left.jpg';
+import vibhudiRight from '../assets/textures/vibhudi/right.jpg';
+
+import rudrakshaFront from '../assets/textures/rudraksha/front.jpg';
+import rudrakshaBack from '../assets/textures/rudraksha/back.jpg';
+import rudrakshaTop from '../assets/textures/rudraksha/top.jpg';
+import rudrakshaBottom from '../assets/textures/rudraksha/bottom.jpg';
+import rudrakshaLeft from '../assets/textures/rudraksha/left.jpg';
+import rudrakshaRight from '../assets/textures/rudraksha/right.jpg';
+
 export const SOAP_PRODUCTS = [
   {
     id: "kamalam",
@@ -7,12 +51,18 @@ export const SOAP_PRODUCTS = [
     subtitle: "Sacred Lotus & Wild Rose",
     tagline: "Radiant Glow & Cellular Hydration",
     badge: "125g • Traditional Cold-Cured Bar",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCesOYXGP9LnYp5qJLNQ6D1Qypte5dvZ_CsIi_XkXSWGr07UyQDaWGvt7xY7drIJ9L9H0_mGcuh-9RNU4b9CmAlSzC3XMFXTD31k4esRfIoePG4OuLOUOzKUTAbwh9gggQaw5azXy3MYE0MiA8asw1_FqK6NCc1wPvKsYE9J-nddCf462yizZYF56zovCcTVGuIrt-vZjoIKFNv_1f0TSZSoF2GmyhsnZG7FPIkyn_q3xVlZCpMQ5Vs8g",
-    boxImage: "https://lh3.googleusercontent.com/aida-public/AB6AXuCesOYXGP9LnYp5qJLNQ6D1Qypte5dvZ_CsIi_XkXSWGr07UyQDaWGvt7xY7drIJ9L9H0_mGcuh-9RNU4b9CmAlSzC3XMFXTD31k4esRfIoePG4OuLOUOzKUTAbwh9gggQaw5azXy3MYE0MiA8asw1_FqK6NCc1wPvKsYE9J-nddCf462yizZYF56zovCcTVGuIrt-vZjoIKFNv_1f0TSZSoF2GmyhsnZG7FPIkyn_q3xVlZCpMQ5Vs8g",
+    image: kamalamImg,
+    boxImage: kamalamImg,
+    textures3d: {
+      front: kamalamFront,
+      back: kamalamBack,
+      top: kamalamTop,
+      bottom: kamalamBottom,
+      left: kamalamLeft,
+      right: kamalamRight,
+    },
     desc: "Sacred pink lotus and wild damask rose water infusion formulated for gentle illumination, deep dermal hydration, and restoring skin's natural glow. Harmonizes Pitta dosha.",
-    price: "₹249",
-    originalPrice: "₹299",
-    discount: "17% OFF",
+    price: "₹150",
     rating: "4.9",
     reviewsCount: 128,
     benefits: [
@@ -49,12 +99,18 @@ export const SOAP_PRODUCTS = [
     subtitle: "Golden Blossom & Wild Honey",
     tagline: "Deep Nourishment & Velvet Softness",
     badge: "125g • Traditional Cold-Cured Bar",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBVmdbd_bOv7DSQeUt1O4WIQ8d07_Jx-ORQXLM4-3muFdtS_kG1ET4uv9QTTTkX6JcS1wBIaq__Skv-H6nLlLECGBsV4tmsChQzjUbDtOjJ7DXV8wNtjoFwTkXH7elasXuaPloJId_7KwUu2MQ9PFszsAM2ANOD2G6oIYm_JSaOUo26w1VORXI-ZHxi6_EKUbPE2atOolg8p3CP0DURns9voCyFtkZ2fFX12xsSvJBWsMVUc6Q6suiKQw",
-    boxImage: "https://lh3.googleusercontent.com/aida-public/AB6AXuBVmdbd_bOv7DSQeUt1O4WIQ8d07_Jx-ORQXLM4-3muFdtS_kG1ET4uv9QTTTkX6JcS1wBIaq__Skv-H6nLlLECGBsV4tmsChQzjUbDtOjJ7DXV8wNtjoFwTkXH7elasXuaPloJId_7KwUu2MQ9PFszsAM2ANOD2G6oIYm_JSaOUo26w1VORXI-ZHxi6_EKUbPE2atOolg8p3CP0DURns9voCyFtkZ2fFX12xsSvJBWsMVUc6Q6suiKQw",
+    image: kadambaImg,
+    boxImage: kadambaImg,
+    textures3d: {
+      front: kadambaFront,
+      back: kadambaBack,
+      top: kadambaTop,
+      bottom: kadambaBottom,
+      left: kadambaLeft,
+      right: kadambaRight,
+    },
     desc: "Golden Kadamba blossoms with warm, intoxicating floral notes and deeply nourishing wild honey to restore elasticity, relieve parched skin, and impart velvety softness.",
-    price: "₹249",
-    originalPrice: "₹299",
-    discount: "17% OFF",
+    price: "₹150",
     rating: "4.8",
     reviewsCount: 94,
     benefits: [
@@ -91,12 +147,18 @@ export const SOAP_PRODUCTS = [
     subtitle: "Auspicious Bael Leaf & Vetiver",
     tagline: "Sacred Purification & Dermal Cooling",
     badge: "125g • Traditional Cold-Cured Bar",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBfolV1LLaXtImFD1RJED9kb67IiyTeUMFOLn7F0PdnKf7x4i0EZi0GcvIp2WyFRU345kGCkvaVs_U-riFWenoDGxLhE8_8DPAt-JfaoIfJahD9fp6SQdSenpZmDlD0fIBxIlt0kgEIJ-_oXOeQfRTWUts2l4aBKhDObZvb6dZ_aORjAhakYFQt0cgsvCjs_txWzdtrgKMc9P85WxpCpbaEZ3aV93mPj9z9PRs6lsbYhuJ5mdWDMnd5lQ",
-    boxImage: "https://lh3.googleusercontent.com/aida-public/AB6AXuBfolV1LLaXtImFD1RJED9kb67IiyTeUMFOLn7F0PdnKf7x4i0EZi0GcvIp2WyFRU345kGCkvaVs_U-riFWenoDGxLhE8_8DPAt-JfaoIfJahD9fp6SQdSenpZmDlD0fIBxIlt0kgEIJ-_oXOeQfRTWUts2l4aBKhDObZvb6dZ_aORjAhakYFQt0cgsvCjs_txWzdtrgKMc9P85WxpCpbaEZ3aV93mPj9z9PRs6lsbYhuJ5mdWDMnd5lQ",
+    image: bilvamImg,
+    boxImage: bilvamImg,
+    textures3d: {
+      front: bilvamFront,
+      back: bilvamBack,
+      top: bilvamTop,
+      bottom: bilvamBottom,
+      left: bilvamLeft,
+      right: bilvamRight,
+    },
     desc: "Auspicious Aegle marmelos (Bael) leaves providing deep dermal rejuvenation, antimicrobial protection, and cooling herbal prana. Prepared following classical Ayurvedic texts.",
-    price: "₹249",
-    originalPrice: "₹299",
-    discount: "17% OFF",
+    price: "₹150",
     rating: "4.9",
     reviewsCount: 156,
     benefits: [
@@ -133,12 +195,18 @@ export const SOAP_PRODUCTS = [
     subtitle: "Sacred Ash & Holy Tulsi",
     tagline: "Deep Pore Detox & Meditative Stillness",
     badge: "125g • Traditional Cold-Cured Bar",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDSVS8HEVM89-MBcnmX0PVXNKk4HsautT7T3V2L8hupVEvVao6qZT2oooT_fX388TDpVkYanPyIl4ox9ABoy_dCV8u4_9jHMZ5bSL6jcAQ3IN5J2HoaogXecxigyJ1hSCwkXf62ph4-x-Wq-0p8xUTapBCr04vNy-uGL-ZOtIHWJgn3W4UmgqnoacbYApgzemNYmg1HlV8j0VM_ipzlOzqmtuyG0l3cyhiXiGL0jC3thp7bVmapHf21IA",
-    boxImage: "https://lh3.googleusercontent.com/aida-public/AB6AXuDSVS8HEVM89-MBcnmX0PVXNKk4HsautT7T3V2L8hupVEvVao6qZT2oooT_fX388TDpVkYanPyIl4ox9ABoy_dCV8u4_9jHMZ5bSL6jcAQ3IN5J2HoaogXecxigyJ1hSCwkXf62ph4-x-Wq-0p8xUTapBCr04vNy-uGL-ZOtIHWJgn3W4UmgqnoacbYApgzemNYmg1HlV8j0VM_ipzlOzqmtuyG0l3cyhiXiGL0jC3thp7bVmapHf21IA",
+    image: vibhudiImg,
+    boxImage: vibhudiImg,
+    textures3d: {
+      front: vibhudiFront,
+      back: vibhudiBack,
+      top: vibhudiTop,
+      bottom: vibhudiBottom,
+      left: vibhudiLeft,
+      right: vibhudiRight,
+    },
     desc: "Sacred temple ash and Krishna Tulsi combined for gentle mineral detoxification, drawing out airborne impurities while enveloping your senses in profound meditative tranquility.",
-    price: "₹249",
-    originalPrice: "₹299",
-    discount: "17% OFF",
+    price: "₹150",
     rating: "5.0",
     reviewsCount: 184,
     benefits: [
@@ -175,12 +243,18 @@ export const SOAP_PRODUCTS = [
     subtitle: "Sacred Bead & Himalayan Cedar",
     tagline: "Vital Prana & Sensory Shielding",
     badge: "125g • Traditional Cold-Cured Bar",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAAclUCm04GaDvbK0bXL289HD3OJ7qQuiJEK3peM8anDL8UoGMc7Tyu4qzvErh9WxXQ70dq8jPTNhFWGRmDnZVlWuKULgYxw7NnAGS1omr7hO0ilFQLJUg5zO_MUwyHAkrrK_fyJy6-90Fe5tTvBFtcH2fjEt4qd_UP_iAAnF3nXqpAlq8mrFkauIquLZuLO1Gcnt8u86X6K688aapasC_rUqvNffFRJDDZUDGCwG0ymnXQfyqfN0hozg",
-    boxImage: "https://lh3.googleusercontent.com/aida-public/AB6AXuAAclUCm04GaDvbK0bXL289HD3OJ7qQuiJEK3peM8anDL8UoGMc7Tyu4qzvErh9WxXQ70dq8jPTNhFWGRmDnZVlWuKULgYxw7NnAGS1omr7hO0ilFQLJUg5zO_MUwyHAkrrK_fyJy6-90Fe5tTvBFtcH2fjEt4qd_UP_iAAnF3nXqpAlq8mrFkauIquLZuLO1Gcnt8u86X6K688aapasC_rUqvNffFRJDDZUDGCwG0ymnXQfyqfN0hozg",
+    image: rudrakshaImg,
+    boxImage: rudrakshaImg,
+    textures3d: {
+      front: rudrakshaFront,
+      back: rudrakshaBack,
+      top: rudrakshaTop,
+      bottom: rudrakshaBottom,
+      left: rudrakshaLeft,
+      right: rudrakshaRight,
+    },
     desc: "Auspicious Rudraksha bead extract crafted to awaken vital energy, protect skin from environmental stress, and balance sensory harmony. Enriched with rare Himalayan cedarwood.",
-    price: "₹249",
-    originalPrice: "₹299",
-    discount: "17% OFF",
+    price: "₹150",
     rating: "4.9",
     reviewsCount: 112,
     benefits: [
@@ -216,7 +290,8 @@ export const ASSETS = {
   lotusMandala: "https://lh3.googleusercontent.com/aida-public/AB6AXuCeOOkTHOBDGtBCE8y-JHcrA4aaTsqCKIQHAwSHN3H_ZYMBkWfm87vQE42kdXLbD5Kktt0qghSDbbI4R7-NpNPAJ3NA7eM99US9vS_fwz5l60hlP-6zAzt4kAB36mci-OyQ7lUm6yR5fHSgot3CY93dloJihwtdUNpP_0DMJm9irzARBkMMdORhS_kh5b1pto6QT9OETNVmqnsOclp8vydvzX44Cqz0cGmvOIbqGR_0RuInDz12QtqTBA",
   bilvamLeaves: "https://lh3.googleusercontent.com/aida-public/AB6AXuAxckMUz1kSItV6wZPC8-stJnZgJnoRhY39Gy13VIbyqW5JY2oZaJF39oOQEBT-4OMB1Ym7_1nPD5CgkgrUOywgku6hvBjfSgN97xyRYIQHeGvP3bJ2Iq2kB8iDx_XqI1gL0kiFfb9nZfyDgyHRDzZUK-oDJ8NTKMDf_0Rtpvo1BmLjPRX3ok3BabTS7l3lJ168WJ5cVvzYLrBIhliq_bEBihvFZmCn2RVdMi5ZWeNW0t9mJFDajs5aTA",
   hangingBells: "https://lh3.googleusercontent.com/aida-public/AB6AXuCTdPE0JmFfBNLMuY6Bgb-qY_BVm30ymNFEhIHi7b_zec1sF0GPpMzmhku6iQVLG0WV7sb0VJP1l8cvZtWFET7NC425H2lULmuCO2rvRK-MrnHd0gAK2VaFMyedMK2tzO6Be8xYZa_39-Wek5DebbhBadcNo6XO7RtLgXHNjkklujviSXrkvkLzP1pd258YgriXRCbPrKvjVUIZyo3xERxjtmVtoDaUi11FaeD-UmfKF3A9V1V4cHaisw",
-  stonePedestal: "https://lh3.googleusercontent.com/aida-public/AB6AXuDPyOyD26GJJ6LcDiC5Z84w4YNQzCOarkNQ_Bs4mr_0Do62DszlesmVNQZvrw9XuntowOIyNrsm5EzksJRCXEvuzzZGMxm4gQSWbYOA5sXgUvXKvsqzkvKSJHLlHT8lB6XCBTfeoGyXbsGtv5jl_vQxJHAUYiQvv8AHDsh7yjXSsdh9Ysazd1sOq6i3Rk4QjuIG718X-KaT2Hroww_0x_2oWrce064o3EM3Fck23Mib4gKUU_Dsy1asTQ",
+  stonePedestal: singleStonePedestalImg,
+  templeArch: templeArchImg,
   brassDiya: "https://lh3.googleusercontent.com/aida-public/AB6AXuBCx_f1TNxMsbFrHrw2VbLfxdthZi8WRFAbiV6yPhp6nevxrvKgbDggkZDNWThd2eYQcs6iIiJUmgLydWXMRrELi16-SQ5IcFDdQ4jf-KD3ARDuujmoqoAGCbrtsur2X11-xoWbBAzxmVXZy6xqHgpl-pH0AsY7OHWi5geI3le8gGntPGSfqZ_HY3btoXEbgHYpnAJDzdU8sJjInF86TPFzvTx9pOiSsyRCcoI1tKsMfXjCdTTer3pPBA",
   powderBowl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCaOzDIlxFZITculeKeKlAiLFhQhlTk_c3VcVL5bF65XkOMW2qlf4Mlhq8wcMqNN_LUII0tKRAMwm5r8Q8RvZ3VRmmkCqTShw3SWjTYKH4J4FGBtvOknK8wZc5QLGtWY9sJUKvkA8KJJP2R-adD78fnsQD1xCSSHTzz-FT-k_juLCy-Yt5IJ-6T9h2d75EThGgF9R_XgMrh7TqEliYnL9ELcdfRG9QOUEZxoL4UkIuHzkNu_ltx8Ezzlg",
   jasmineFlowers: "https://lh3.googleusercontent.com/aida-public/AB6AXuDcYkffTcnT-o5diaTuiAhdW-53bFPKbXgt7jKLuNX6bIIUuSm3chYroIcIpufLPqI13UPWUXFJpW6chgz-eOFdRE0t00_D49rQFNXLG4wzOh6_YD4Y1KNCLwDoeyQgRcUMz0Hbagoi_tV3XuhLKVSTYOH785ft72JarwasciNLEssu5-QfAXrpu6WxaJ3eP7e0y-R-RuehfoXU3Vxct9IjpugmPkPr8HmIV6ocwXBU-sh8GWNIgumuyg",
@@ -224,11 +299,11 @@ export const ASSETS = {
   rudrakshaMala: "https://lh3.googleusercontent.com/aida-public/AB6AXuAOwgGtCtgEqUgYs1GU-y12W8GQWboRQ8W2_AYX6zMORDNwijcTx2D1viW0PopSdLjn7lgiqA2zLPhgFT7lxvSY33c8K7bmh_ikf0DbZ2ESZ45Q1e0_lRIHrZi_fJqhvrHGOoNWwTryLJ92OCWkB5uXWCWNajtIgh1NLOge1IYsElS0QGwoITkSXgSC_ncbPeknnE43XlckMErCEmJgbhz2k_TDIs8nYMHoh5r3NOdFgpcGDxDJIcQzcw",
   sanctuaryRitual: "https://lh3.googleusercontent.com/aida-public/AB6AXuC4y2UXs2WjtJREg88iKYqsnI2kLYpPymCOf7YfoE3xyxAfEWQHCaFzP5_1yaXT8ERFhZOBTcoM93cw12j9CW5sarwMGJLKIqGmLwNAGqj2bKLNHzTB5MYegjlwNXVjs5ofWxPfEatP-LYSS3c9UoZgOWrmZjq5abiKV20zijwi-EqSdxBRxJF7oEnw8QwIgElJg2PbOC0bcwAgrPcDhfuLMm0C6CxhYmDWVFv7iXi4",
   // 5 Hero soap boxes:
-  vibhudiBox: "https://lh3.googleusercontent.com/aida-public/AB6AXuDSVS8HEVM89-MBcnmX0PVXNKk4HsautT7T3V2L8hupVEvVao6qZT2oooT_fX388TDpVkYanPyIl4ox9ABoy_dCV8u4_9jHMZ5bSL6jcAQ3IN5J2HoaogXecxigyJ1hSCwkXf62ph4-x-Wq-0p8xUTapBCr04vNy-uGL-ZOtIHWJgn3W4UmgqnoacbYApgzemNYmg1HlV8j0VM_ipzlOzqmtuyG0l3cyhiXiGL0jC3thp7bVmapHf21IA",
-  kadambaBox: "https://lh3.googleusercontent.com/aida-public/AB6AXuBVmdbd_bOv7DSQeUt1O4WIQ8d07_Jx-ORQXLM4-3muFdtS_kG1ET4uv9QTTTkX6JcS1wBIaq__Skv-H6nLlLECGBsV4tmsChQzjUbDtOjJ7DXV8wNtjoFwTkXH7elasXuaPloJId_7KwUu2MQ9PFszsAM2ANOD2G6oIYm_JSaOUo26w1VORXI-ZHxi6_EKUbPE2atOolg8p3CP0DURns9voCyFtkZ2fFX12xsSvJBWsMVUc6Q6suiKQw",
-  bilvamBox: "https://lh3.googleusercontent.com/aida-public/AB6AXuBfolV1LLaXtImFD1RJED9kb67IiyTeUMFOLn7F0PdnKf7x4i0EZi0GcvIp2WyFRU345kGCkvaVs_U-riFWenoDGxLhE8_8DPAt-JfaoIfJahD9fp6SQdSenpZmDlD0fIBxIlt0kgEIJ-_oXOeQfRTWUts2l4aBKhDObZvb6dZ_aORjAhakYFQt0cgsvCjs_txWzdtrgKMc9P85WxpCpbaEZ3aV93mPj9z9PRs6lsbYhuJ5mdWDMnd5lQ",
-  kamalamBox: "https://lh3.googleusercontent.com/aida-public/AB6AXuCesOYXGP9LnYp5qJLNQ6D1Qypte5dvZ_CsIi_XkXSWGr07UyQDaWGvt7xY7drIJ9L9H0_mGcuh-9RNU4b9CmAlSzC3XMFXTD31k4esRfIoePG4OuLOUOzKUTAbwh9gggQaw5azXy3MYE0MiA8asw1_FqK6NCc1wPvKsYE9J-nddCf462yizZYF56zovCcTVGuIrt-vZjoIKFNv_1f0TSZSoF2GmyhsnZG7FPIkyn_q3xVlZCpMQ5Vs8g",
-  rudrakshaBox: "https://lh3.googleusercontent.com/aida-public/AB6AXuAAclUCm04GaDvbK0bXL289HD3OJ7qQuiJEK3peM8anDL8UoGMc7Tyu4qzvErh9WxXQ70dq8jPTNhFWGRmDnZVlWuKULgYxw7NnAGS1omr7hO0ilFQLJUg5zO_MUwyHAkrrK_fyJy6-90Fe5tTvBFtcH2fjEt4qd_UP_iAAnF3nXqpAlq8mrFkauIquLZuLO1Gcnt8u86X6K688aapasC_rUqvNffFRJDDZUDGCwG0ymnXQfyqfN0hozg"
+  vibhudiBox: vibhudiImg,
+  kadambaBox: kadambaImg,
+  bilvamBox: bilvamImg,
+  kamalamBox: kamalamImg,
+  rudrakshaBox: rudrakshaImg
 };
 
 export const FAQ_ITEMS = [

@@ -53,14 +53,14 @@ export function trackPageView(pageTitle, pagePath) {
 export function trackViewItem(product) {
   sendEvent("view_item", {
     currency: "INR",
-    value: parseFloat((product.price || "249").replace(/[^0-9.]/g, "")),
+    value: parseFloat((product.price || "150").replace(/[^0-9.]/g, "")),
     items: [
       {
         item_id: product.id,
         item_name: product.title,
         item_brand: "Lotica Glow",
         item_category: "Traditional Soaps",
-        price: parseFloat((product.price || "249").replace(/[^0-9.]/g, "")),
+        price: parseFloat((product.price || "150").replace(/[^0-9.]/g, "")),
         quantity: 1
       }
     ]
@@ -80,7 +80,7 @@ export function trackSelectItem(product, index) {
         item_name: product.title,
         index: index,
         item_brand: "Lotica Glow",
-        price: parseFloat((product.price || "249").replace(/[^0-9.]/g, ""))
+        price: parseFloat((product.price || "150").replace(/[^0-9.]/g, ""))
       }
     ]
   });
@@ -92,14 +92,14 @@ export function trackSelectItem(product, index) {
 export function trackAddToCart(product, quantity = 1) {
   sendEvent("add_to_cart", {
     currency: "INR",
-    value: parseFloat((product.price || "249").replace(/[^0-9.]/g, "")) * quantity,
+    value: parseFloat((product.price || "150").replace(/[^0-9.]/g, "")) * quantity,
     items: [
       {
         item_id: product.id,
         item_name: product.title,
         item_brand: "Lotica Glow",
         item_category: "Traditional Soaps",
-        price: parseFloat((product.price || "249").replace(/[^0-9.]/g, "")),
+        price: parseFloat((product.price || "150").replace(/[^0-9.]/g, "")),
         quantity: quantity
       }
     ]
@@ -112,7 +112,7 @@ export function trackAddToCart(product, quantity = 1) {
 export function trackRemoveFromCart(product) {
   sendEvent("remove_from_cart", {
     currency: "INR",
-    value: parseFloat((product.price || "249").replace(/[^0-9.]/g, "")),
+    value: parseFloat((product.price || "150").replace(/[^0-9.]/g, "")),
     items: [
       {
         item_id: product.id,
@@ -134,7 +134,7 @@ export function trackBeginCheckout(cartItems, totalValue) {
       item_id: item.id || item.title,
       item_name: item.title,
       item_brand: "Lotica Glow",
-      price: parseFloat((item.price || "249").replace(/[^0-9.]/g, "")),
+      price: parseFloat((item.price || "150").replace(/[^0-9.]/g, "")),
       quantity: item.qty || 1
     }))
   });

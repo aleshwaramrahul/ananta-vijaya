@@ -14,7 +14,7 @@ export default function Hero({ onSelectSoap }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center min-h-[640px]">
           
           {/* Left Editorial Column */}
-          <div className="lg:col-span-6 flex flex-col justify-center pr-0 lg:pr-space-lg">
+          <div className="lg:col-span-5 flex flex-col justify-center pr-0 lg:pr-space-md">
             {/* Eyebrow Badge */}
             <div className="inline-flex items-center gap-space-sm mb-space-md">
               <span className="w-8 h-[1px] bg-secondary"></span>
@@ -73,251 +73,235 @@ export default function Hero({ onSelectSoap }) {
             </div>
           </div>
 
-          {/* Right Column: Curated 3D Product Stage with All 5 Packaging Boxes */}
-          <div className="lg:col-span-6 relative mt-space-lg lg:mt-0 flex flex-col items-center justify-center" id="hero-product-showcase">
-            <div className="relative w-full max-w-[700px] flex flex-col items-center select-none">
+          {/* Right Column: Curated 3D Product Stage with All 5 Packaging Boxes & Temple Arch (Enlarged Luxury Showcase) */}
+          <div className="lg:col-span-7 relative mt-6 lg:mt-0 flex flex-col items-center justify-center">
+            <div className="relative w-full max-w-[840px] aspect-[16/9.2] select-none mx-auto flex items-center justify-center overflow-visible scale-[1.03] lg:scale-[1.08] origin-center">
               
-              {/* Radial Golden Aura Behind Stage */}
-              <div className="absolute -inset-6 bg-radial from-[#fdcd73]/25 via-[#E8D4B5]/20 to-transparent blur-3xl pointer-events-none -z-10"></div>
-              
-              {/* Rotating Lotus Mandala */}
-              <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-[380px] sm:w-[460px] h-[380px] sm:h-[460px] pointer-events-none z-0">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-b from-[#fdcd73]/30 via-[#E8D4B5]/20 to-transparent blur-2xl"></div>
+              {/* 1. Ambient Golden Radial Glow Behind Arch */}
+              <div className="absolute inset-0 bg-radial from-[#fdcd73]/35 via-[#E8D4B5]/25 to-transparent blur-3xl pointer-events-none -z-10"></div>
+
+              {/* 2. Golden Indian Carved Temple Arch Backdrop - Expanded & Grand */}
+              <div className="absolute top-0 inset-x-0 bottom-[3%] w-full flex items-start justify-center pointer-events-none z-0 overflow-hidden">
+                <img 
+                  alt="Ornate Temple Arch" 
+                  className="w-[86%] sm:w-[84%] h-auto object-contain drop-shadow-[0_14px_32px_rgba(123,88,2,0.28)]" 
+                  src={ASSETS.templeArch} 
+                />
+              </div>
+
+              {/* 3. Sacred Golden Line-Art Lotus Mandala Ring (Enlarged & Positioned Behind Soaps) */}
+              <div className="absolute top-[4%] sm:top-[3%] left-1/2 -translate-x-1/2 w-[64%] sm:w-[62%] aspect-square pointer-events-none z-5 flex items-center justify-center">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-b from-[#fdcd73]/50 via-[#E8D4B5]/30 to-transparent blur-3xl"></div>
                 <img
-                  alt="Lotus Mandala"
-                  className="w-full h-full object-contain animate-spin-slow opacity-90 drop-shadow-[0_0_30px_rgba(253,205,115,0.45)]"
+                  alt="Lotus Mandala Ring"
+                  className="w-full h-full object-contain animate-[spin_90s_linear_infinite] opacity-95 drop-shadow-[0_0_36px_rgba(253,205,115,0.55)]"
                   src={ASSETS.lotusMandala}
                 />
               </div>
 
-              {/* Bilvam Leaves - Left Floating */}
-              <div className="absolute -top-6 left-1 sm:left-4 w-32 sm:w-40 z-20 pointer-events-none drop-shadow-md">
-                <img
-                  alt="Bilvam Leaves Left"
-                  className="w-full h-auto object-contain -rotate-12"
-                  src={ASSETS.bilvamLeaves}
+
+              {/* 5. Left Upper Arch: Lush Botanical Bilvam Branch Framing */}
+              <div className="absolute top-[2%] left-[6%] sm:left-[7%] w-[17%] sm:w-[18%] z-20 pointer-events-none drop-shadow-md">
+                <img alt="Bilvam Leaves Left" className="w-full h-auto object-contain -rotate-12" src={ASSETS.bilvamLeaves} />
+              </div>
+
+              {/* 6. Right Upper Arch: Lush Botanical Bilvam Branch Framing */}
+              <div className="absolute top-[2%] right-[6%] sm:right-[7%] w-[17%] sm:w-[18%] z-20 pointer-events-none drop-shadow-md">
+                <img alt="Bilvam Leaves Right" className="w-full h-auto object-contain rotate-45 scale-x-[-1]" src={ASSETS.bilvamLeaves} />
+              </div>
+
+              {/* 7. Upper Right: "THE DIVINE COLLECTION" Medallion (Hanging on Right Pillar) */}
+              <div className="absolute top-[16%] sm:top-[17%] right-[6%] sm:right-[7%] z-30 pointer-events-none flex flex-col items-center">
+                {/* Golden Hanging Loop */}
+                <div className="w-[3px] h-3.5 sm:h-4.5 bg-gradient-to-b from-[#C59A45] via-[#fdcd73] to-[#7b5802] rounded-full shadow-sm"></div>
+                <div className="relative w-18 h-18 sm:w-22 sm:h-22 lg:w-24 lg:h-24 rounded-full bg-gradient-to-tr from-[#7b5802] via-[#fdcd73] to-[#C59A45] p-[3px] shadow-[0_14px_28px_rgba(57,37,29,0.38)] flex items-center justify-center border-2 border-[#ffdea6]">
+                  <div className="w-full h-full rounded-full bg-gradient-to-b from-[#fffcf7] via-[#faecd4] to-[#f0e4cf] border border-[#C59A45]/70 flex flex-col items-center justify-center text-center p-1 sm:p-1.5 shadow-inner">
+                    <span className="font-serif text-[8px] sm:text-[9.5px] lg:text-[10px] uppercase tracking-[0.24em] text-[#7b5802] font-semibold leading-tight">The</span>
+                    <span className="font-serif text-[12px] sm:text-[14.5px] lg:text-[16px] font-bold text-[#173D32] tracking-wider uppercase leading-tight my-0.5">Divine</span>
+                    <span className="font-serif text-[8.5px] sm:text-[10px] lg:text-[10.5px] font-semibold text-[#7b5802] tracking-wider uppercase leading-tight">Collection</span>
+                    {/* Lotus Icon */}
+                    <svg className="w-4 h-4 text-[#C59A45] mt-0.5" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 3c-1.5 2.5-3 5-3 8 0 2.5 1.5 4 3 5 1.5-1 3-2.5 3-5 0-3-1.5-5.5-3-8zm-4.5 5.5C6.3 10 5 12 5 14c0 2 1.3 3.5 3 4.2-.8-1.5-1-3.2-.5-4.7.4-1.5 1.3-3.2 0-5zm9 0c-1.3 1.8-.4 3.5 0 5 .5 1.5.3 3.2-.5 4.7 1.7-.7 3-2.2 3-4.2 0-2-1.3-4-2.5-5.5z"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              {/* 8. "CONSECRATED BAR" Forest Green Ribbon Badge (Centered in Arch Opening) */}
+              <div className="absolute top-[37%] left-1/2 -translate-x-1/2 z-25 pointer-events-none">
+                <div className="inline-flex items-center gap-2 sm:gap-3 px-4.5 sm:px-6 py-1.5 sm:py-2 rounded-full bg-[#063426] border border-[#d4af37] shadow-[0_8px_20px_rgba(0,39,29,0.5)] ring-1 ring-[#fdcd73]/60 backdrop-blur-sm">
+                  {/* Left Lotus */}
+                  <svg className="w-4 sm:w-4.5 h-4 sm:h-4.5 text-[#fdcd73] shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.5 2 2 6.5 2 12c4 0 7-1.5 9-4 2 2.5 5 4 9 4 0-5.5-4.5-10-10-10zm-1 9c-1.5 1.5-3.5 2.5-6 2.8 1-2.5 3-4.5 6-5.3V11zm2 0V8.5c3 .8 5 2.8 6 5.3-2.5-.3-4.5-1.3-6-2.8z"/>
+                  </svg>
+                  <span className="font-serif text-[11px] sm:text-[13px] font-bold uppercase tracking-[0.25em] text-[#ffdea6] drop-shadow-sm whitespace-nowrap">
+                    Consecrated Bar
+                  </span>
+                  {/* Right Lotus */}
+                  <svg className="w-4 sm:w-4.5 h-4 sm:h-4.5 text-[#fdcd73] shrink-0 rotate-180" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.5 2 2 6.5 2 12c4 0 7-1.5 9-4 2 2.5 5 4 9 4 0-5.5-4.5-10-10-10zm-1 9c-1.5 1.5-3.5 2.5-6 2.8 1-2.5 3-4.5 6-5.3V11zm2 0V8.5c3 .8 5 2.8 6 5.3-2.5-.3-4.5-1.3-6-2.8z"/>
+                  </svg>
+                </div>
+              </div>
+
+              {/* 9. The 5 Soap Boxes Row (Resting on top of the stone pedestal - Moved Down) */}
+              <div className="absolute bottom-[18.5%] sm:bottom-[19%] inset-x-0 w-[95%] sm:w-[93%] mx-auto flex items-end justify-center select-none z-20 pointer-events-auto">
+                
+                {/* Box 1: Vibhudi Soap (Navy Blue) */}
+                <div 
+                  className="w-[18%] sm:w-[17.5%] flex flex-col items-center z-10 transition-transform duration-300 hover:-translate-y-2 group cursor-pointer origin-bottom"
+                  onClick={() => onSelectSoap?.(3)}
+                >
+                  <div className="relative w-full">
+                    <img alt="Vibhudi Soap Box" className="w-full h-auto object-contain drop-shadow-[0_16px_22px_rgba(57,37,29,0.48)]" src={ASSETS.vibhudiBox} />
+                    <div className="absolute -bottom-1 inset-x-2 h-3.5 bg-[#173D32]/45 blur-sm rounded-full -z-10"></div>
+                  </div>
+                </div>
+
+                {/* Box 2: Kadamba Soap (Orange) */}
+                <div 
+                  className="w-[20%] sm:w-[19.5%] flex flex-col items-center z-15 -ml-[1.5%] transition-transform duration-300 hover:-translate-y-2 group cursor-pointer origin-bottom"
+                  onClick={() => onSelectSoap?.(1)}
+                >
+                  <div className="relative w-full">
+                    <img alt="Kadamba Soap Box" className="w-full h-auto object-contain drop-shadow-[0_18px_24px_rgba(57,37,29,0.52)]" src={ASSETS.kadambaBox} />
+                    <div className="absolute -bottom-1 inset-x-2 h-3.5 bg-[#173D32]/50 blur-sm rounded-full -z-10"></div>
+                  </div>
+                </div>
+
+                {/* Box 3: Kamalam Soap (Pink - Center Hero) */}
+                <div 
+                  className="w-[27%] sm:w-[26.5%] flex flex-col items-center z-25 -ml-[1.5%] -mr-[1.5%] scale-[1.08] origin-bottom transition-transform duration-300 hover:-translate-y-2 group cursor-pointer"
+                  onClick={() => onSelectSoap?.(0)}
+                >
+                  <div className="relative w-full">
+                    <img alt="Kamalam Soap Box" className="w-full h-auto object-contain drop-shadow-[0_24px_34px_rgba(23,61,50,0.6)]" src={ASSETS.kamalamBox} />
+                    <div className="absolute -bottom-1 inset-x-2 h-4.5 bg-[#173d32]/65 blur-md rounded-full -z-10"></div>
+                  </div>
+                </div>
+
+                {/* Box 4: Bilvam Soap (Forest Green) */}
+                <div 
+                  className="w-[20%] sm:w-[19.5%] flex flex-col items-center z-15 transition-transform duration-300 hover:-translate-y-2 group cursor-pointer origin-bottom"
+                  onClick={() => onSelectSoap?.(2)}
+                >
+                  <div className="relative w-full">
+                    <img alt="Bilvam Soap Box" className="w-full h-auto object-contain drop-shadow-[0_18px_24px_rgba(57,37,29,0.52)]" src={ASSETS.bilvamBox} />
+                    <div className="absolute -bottom-1 inset-x-2 h-3.5 bg-[#173D32]/50 blur-sm rounded-full -z-10"></div>
+                  </div>
+                </div>
+
+                {/* Box 5: Rudraksha Soap (Dark Brown) */}
+                <div 
+                  className="w-[18%] sm:w-[17.5%] flex flex-col items-center z-10 -ml-[1.5%] transition-transform duration-300 hover:-translate-y-2 group cursor-pointer origin-bottom"
+                  onClick={() => onSelectSoap?.(4)}
+                >
+                  <div className="relative w-full">
+                    <img alt="Rudraksha Soap Box" className="w-full h-auto object-contain drop-shadow-[0_16px_22px_rgba(57,37,29,0.48)]" src={ASSETS.rudrakshaBox} />
+                    <div className="absolute -bottom-1 inset-x-2 h-3.5 bg-[#173D32]/45 blur-sm rounded-full -z-10"></div>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* 10. Natural Stone Pedestal Platform (Covering Ground Pillars) */}
+              <div className="absolute bottom-[-0.5%] sm:bottom-[-1%] inset-x-0 w-[100%] sm:w-[98%] mx-auto z-15 pointer-events-none flex items-center justify-center">
+                <img 
+                  alt="Natural Stone Pedestal Platform" 
+                  className="w-full h-auto object-contain drop-shadow-[0_20px_30px_rgba(57,37,29,0.48)]" 
+                  src={ASSETS.stonePedestal} 
                 />
               </div>
 
-              {/* Bilvam Leaves - Right Floating */}
-              <div className="absolute -top-5 right-1 sm:right-4 w-32 sm:w-40 z-20 pointer-events-none drop-shadow-md">
-                <img
-                  alt="Bilvam Leaves Right"
-                  className="w-full h-auto object-contain rotate-45 scale-x-[-1]"
-                  src={ASSETS.bilvamLeaves}
-                />
+              {/* 11. Foreground Sacred Offerings (Resting directly along the front of the stone ledge - Moved Down) */}
+              <div className="absolute inset-x-0 bottom-[-4%] sm:bottom-[-5%] w-full h-[32%] pointer-events-none z-30">
+                
+                {/* Lit Brass Diya (Bottom Left) */}
+                <div className="absolute bottom-[6%] left-[2.5%] sm:left-[3.5%] w-[13.5%] sm:w-[14.5%] drop-shadow-xl">
+                  <img alt="Traditional Brass Diya Flame" className="w-full h-auto object-contain" src={ASSETS.brassDiya} />
+                </div>
+
+                {/* White Ash Powder Bowl (Beside Diya) */}
+                <div className="absolute bottom-[6%] left-[16%] sm:left-[17%] w-[10.5%] sm:w-[11.5%] drop-shadow-lg">
+                  <img alt="Ayurvedic Herbal Powder Bowl" className="w-full h-auto object-contain" src={ASSETS.powderBowl} />
+                </div>
+
+                {/* Fresh White Jasmine Flowers (Center Front) */}
+                <div className="absolute bottom-[2%] left-1/2 -translate-x-1/2 w-[25%] sm:w-[27%] drop-shadow-2xl z-35">
+                  <img alt="White Jasmine Flowers" className="w-full h-auto object-contain" src={ASSETS.jasmineFlowers} />
+                </div>
+
+                {/* Blooming Pink Lotus (Mid Right) */}
+                <div className="absolute bottom-[6%] right-[15%] sm:right-[16%] w-[14.5%] sm:w-[15.5%] drop-shadow-xl">
+                  <img alt="Sacred Pink Lotus Flower" className="w-full h-auto object-contain" src={ASSETS.pinkLotus} />
+                </div>
+
+                {/* Sacred Rudraksha Beads Cluster (Far Right) */}
+                <div className="absolute bottom-[6%] right-[2.5%] sm:right-[3.5%] w-[10.5%] sm:w-[11.5%] drop-shadow-lg">
+                  <img alt="Sacred Rudraksha Beads" className="w-full h-auto object-contain" src={ASSETS.rudrakshaMala} />
+                </div>
+
               </div>
 
-              {/* Hanging Brass Bells */}
-              <div className="absolute -top-2 left-14 sm:left-24 w-16 sm:w-20 z-25 pointer-events-none drop-shadow-lg">
-                <img
-                  alt="Hanging Brass Bells"
-                  className="w-full h-auto object-contain"
-                  src={ASSETS.hangingBells}
-                />
-              </div>
+            </div>
+          </div>
+</div>
 
-              {/* Circular Gold Seal: The Divine Collection */}
-              <div className="absolute top-0 right-4 sm:right-8 z-30">
-                <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-tr from-[#7b5802] via-[#fdcd73] to-[#C59A45] p-1 shadow-[0_12px_24px_rgba(57,37,29,0.35)] flex items-center justify-center border-2 border-[#ffdea6]">
-                  <div className="w-full h-full rounded-full bg-gradient-to-b from-[#fff8f1] via-[#faecd4] to-[#e5d9c1] border border-[#C59A45] flex flex-col items-center justify-center text-center p-1 shadow-inner">
-                    <span className="font-label-sm text-[8px] sm:text-[9px] uppercase tracking-widest text-[#7b5802] font-semibold leading-tight">
-                      The
-                    </span>
-                    <span className="font-headline-sm text-[11px] sm:text-[12px] font-bold text-[#173D32] tracking-wider uppercase leading-tight font-serif">
-                      Divine
-                    </span>
-                    <span className="font-headline-sm text-[9px] sm:text-[10px] font-semibold text-[#7b5802] tracking-wider uppercase leading-tight font-serif">
-                      Collection
-                    </span>
-                    <span className="material-symbols-outlined text-[#C59A45] text-[13px] mt-0.5">
-                      local_florist
-                    </span>
-                  </div>
+        {/* 4-FEATURE LUXURY TRUST BAR (Inspired by Reference Design) */}
+        <div className="mt-10 sm:mt-14 max-w-6xl mx-auto">
+          <div className="relative bg-[#FAF5EB]/95 border border-[#E8D4B5] rounded-xl sm:rounded-2xl px-5 sm:px-8 py-5 sm:py-6 shadow-[0_4px_20px_rgba(57,37,29,0.06)]">
+            {/* Ornate Corner Accents */}
+            <div className="absolute top-2 left-2 w-3.5 h-3.5 border-t-2 border-l-2 border-[#C59A45]/70 rounded-tl-sm pointer-events-none"></div>
+            <div className="absolute top-2 right-2 w-3.5 h-3.5 border-t-2 border-r-2 border-[#C59A45]/70 rounded-tr-sm pointer-events-none"></div>
+            <div className="absolute bottom-2 left-2 w-3.5 h-3.5 border-b-2 border-l-2 border-[#C59A45]/70 rounded-bl-sm pointer-events-none"></div>
+            <div className="absolute bottom-2 right-2 w-3.5 h-3.5 border-b-2 border-r-2 border-[#C59A45]/70 rounded-br-sm pointer-events-none"></div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 items-center">
+              {/* Feature 1 */}
+              <div className="flex items-center gap-3 sm:gap-3.5 pr-2">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#faecd4] border border-[#E8D4B5] flex items-center justify-center shrink-0 text-[#7B5802] shadow-sm">
+                  <span className="material-symbols-outlined text-[20px] sm:text-[22px]">eco</span>
+                </div>
+                <div>
+                  <div className="font-serif font-bold text-xs sm:text-sm text-[#00271d] leading-tight">100% Handcrafted</div>
+                  <div className="font-sans text-[11px] sm:text-xs text-[#576B65] leading-tight mt-0.5">Traditional small-batch process</div>
                 </div>
               </div>
 
-              {/* The 5 Standing Product Boxes Stage */}
-              <div className="relative w-full mt-24 sm:mt-28 flex flex-col items-center">
-                <div className="relative z-20 w-full flex items-end justify-center px-2 pb-0 -mb-10 sm:-mb-12">
-                  
-                  {/* 1. Vibhudi */}
-                  <div 
-                    onClick={() => onSelectSoap?.(3)}
-                    className="w-[18%] flex flex-col items-center z-10 transition-transform duration-300 hover:-translate-y-2 group cursor-pointer"
-                  >
-                    <span className="font-label-sm text-[9px] sm:text-[10px] uppercase tracking-wider text-secondary font-semibold mb-1 opacity-90 group-hover:opacity-100">
-                      Vibhudi
-                    </span>
-                    <div className="relative">
-                      <img
-                        alt="Vibhudi Soap Box"
-                        className="w-full h-auto max-h-48 sm:max-h-60 object-contain drop-shadow-[0_14px_16px_rgba(57,37,29,0.32)]"
-                        src={ASSETS.vibhudiBox}
-                      />
-                      <div className="absolute -bottom-2 inset-x-1 h-3 bg-[#39251D]/30 blur-sm rounded-full -z-10"></div>
-                    </div>
-                  </div>
-
-                  {/* 2. Kadamba */}
-                  <div 
-                    onClick={() => onSelectSoap?.(1)}
-                    className="w-[20%] flex flex-col items-center z-20 transition-transform duration-300 hover:-translate-y-4 group -ml-2 sm:-ml-3 cursor-pointer"
-                  >
-                    <span className="font-label-sm text-[9px] sm:text-[10px] uppercase tracking-wider text-secondary font-semibold mb-1 opacity-90 group-hover:opacity-100">
-                      Kadamba
-                    </span>
-                    <div className="relative">
-                      <img
-                        alt="Kadamba Soap Box"
-                        className="w-full h-auto max-h-52 sm:max-h-64 object-contain drop-shadow-[0_18px_20px_rgba(57,37,29,0.35)]"
-                        src={ASSETS.kadambaBox}
-                      />
-                      <div className="absolute -bottom-2 inset-x-1 h-3 bg-[#39251D]/35 blur-sm rounded-full -z-10"></div>
-                    </div>
-                  </div>
-
-                  {/* 3. Bilvam (Center Dominant) */}
-                  <div 
-                    onClick={() => onSelectSoap?.(0)}
-                    className="w-[27%] flex flex-col items-center z-30 transition-transform duration-300 hover:-translate-y-4 group -mx-1 sm:-mx-2 cursor-pointer"
-                  >
-                    <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#173d32] border border-[#fdcd73] mb-1.5 shadow-lg ring-2 ring-[#C59A45]/30">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#fdcd73] animate-pulse shadow-[0_0_6px_#fdcd73]"></span>
-                      <span className="font-label-sm text-[9px] sm:text-[10px] uppercase tracking-widest text-[#ffdea6] font-bold">
-                        Consecrated Bar
-                      </span>
-                    </div>
-                    <div className="relative">
-                      <img
-                        alt="Bilvam Soap Box"
-                        className="w-full h-auto max-h-64 sm:max-h-80 object-contain drop-shadow-[0_28px_34px_rgba(23,61,50,0.5)] scale-105 group-hover:scale-110 transition-transform duration-300 cursor-pointer"
-                        src={ASSETS.bilvamBox}
-                      />
-                      <div className="absolute -bottom-3 inset-x-2 h-4 bg-[#173d32]/50 blur-md rounded-full -z-10"></div>
-                    </div>
-                  </div>
-
-                  {/* 4. Kamalam */}
-                  <div 
-                    onClick={() => onSelectSoap?.(2)}
-                    className="w-[20%] flex flex-col items-center z-20 transition-transform duration-300 hover:-translate-y-4 group -mr-2 sm:-mr-3 cursor-pointer"
-                  >
-                    <span className="font-label-sm text-[9px] sm:text-[10px] uppercase tracking-wider text-secondary font-semibold mb-1 opacity-90 group-hover:opacity-100">
-                      Kamalam
-                    </span>
-                    <div className="relative">
-                      <img
-                        alt="Kamalam Soap Box"
-                        className="w-full h-auto max-h-52 sm:max-h-64 object-contain drop-shadow-[0_18px_20px_rgba(57,37,29,0.35)]"
-                        src={ASSETS.kamalamBox}
-                      />
-                      <div className="absolute -bottom-2 inset-x-1 h-3 bg-[#39251D]/35 blur-sm rounded-full -z-10"></div>
-                    </div>
-                  </div>
-
-                  {/* 5. Rudraksha */}
-                  <div 
-                    onClick={() => onSelectSoap?.(4)}
-                    className="w-[18%] flex flex-col items-center z-10 transition-transform duration-300 hover:-translate-y-2 group cursor-pointer"
-                  >
-                    <span className="font-label-sm text-[9px] sm:text-[10px] uppercase tracking-wider text-secondary font-semibold mb-1 opacity-90 group-hover:opacity-100">
-                      Rudraksha
-                    </span>
-                    <div className="relative">
-                      <img
-                        alt="Rudraksha Soap Box"
-                        className="w-full h-auto max-h-48 sm:max-h-60 object-contain drop-shadow-[0_14px_16px_rgba(57,37,29,0.32)]"
-                        src={ASSETS.rudrakshaBox}
-                      />
-                      <div className="absolute -bottom-2 inset-x-1 h-3 bg-[#39251D]/30 blur-sm rounded-full -z-10"></div>
-                    </div>
-                  </div>
+              {/* Feature 2 */}
+              <div className="flex items-center gap-3 sm:gap-3.5 pr-2">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#faecd4] border border-[#E8D4B5] flex items-center justify-center shrink-0 text-[#7B5802] shadow-sm">
+                  <span className="material-symbols-outlined text-[20px] sm:text-[22px]">spa</span>
                 </div>
-
-                {/* Stone Pedestal Base Stage with Sacred Offerings */}
-                <div className="relative z-25 w-full flex flex-col items-center pointer-events-none">
-                  <div className="w-full px-1 relative flex items-center justify-center">
-                    <img
-                      alt="Stone Pedestal Stage"
-                      className="w-full h-auto object-contain drop-shadow-[0_20px_28px_rgba(57,37,29,0.42)]"
-                      src={ASSETS.stonePedestal}
-                    />
-
-                    {/* Left: Brass Diya Flame */}
-                    <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-6 w-12 sm:w-16 z-30 drop-shadow-md">
-                      <img
-                        alt="Brass Diya Flame"
-                        className="w-full h-auto object-contain"
-                        src={ASSETS.brassDiya}
-                      />
-                    </div>
-
-                    {/* Golden Herbal Powder Bowl */}
-                    <div className="absolute bottom-2 sm:bottom-3 left-14 sm:left-24 w-14 sm:w-20 z-30 drop-shadow-md">
-                      <img
-                        alt="Golden Herbal Powder Bowl"
-                        className="w-full h-auto object-contain"
-                        src={ASSETS.powderBowl}
-                      />
-                    </div>
-
-                    {/* White Jasmine Flowers */}
-                    <div className="absolute bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 w-28 sm:w-36 z-30 drop-shadow-sm">
-                      <img
-                        alt="White Jasmine Flowers"
-                        className="w-full h-auto object-contain"
-                        src={ASSETS.jasmineFlowers}
-                      />
-                    </div>
-
-                    {/* Sacred Pink Lotus */}
-                    <div className="absolute bottom-3 sm:bottom-4 right-14 sm:right-24 w-16 sm:w-20 z-30 drop-shadow-md">
-                      <img
-                        alt="Sacred Pink Lotus"
-                        className="w-full h-auto object-contain"
-                        src={ASSETS.pinkLotus}
-                      />
-                    </div>
-
-                    {/* Rudraksha Mala Beads */}
-                    <div className="absolute bottom-2 sm:bottom-3 right-3 sm:right-6 w-14 sm:w-20 z-30 drop-shadow-md">
-                      <img
-                        alt="Rudraksha Mala Beads"
-                        className="w-full h-auto object-contain"
-                        src={ASSETS.rudrakshaMala}
-                      />
-                    </div>
-                  </div>
+                <div>
+                  <div className="font-serif font-bold text-xs sm:text-sm text-[#00271d] leading-tight">Sacred Botanicals</div>
+                  <div className="font-sans text-[11px] sm:text-xs text-[#576B65] leading-tight mt-0.5">Pure Ayurvedic ingredients</div>
                 </div>
+              </div>
 
-                {/* Feature Pill Row Under Stage */}
-                <div className="relative z-30 w-full mt-3 px-3 sm:px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#faecd4]/95 via-[#f4e7cf] to-[#faecd4]/95 border border-[#C59A45]/60 shadow-md flex flex-wrap items-center justify-around gap-2 text-on-surface-variant font-label-sm text-[10px] sm:text-[11px] uppercase tracking-wider backdrop-blur-sm">
-                  <div className="flex items-center gap-1.5">
-                    <span className="material-symbols-outlined text-[#C59A45] text-[15px]">verified</span>
-                    <span className="font-semibold text-primary">100% Handcrafted</span>
-                  </div>
-                  <span className="w-1 h-1 rounded-full bg-[#C59A45]"></span>
-                  <div className="flex items-center gap-1.5">
-                    <span className="material-symbols-outlined text-[#C59A45] text-[15px]">spa</span>
-                    <span className="font-semibold text-primary">Devotional Pure Herbs</span>
-                  </div>
-                  <span className="w-1 h-1 rounded-full bg-[#C59A45]"></span>
-                  <div className="flex items-center gap-1.5">
-                    <span className="material-symbols-outlined text-[#C59A45] text-[15px]">local_florist</span>
-                    <span className="font-semibold text-primary">Sacred Botanicals</span>
-                  </div>
+              {/* Feature 3 */}
+              <div className="flex items-center gap-3 sm:gap-3.5 pr-2">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#faecd4] border border-[#E8D4B5] flex items-center justify-center shrink-0 text-[#7B5802] shadow-sm">
+                  <span className="material-symbols-outlined text-[20px] sm:text-[22px]">water_drop</span>
                 </div>
+                <div>
+                  <div className="font-serif font-bold text-xs sm:text-sm text-[#00271d] leading-tight">Virgin Plant Oils</div>
+                  <div className="font-sans text-[11px] sm:text-xs text-[#576B65] leading-tight mt-0.5">Nourishing & skin-friendly</div>
+                </div>
+              </div>
 
-                {/* Small Batch Indicator Tag */}
-                <div className="w-full flex justify-end mt-2 pr-2">
-                  <div className="bg-[#173d32] border-2 border-[#fdcd73] px-3.5 py-1.5 rounded-full shadow-xl inline-flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#4ade80] animate-pulse shadow-[0_0_6px_#4ade80]"></span>
-                    <span className="font-label-sm text-[10px] text-[#ffdea6] uppercase tracking-widest font-bold">
-                      Small-Batch Cold Processed
-                    </span>
-                  </div>
+              {/* Feature 4 */}
+              <div className="flex items-center gap-3 sm:gap-3.5">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#faecd4] border border-[#E8D4B5] flex items-center justify-center shrink-0 text-[#7B5802] shadow-sm">
+                  <span className="material-symbols-outlined text-[20px] sm:text-[22px]">local_florist</span>
                 </div>
+                <div>
+                  <div className="font-serif font-bold text-xs sm:text-sm text-[#00271d] leading-tight">Aged 45 Days</div>
+                  <div className="font-sans text-[11px] sm:text-xs text-[#576B65] leading-tight mt-0.5">For a richer, gentle cleanse</div>
+                </div>
+              </div>
+            </div>
+          </div>
 
               </div>
             </div>

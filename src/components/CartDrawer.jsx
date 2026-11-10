@@ -4,21 +4,21 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantit
   if (!isOpen) return null;
 
   const total = cartItems.reduce((sum, item) => {
-    const priceNum = parseInt(item.price.replace(/[^0-9]/g, ''), 10) || 480;
+    const priceNum = parseInt(item.price.replace(/[^0-9]/g, ''), 10) || 150;
     return sum + priceNum * item.quantity;
   }, 0);
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end">
       {/* Backdrop */}
-      <div 
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity" 
+      <div
+        className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       />
 
       {/* Drawer */}
       <div className="relative w-full max-w-md bg-surface h-full shadow-2xl flex flex-col z-10 border-l border-[#E8D4B5]">
-        
+
         {/* Header */}
         <div className="p-6 border-b border-[#E8D4B5] flex items-center justify-between bg-surface-container-low">
           <div className="flex items-center gap-2">
@@ -27,8 +27,8 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantit
               Your Cleansing Bag ({cartItems.reduce((acc, i) => acc + i.quantity, 0)})
             </h3>
           </div>
-          <button 
-            onClick={onClose} 
+          <button
+            onClick={onClose}
             className="p-1 hover:text-secondary text-on-surface-variant transition-colors"
           >
             <span className="material-symbols-outlined text-2xl">close</span>
@@ -49,8 +49,8 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantit
             </div>
           ) : (
             cartItems.map((item) => (
-              <div 
-                key={item.id} 
+              <div
+                key={item.id}
                 className="flex items-center gap-4 p-3 bg-surface-container rounded-xl border border-[#E8D4B5]/60 shadow-sm"
               >
                 <div className="w-16 h-16 bg-surface/60 rounded-lg flex items-center justify-center p-1 shrink-0">
@@ -61,7 +61,7 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantit
                     {item.title}
                   </h4>
                   <p className="text-xs text-secondary font-medium">{item.price}</p>
-                  
+
                   {/* Quantity control */}
                   <div className="flex items-center gap-2 mt-2">
                     <button
@@ -99,7 +99,7 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantit
             </div>
             <p className="text-xs text-[#7B5802] font-medium flex items-center gap-1">
               <span className="material-symbols-outlined text-[15px] text-[#C59A45]">redeem</span>
-              {total >= 1200 
+              {total >= 1200
                 ? "Qualified for complimentary Ayurvedic Wooden Soap Dish!"
                 : `Add ₹${1200 - total} more for complimentary Wooden Soap Dish`}
             </p>
