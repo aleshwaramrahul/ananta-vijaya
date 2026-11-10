@@ -5,6 +5,16 @@ import rudrakshaImg from '../assets/images/3d/rudraksha.png';
 import vibhudiImg from '../assets/images/3d/vibhudi.png';
 import singleStonePedestalImg from '../assets/images/single_stone_pedestal.png';
 import templeArchImg from '../assets/images/temple_arch.png';
+import logoImg from '../assets/images/logo.png';
+import lotusMandalaImg from '../assets/images/lotus_mandala.png';
+import bilvamLeavesImg from '../assets/images/bilvam_leaves.png';
+import hangingBellsImg from '../assets/images/hanging_bells.png';
+import brassDiyaImg from '../assets/images/brass_diya.png';
+import powderBowlImg from '../assets/images/powder_bowl.png';
+import jasmineFlowersImg from '../assets/images/jasmine_flowers.png';
+import pinkLotusImg from '../assets/images/pink_lotus.png';
+import rudrakshaMalaImg from '../assets/images/rudraksha_mala.png';
+import sanctuaryRitualImg from '../assets/images/sanctuary_ritual.png';
 
 // 3D Packaging Textures
 import kamalamFront from '../assets/textures/kamalam/front.jpg';
@@ -286,18 +296,18 @@ export const SOAP_PRODUCTS = [
 ];
 
 export const ASSETS = {
-  logo: "https://lh3.googleusercontent.com/aida-public/AB6AXuB993sfXG98XREyGP3l0QhO-ic0V-KZI_WgZ5ASeUn17ZYjDY1LQznLiBxa31iajLzMHy-l6LQZbFyjgZPZPoZEyH16sZghNVanlWWtraxjG_usqzD9a36TW00dqeMbOVmO-_4HgHQ1hH0jRiSY6jMEsP-gDkSnslm7AH3RRvlxspeGFBnaVtvSyPJb3FrpvNZRz_Ezo_ykC4ksX7ZF6e5xKKpJDlOXxcqeBV5FWRmp8XVZiI6sVKpx_g",
-  lotusMandala: "https://lh3.googleusercontent.com/aida-public/AB6AXuCeOOkTHOBDGtBCE8y-JHcrA4aaTsqCKIQHAwSHN3H_ZYMBkWfm87vQE42kdXLbD5Kktt0qghSDbbI4R7-NpNPAJ3NA7eM99US9vS_fwz5l60hlP-6zAzt4kAB36mci-OyQ7lUm6yR5fHSgot3CY93dloJihwtdUNpP_0DMJm9irzARBkMMdORhS_kh5b1pto6QT9OETNVmqnsOclp8vydvzX44Cqz0cGmvOIbqGR_0RuInDz12QtqTBA",
-  bilvamLeaves: "https://lh3.googleusercontent.com/aida-public/AB6AXuAxckMUz1kSItV6wZPC8-stJnZgJnoRhY39Gy13VIbyqW5JY2oZaJF39oOQEBT-4OMB1Ym7_1nPD5CgkgrUOywgku6hvBjfSgN97xyRYIQHeGvP3bJ2Iq2kB8iDx_XqI1gL0kiFfb9nZfyDgyHRDzZUK-oDJ8NTKMDf_0Rtpvo1BmLjPRX3ok3BabTS7l3lJ168WJ5cVvzYLrBIhliq_bEBihvFZmCn2RVdMi5ZWeNW0t9mJFDajs5aTA",
-  hangingBells: "https://lh3.googleusercontent.com/aida-public/AB6AXuCTdPE0JmFfBNLMuY6Bgb-qY_BVm30ymNFEhIHi7b_zec1sF0GPpMzmhku6iQVLG0WV7sb0VJP1l8cvZtWFET7NC425H2lULmuCO2rvRK-MrnHd0gAK2VaFMyedMK2tzO6Be8xYZa_39-Wek5DebbhBadcNo6XO7RtLgXHNjkklujviSXrkvkLzP1pd258YgriXRCbPrKvjVUIZyo3xERxjtmVtoDaUi11FaeD-UmfKF3A9V1V4cHaisw",
+  logo: logoImg,
+  lotusMandala: lotusMandalaImg,
+  bilvamLeaves: bilvamLeavesImg,
+  hangingBells: hangingBellsImg,
   stonePedestal: singleStonePedestalImg,
   templeArch: templeArchImg,
-  brassDiya: "https://lh3.googleusercontent.com/aida-public/AB6AXuBCx_f1TNxMsbFrHrw2VbLfxdthZi8WRFAbiV6yPhp6nevxrvKgbDggkZDNWThd2eYQcs6iIiJUmgLydWXMRrELi16-SQ5IcFDdQ4jf-KD3ARDuujmoqoAGCbrtsur2X11-xoWbBAzxmVXZy6xqHgpl-pH0AsY7OHWi5geI3le8gGntPGSfqZ_HY3btoXEbgHYpnAJDzdU8sJjInF86TPFzvTx9pOiSsyRCcoI1tKsMfXjCdTTer3pPBA",
-  powderBowl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCaOzDIlxFZITculeKeKlAiLFhQhlTk_c3VcVL5bF65XkOMW2qlf4Mlhq8wcMqNN_LUII0tKRAMwm5r8Q8RvZ3VRmmkCqTShw3SWjTYKH4J4FGBtvOknK8wZc5QLGtWY9sJUKvkA8KJJP2R-adD78fnsQD1xCSSHTzz-FT-k_juLCy-Yt5IJ-6T9h2d75EThGgF9R_XgMrh7TqEliYnL9ELcdfRG9QOUEZxoL4UkIuHzkNu_ltx8Ezzlg",
-  jasmineFlowers: "https://lh3.googleusercontent.com/aida-public/AB6AXuDcYkffTcnT-o5diaTuiAhdW-53bFPKbXgt7jKLuNX6bIIUuSm3chYroIcIpufLPqI13UPWUXFJpW6chgz-eOFdRE0t00_D49rQFNXLG4wzOh6_YD4Y1KNCLwDoeyQgRcUMz0Hbagoi_tV3XuhLKVSTYOH785ft72JarwasciNLEssu5-QfAXrpu6WxaJ3eP7e0y-R-RuehfoXU3Vxct9IjpugmPkPr8HmIV6ocwXBU-sh8GWNIgumuyg",
-  pinkLotus: "https://lh3.googleusercontent.com/aida-public/AB6AXuAq1d05srPbKkjkOeA5dF4l68ih_Bx4elzDMeAmyKdR5u5mDBInUdDThCxkIiQulv7jUOXJu3O9tgIClsJ80rOUXQva8EStaJkbZlaQ9VkHzIlbboTccs-kxarqR1NuTLqP56byaQbb4lih1Eh-YG_dDj6OAhTD0oDlSXU4hAmwaRhehppRcAGHXUS3I7RZm2ZRi-KcyNiY1BhY8sj8urWd7zGvu4BA96uKWqIftRguX6p5jJIr2QK0mQ",
-  rudrakshaMala: "https://lh3.googleusercontent.com/aida-public/AB6AXuAOwgGtCtgEqUgYs1GU-y12W8GQWboRQ8W2_AYX6zMORDNwijcTx2D1viW0PopSdLjn7lgiqA2zLPhgFT7lxvSY33c8K7bmh_ikf0DbZ2ESZ45Q1e0_lRIHrZi_fJqhvrHGOoNWwTryLJ92OCWkB5uXWCWNajtIgh1NLOge1IYsElS0QGwoITkSXgSC_ncbPeknnE43XlckMErCEmJgbhz2k_TDIs8nYMHoh5r3NOdFgpcGDxDJIcQzcw",
-  sanctuaryRitual: "https://lh3.googleusercontent.com/aida-public/AB6AXuC4y2UXs2WjtJREg88iKYqsnI2kLYpPymCOf7YfoE3xyxAfEWQHCaFzP5_1yaXT8ERFhZOBTcoM93cw12j9CW5sarwMGJLKIqGmLwNAGqj2bKLNHzTB5MYegjlwNXVjs5ofWxPfEatP-LYSS3c9UoZgOWrmZjq5abiKV20zijwi-EqSdxBRxJF7oEnw8QwIgElJg2PbOC0bcwAgrPcDhfuLMm0C6CxhYmDWVFv7iXi4",
+  brassDiya: brassDiyaImg,
+  powderBowl: powderBowlImg,
+  jasmineFlowers: jasmineFlowersImg,
+  pinkLotus: pinkLotusImg,
+  rudrakshaMala: rudrakshaMalaImg,
+  sanctuaryRitual: sanctuaryRitualImg,
   // 5 Hero soap boxes:
   vibhudiBox: vibhudiImg,
   kadambaBox: kadambaImg,
