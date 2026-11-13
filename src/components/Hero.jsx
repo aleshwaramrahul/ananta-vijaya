@@ -58,7 +58,7 @@ export default function Hero({ onSelectSoap }) {
             <div className="pt-space-md flex flex-wrap items-center gap-space-md text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
               <div className="flex items-center gap-space-xs">
                 <span className="material-symbols-outlined text-secondary text-[16px]">verified</span>
-                <span>100% Handcrafted</span>
+                <span>Handcrafted</span>
               </div>
               <span className="w-1.5 h-1.5 rounded-full bg-secondary/50"></span>
               <div className="flex items-center gap-space-xs">
@@ -147,35 +147,35 @@ export default function Hero({ onSelectSoap }) {
               {/* 9. The 5 Soap Boxes Row (Resting on top of the stone pedestal - Moved Down) */}
               <div className="absolute bottom-[18.5%] sm:bottom-[19%] inset-x-0 w-[95%] sm:w-[93%] mx-auto flex items-end justify-center select-none z-20 pointer-events-auto">
                 
-                {/* Box 1: Vibhudi Soap (Navy Blue) */}
+                {/* Box 1: Kamalam Soap (Pink) */}
                 <div 
                   className="w-[18%] sm:w-[17.5%] flex flex-col items-center z-10 transition-transform duration-300 hover:-translate-y-2 group cursor-pointer origin-bottom"
                   onClick={() => onSelectSoap?.(3)}
                 >
                   <div className="relative w-full">
-                    <img alt="Vibhudi Soap Box" className="w-full h-auto object-contain drop-shadow-[0_16px_22px_rgba(57,37,29,0.48)]" src={ASSETS.vibhudiBox} />
+                    <img alt="Kamalam Soap Box" className="w-full h-auto object-contain drop-shadow-[0_16px_22px_rgba(57,37,29,0.48)]" src={ASSETS.kamalamBox} />
                     <div className="absolute -bottom-1 inset-x-2 h-3.5 bg-[#173D32]/45 blur-sm rounded-full -z-10"></div>
                   </div>
                 </div>
 
-                {/* Box 2: Kadamba Soap (Orange) */}
+                {/* Box 2: Rudraksha Soap (Dark Brown) */}
                 <div 
                   className="w-[20%] sm:w-[19.5%] flex flex-col items-center z-15 -ml-[1.5%] transition-transform duration-300 hover:-translate-y-2 group cursor-pointer origin-bottom"
                   onClick={() => onSelectSoap?.(1)}
                 >
                   <div className="relative w-full">
-                    <img alt="Kadamba Soap Box" className="w-full h-auto object-contain drop-shadow-[0_18px_24px_rgba(57,37,29,0.52)]" src={ASSETS.kadambaBox} />
+                    <img alt="Rudraksha Soap Box" className="w-full h-auto object-contain drop-shadow-[0_18px_24px_rgba(57,37,29,0.52)]" src={ASSETS.rudrakshaBox} />
                     <div className="absolute -bottom-1 inset-x-2 h-3.5 bg-[#173D32]/50 blur-sm rounded-full -z-10"></div>
                   </div>
                 </div>
 
-                {/* Box 3: Kamalam Soap (Pink - Center Hero) */}
+                {/* Box 3: Vibhudi Soap (Navy Blue - Center Hero) */}
                 <div 
                   className="w-[27%] sm:w-[26.5%] flex flex-col items-center z-25 -ml-[1.5%] -mr-[1.5%] scale-[1.08] origin-bottom transition-transform duration-300 hover:-translate-y-2 group cursor-pointer"
                   onClick={() => onSelectSoap?.(0)}
                 >
                   <div className="relative w-full">
-                    <img alt="Kamalam Soap Box" className="w-full h-auto object-contain drop-shadow-[0_24px_34px_rgba(23,61,50,0.6)]" src={ASSETS.kamalamBox} />
+                    <img alt="Vibhudi Soap Box" className="w-full h-auto object-contain drop-shadow-[0_24px_34px_rgba(23,61,50,0.6)]" src={ASSETS.vibhudiBox} />
                     <div className="absolute -bottom-1 inset-x-2 h-4.5 bg-[#173d32]/65 blur-md rounded-full -z-10"></div>
                   </div>
                 </div>
@@ -191,13 +191,13 @@ export default function Hero({ onSelectSoap }) {
                   </div>
                 </div>
 
-                {/* Box 5: Rudraksha Soap (Dark Brown) */}
+                {/* Box 5: Kadamba Soap (Orange) */}
                 <div 
                   className="w-[18%] sm:w-[17.5%] flex flex-col items-center z-10 -ml-[1.5%] transition-transform duration-300 hover:-translate-y-2 group cursor-pointer origin-bottom"
                   onClick={() => onSelectSoap?.(4)}
                 >
                   <div className="relative w-full">
-                    <img alt="Rudraksha Soap Box" className="w-full h-auto object-contain drop-shadow-[0_16px_22px_rgba(57,37,29,0.48)]" src={ASSETS.rudrakshaBox} />
+                    <img alt="Kadamba Soap Box" className="w-full h-auto object-contain drop-shadow-[0_16px_22px_rgba(57,37,29,0.48)]" src={ASSETS.kadambaBox} />
                     <div className="absolute -bottom-1 inset-x-2 h-3.5 bg-[#173D32]/45 blur-sm rounded-full -z-10"></div>
                   </div>
                 </div>
@@ -256,14 +256,14 @@ export default function Hero({ onSelectSoap }) {
             <div className="absolute bottom-2 left-2 w-3.5 h-3.5 border-b-2 border-l-2 border-[#C59A45]/70 rounded-bl-sm pointer-events-none"></div>
             <div className="absolute bottom-2 right-2 w-3.5 h-3.5 border-b-2 border-r-2 border-[#C59A45]/70 rounded-br-sm pointer-events-none"></div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-center">
               {/* Feature 1 */}
               <div className="flex items-center gap-3 sm:gap-3.5 pr-2">
                 <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#faecd4] border border-[#E8D4B5] flex items-center justify-center shrink-0 text-[#7B5802] shadow-sm">
                   <span className="material-symbols-outlined text-[20px] sm:text-[22px]">eco</span>
                 </div>
                 <div>
-                  <div className="font-serif font-bold text-xs sm:text-sm text-[#00271d] leading-tight">100% Handcrafted</div>
+                  <div className="font-serif font-bold text-xs sm:text-sm text-[#00271d] leading-tight">Handcrafted</div>
                   <div className="font-sans text-[11px] sm:text-xs text-[#576B65] leading-tight mt-0.5">Traditional small-batch process</div>
                 </div>
               </div>
@@ -287,17 +287,6 @@ export default function Hero({ onSelectSoap }) {
                 <div>
                   <div className="font-serif font-bold text-xs sm:text-sm text-[#00271d] leading-tight">Virgin Plant Oils</div>
                   <div className="font-sans text-[11px] sm:text-xs text-[#576B65] leading-tight mt-0.5">Nourishing & skin-friendly</div>
-                </div>
-              </div>
-
-              {/* Feature 4 */}
-              <div className="flex items-center gap-3 sm:gap-3.5">
-                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#faecd4] border border-[#E8D4B5] flex items-center justify-center shrink-0 text-[#7B5802] shadow-sm">
-                  <span className="material-symbols-outlined text-[20px] sm:text-[22px]">local_florist</span>
-                </div>
-                <div>
-                  <div className="font-serif font-bold text-xs sm:text-sm text-[#00271d] leading-tight">Aged 45 Days</div>
-                  <div className="font-sans text-[11px] sm:text-xs text-[#576B65] leading-tight mt-0.5">For a richer, gentle cleanse</div>
                 </div>
               </div>
             </div>

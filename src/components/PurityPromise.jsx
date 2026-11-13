@@ -29,7 +29,7 @@ export default function PurityPromise() {
       num: "03 • Patience",
       icon: "hourglass_top",
       title: "Thoughtfully Crafted",
-      desc: "Small-batch cold-process curing aged six full weeks to preserve raw enzymatic and plant potency."
+      desc: "Small-batch plant extraction curing to preserve raw enzymatic and botanical potency."
     },
     {
       num: "04 • Wholesome",

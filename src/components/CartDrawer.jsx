@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveItem }) {
+export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveItem, onCheckout }) {
   if (!isOpen) return null;
 
   const total = cartItems.reduce((sum, item) => {
@@ -104,11 +104,20 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQuantit
                 : `Add ₹${1200 - total} more for complimentary Wooden Soap Dish`}
             </p>
             <button
-              onClick={() => alert('Proceeding to checkout with Ananta Vijaya sacred soaps...')}
-              className="w-full py-3.5 bg-[#C59A45] hover:bg-[#b08638] text-white font-label-md text-sm uppercase tracking-wider rounded-full shadow-md font-semibold transition-all transform active:scale-95"
+              onClick={() => {
+                if (onCheckout) {
+                  onCheckout();
+                }
+              }}
+              className="w-full py-3.5 bg-[#00271d] hover:bg-[#173D32] text-[#fdcd73] font-serif text-sm uppercase tracking-wider rounded-xl shadow-md font-bold transition-all transform active:scale-95 flex items-center justify-center gap-2 border border-[#C59A45]/40"
             >
-              Proceed to Checkout
+              <span className="material-symbols-outlined text-[18px]">lock</span>
+              <span>Proceed to Checkout</span>
             </button>
+            <div className="flex items-center justify-center gap-1.5 text-[10px] text-[#414845] pt-0.5">
+              <span className="material-symbols-outlined text-[13px] text-emerald-700">verified_user</span>
+              <span>100% Secure Checkout powered by <strong>Razorpay</strong></span>
+            </div>
           </div>
         )}
 

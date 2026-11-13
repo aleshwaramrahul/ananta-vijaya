@@ -217,7 +217,7 @@ export const PRODUCT_SEO = {
     description: "Discover The Divine Collection, a premium five-soap gift box for weddings, return gifts, corporate gifting and festivals.",
     keywords: "Premium soap gift box, Wedding return gifts, Corporate gifting soaps, Festival gift boxes, Five soap gift collection, Premium gifting India, Soap gift boxes in Hyderabad",
     canonical: `${SITE_URL}/divine-collection`,
-    price: "1199",
+    price: "699",
     currency: "INR",
     availability: "https://schema.org/InStock",
     rating: "5.0",

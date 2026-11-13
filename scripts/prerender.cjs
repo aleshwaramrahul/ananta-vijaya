@@ -135,7 +135,7 @@ const ROUTES_DATA = [
             "@type": "Offer",
             "url": `${SITE_URL}/divine-collection`,
             "priceCurrency": "INR",
-            "price": "1199",
+            "price": "699",
             "priceValidUntil": "2027-12-31",
             "itemCondition": "https://schema.org/NewCondition",
             "availability": "https://schema.org/InStock"
@@ -434,18 +434,18 @@ const ROUTES_DATA = [
             },
             {
               "@type": "Question",
-              "name": "What makes traditional cold-cured soaps different from commercial bars?",
+              "name": "What makes traditional plant-extracted soaps different from commercial bars?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Commercial factory soaps often remove natural glycerin to sell separately in expensive creams and substitute it with synthetic surfactants. In contrast, our artisanal soaps undergo a slow 4 to 6 week cold cure that naturally retains 100% of the precious plant glycerin, providing superior hydration and conditioning."
+                "text": "Commercial factory soaps often remove natural glycerin to sell separately in expensive creams and substitute it with synthetic surfactants. In contrast, our artisanal soaps undergo a slow plant extraction and curing method that naturally retains 100% of the precious plant glycerin, providing superior hydration and conditioning."
               }
             },
             {
               "@type": "Question",
-              "name": "How long does a single 125g bar typically last?",
+              "name": "How long does a single 100g bar typically last?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "With daily bathing by an individual, one 125g bar generally lasts between 3 to 4 weeks. Because our bars are rich in natural glycerin and cold-pressed oils, we recommend keeping your bar in a well-draining wooden soap dish away from standing water between uses to maximize its longevity."
+                "text": "With daily bathing by an individual, one 100g bar generally lasts between 3 to 4 weeks. Because our bars are rich in natural glycerin and cold-pressed oils, we recommend keeping your bar in a well-draining wooden soap dish away from standing water between uses to maximize its longevity."
               }
             },
             {
@@ -581,5 +581,9 @@ for (const route of ROUTES_DATA) {
   generatedCount++;
   console.log(`[SEO Prerender] Generated: ${route.path} -> ${path.relative(DIST_DIR, route.outputPath)}`);
 }
+
+// Create 404.html fallback for GitHub Pages client-side routing
+fs.copyFileSync(path.join(DIST_DIR, 'index.html'), path.join(DIST_DIR, '404.html'));
+console.log('[SEO Prerender] Generated: 404.html (GitHub Pages SPA fallback)');
 
 console.log(`\n[SEO Prerender] Successfully generated ${generatedCount} static pages with complete SEO tags & structured data.`);

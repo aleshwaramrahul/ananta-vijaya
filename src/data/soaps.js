@@ -54,13 +54,157 @@ import rudrakshaRight from '../assets/textures/rudraksha/right.jpg';
 
 export const SOAP_PRODUCTS = [
   {
+    id: "vibhudi",
+    slug: "vibhudi-soap",
+    sku: "LG-SOAP-VIB-01",
+    title: "Vibhudi Soap",
+    subtitle: "Sacred Ash & Holy Tulsi",
+    tagline: "Deep Pore Detox & Meditative Stillness",
+    badge: "100g • Traditional Plant Extraction Bar",
+    image: vibhudiImg,
+    boxImage: vibhudiImg,
+    textures3d: {
+      front: vibhudiFront,
+      back: vibhudiBack,
+      top: vibhudiTop,
+      bottom: vibhudiBottom,
+      left: vibhudiLeft,
+      right: vibhudiRight,
+    },
+    desc: "Sacred temple ash and Krishna Tulsi combined for gentle mineral detoxification, drawing out airborne impurities while enveloping your senses in profound meditative tranquility.",
+    price: "₹150",
+    rating: "5.0",
+    reviewsCount: 184,
+    benefits: [
+      {
+        icon: "spa",
+        title: "Sacred Ash Purification",
+        desc: "Authentic consecrated ash provides ultra-fine mineral micro-exfoliation."
+      },
+      {
+        icon: "clean_hands",
+        title: "Pore Detoxification",
+        desc: "Clarifies congested pores and harmonizes excess sebum production."
+      },
+      {
+        icon: "self_improvement",
+        title: "Meditative Focus",
+        desc: "Warm temple notes evoke tranquility and spiritual centering."
+      }
+    ],
+    ingredients: [
+      { name: "Consecrated Temple Ash", role: "Mineral Micro-Exfoliation", icon: "temple_hindu" },
+      { name: "Krishna Tulsi Extract", role: "Anti-Pollution Purification", icon: "eco" },
+      { name: "Activated Coconut Charcoal", role: "Draws Out Deep Toxins", icon: "dark_mode" },
+      { name: "Cold-Pressed Sesame Oil", role: "Skin Barrier Balancing", icon: "water_drop" },
+      { name: "Frankincense Resin Oil", role: "Cellular Renewal & Serenity", icon: "flare" },
+      { name: "Myrrh & Clove Infusion", role: "Soothes Sensitive Skin", icon: "spa" }
+    ]
+  },,
+  {
+    id: "rudraksha",
+    slug: "rudraksha-soap",
+    sku: "LG-SOAP-RUD-05",
+    title: "Rudraksha Soap",
+    subtitle: "Sacred Bead & Himalayan Cedar",
+    tagline: "Vital Prana & Sensory Shielding",
+    badge: "100g • Traditional Plant Extraction Bar",
+    image: rudrakshaImg,
+    boxImage: rudrakshaImg,
+    textures3d: {
+      front: rudrakshaFront,
+      back: rudrakshaBack,
+      top: rudrakshaTop,
+      bottom: rudrakshaBottom,
+      left: rudrakshaLeft,
+      right: rudrakshaRight,
+    },
+    desc: "Auspicious Rudraksha bead extract crafted to awaken vital energy, protect skin from environmental stress, and balance sensory harmony. Enriched with rare Himalayan cedarwood.",
+    price: "₹150",
+    rating: "4.9",
+    reviewsCount: 112,
+    benefits: [
+      {
+        icon: "spa",
+        title: "Rudraksha Bead Infusion",
+        desc: "Sacred seed cold extract revered for bio-energetic grounding."
+      },
+      {
+        icon: "bolt",
+        title: "Pranic Vitality",
+        desc: "Revives tired skin with energizing botanical phytonutrients."
+      },
+      {
+        icon: "shield",
+        title: "Aura Harmonizing",
+        desc: "Protective and shielding cleansing ritual passed down through monks."
+      }
+    ],
+    ingredients: [
+      { name: "Panchamukhi Rudraksha Extract", role: "Bio-Magnetic Vitality", icon: "all_inclusive" },
+      { name: "Himalayan Deodar Cedar", role: "Skin Firming & Tone", icon: "forest" },
+      { name: "Pure Jojoba Golden Oil", role: "Mimics Natural Sebum", icon: "water_drop" },
+      { name: "Cold-Pressed Castor Oil", role: "Velvety Cushioning Lather", icon: "spa" },
+      { name: "Ashwagandha Root Extract", role: "Adaptogenic Skin Defense", icon: "eco" },
+      { name: "Black Pepper & Clove Leaf", role: "Micro-Circulation Warmth", icon: "local_fire_department" }
+    ]
+  },
+  {
+    id: "bilvam",
+    slug: "bilvam-soap",
+    sku: "LG-SOAP-BIL-02",
+    title: "Bilvam Soap",
+    subtitle: "Auspicious Bael Leaf & Vetiver",
+    tagline: "Sacred Purification & Dermal Cooling",
+    badge: "100g • Traditional Plant Extraction Bar",
+    image: bilvamImg,
+    boxImage: bilvamImg,
+    textures3d: {
+      front: bilvamFront,
+      back: bilvamBack,
+      top: bilvamTop,
+      bottom: bilvamBottom,
+      left: bilvamLeft,
+      right: bilvamRight,
+    },
+    desc: "Auspicious Aegle marmelos (Bael) leaves providing deep dermal rejuvenation, antimicrobial protection, and cooling herbal prana. Prepared following classical Ayurvedic texts.",
+    price: "₹150",
+    rating: "4.9",
+    reviewsCount: 156,
+    benefits: [
+      {
+        icon: "spa",
+        title: "100% Consecrated Botanicals",
+        desc: "Wild bael leaves hand-collected and cold-infused in virgin coconut oil."
+      },
+      {
+        icon: "clean_hands",
+        title: "Purifying Botanical Clarity",
+        desc: "Natural tannins protect against environmental stressors and purify skin."
+      },
+      {
+        icon: "self_improvement",
+        title: "Cooling Herbal Prana",
+        desc: "Soothes skin inflammation, redness, and balances Pitta-Kapha."
+      }
+    ],
+    ingredients: [
+      { name: "Sacred Bilva Patra", role: "Antimicrobial & Rejuvenating", icon: "eco" },
+      { name: "Cold-Pressed Neem Oil", role: "Clarifying & Detoxifying", icon: "spa" },
+      { name: "Vetiver (Khus) Root", role: "Deep Earthy Cooling", icon: "grass" },
+      { name: "Castor Seed Oil", role: "Rich Luxurious Lather", icon: "water_drop" },
+      { name: "Tulsi (Holy Basil)", role: "Purifying & Shielding", icon: "local_florist" },
+      { name: "Cedarwood Essential Oil", role: "Grounding Forest Note", icon: "forest" }
+    ]
+  },,
+  {
     id: "kamalam",
     slug: "kamalam-soap",
     sku: "LG-SOAP-KAM-03",
     title: "Kamalam Soap",
     subtitle: "Sacred Lotus & Wild Rose",
     tagline: "Radiant Glow & Cellular Hydration",
-    badge: "125g • Traditional Cold-Cured Bar",
+    badge: "100g • Traditional Plant Extraction Bar",
     image: kamalamImg,
     boxImage: kamalamImg,
     textures3d: {
@@ -100,7 +244,7 @@ export const SOAP_PRODUCTS = [
       { name: "Kasturi Manjal (Wild Turmeric)", role: "Even Tone & Radiance", icon: "sunny" },
       { name: "Pure Sandalwood Essential Oil", role: "Soothes Irritation & Heat", icon: "eco" }
     ]
-  },
+  },,
   {
     id: "kadamba",
     slug: "kadamba-soap",
@@ -108,7 +252,7 @@ export const SOAP_PRODUCTS = [
     title: "Kadamba Soap",
     subtitle: "Golden Blossom & Wild Honey",
     tagline: "Deep Nourishment & Velvet Softness",
-    badge: "125g • Traditional Cold-Cured Bar",
+    badge: "100g • Traditional Plant Extraction Bar",
     image: kadambaImg,
     boxImage: kadambaImg,
     textures3d: {
@@ -149,150 +293,6 @@ export const SOAP_PRODUCTS = [
       { name: "Vetiver (Khus) Extract", role: "Cooling Aromatic Calm", icon: "grass" }
     ]
   },
-  {
-    id: "bilvam",
-    slug: "bilvam-soap",
-    sku: "LG-SOAP-BIL-02",
-    title: "Bilvam Soap",
-    subtitle: "Auspicious Bael Leaf & Vetiver",
-    tagline: "Sacred Purification & Dermal Cooling",
-    badge: "125g • Traditional Cold-Cured Bar",
-    image: bilvamImg,
-    boxImage: bilvamImg,
-    textures3d: {
-      front: bilvamFront,
-      back: bilvamBack,
-      top: bilvamTop,
-      bottom: bilvamBottom,
-      left: bilvamLeft,
-      right: bilvamRight,
-    },
-    desc: "Auspicious Aegle marmelos (Bael) leaves providing deep dermal rejuvenation, antimicrobial protection, and cooling herbal prana. Prepared following classical Ayurvedic texts.",
-    price: "₹150",
-    rating: "4.9",
-    reviewsCount: 156,
-    benefits: [
-      {
-        icon: "spa",
-        title: "100% Consecrated Botanicals",
-        desc: "Wild bael leaves hand-collected and cold-infused in virgin coconut oil."
-      },
-      {
-        icon: "clean_hands",
-        title: "Purifying Botanical Clarity",
-        desc: "Natural tannins protect against environmental stressors and purify skin."
-      },
-      {
-        icon: "self_improvement",
-        title: "Cooling Herbal Prana",
-        desc: "Soothes skin inflammation, redness, and balances Pitta-Kapha."
-      }
-    ],
-    ingredients: [
-      { name: "Sacred Bilva Patra", role: "Antimicrobial & Rejuvenating", icon: "eco" },
-      { name: "Cold-Pressed Neem Oil", role: "Clarifying & Detoxifying", icon: "spa" },
-      { name: "Vetiver (Khus) Root", role: "Deep Earthy Cooling", icon: "grass" },
-      { name: "Castor Seed Oil", role: "Rich Luxurious Lather", icon: "water_drop" },
-      { name: "Tulsi (Holy Basil)", role: "Purifying & Shielding", icon: "local_florist" },
-      { name: "Cedarwood Essential Oil", role: "Grounding Forest Note", icon: "forest" }
-    ]
-  },
-  {
-    id: "vibhudi",
-    slug: "vibhudi-soap",
-    sku: "LG-SOAP-VIB-01",
-    title: "Vibhudi Soap",
-    subtitle: "Sacred Ash & Holy Tulsi",
-    tagline: "Deep Pore Detox & Meditative Stillness",
-    badge: "125g • Traditional Cold-Cured Bar",
-    image: vibhudiImg,
-    boxImage: vibhudiImg,
-    textures3d: {
-      front: vibhudiFront,
-      back: vibhudiBack,
-      top: vibhudiTop,
-      bottom: vibhudiBottom,
-      left: vibhudiLeft,
-      right: vibhudiRight,
-    },
-    desc: "Sacred temple ash and Krishna Tulsi combined for gentle mineral detoxification, drawing out airborne impurities while enveloping your senses in profound meditative tranquility.",
-    price: "₹150",
-    rating: "5.0",
-    reviewsCount: 184,
-    benefits: [
-      {
-        icon: "spa",
-        title: "Sacred Ash Purification",
-        desc: "Authentic consecrated ash provides ultra-fine mineral micro-exfoliation."
-      },
-      {
-        icon: "clean_hands",
-        title: "Pore Detoxification",
-        desc: "Clarifies congested pores and harmonizes excess sebum production."
-      },
-      {
-        icon: "self_improvement",
-        title: "Meditative Focus",
-        desc: "Warm temple notes evoke tranquility and spiritual centering."
-      }
-    ],
-    ingredients: [
-      { name: "Consecrated Temple Ash", role: "Mineral Micro-Exfoliation", icon: "temple_hindu" },
-      { name: "Krishna Tulsi Extract", role: "Anti-Pollution Purification", icon: "eco" },
-      { name: "Activated Coconut Charcoal", role: "Draws Out Deep Toxins", icon: "dark_mode" },
-      { name: "Cold-Pressed Sesame Oil", role: "Skin Barrier Balancing", icon: "water_drop" },
-      { name: "Frankincense Resin Oil", role: "Cellular Renewal & Serenity", icon: "flare" },
-      { name: "Myrrh & Clove Infusion", role: "Soothes Sensitive Skin", icon: "spa" }
-    ]
-  },
-  {
-    id: "rudraksha",
-    slug: "rudraksha-soap",
-    sku: "LG-SOAP-RUD-05",
-    title: "Rudraksha Soap",
-    subtitle: "Sacred Bead & Himalayan Cedar",
-    tagline: "Vital Prana & Sensory Shielding",
-    badge: "125g • Traditional Cold-Cured Bar",
-    image: rudrakshaImg,
-    boxImage: rudrakshaImg,
-    textures3d: {
-      front: rudrakshaFront,
-      back: rudrakshaBack,
-      top: rudrakshaTop,
-      bottom: rudrakshaBottom,
-      left: rudrakshaLeft,
-      right: rudrakshaRight,
-    },
-    desc: "Auspicious Rudraksha bead extract crafted to awaken vital energy, protect skin from environmental stress, and balance sensory harmony. Enriched with rare Himalayan cedarwood.",
-    price: "₹150",
-    rating: "4.9",
-    reviewsCount: 112,
-    benefits: [
-      {
-        icon: "spa",
-        title: "Rudraksha Bead Infusion",
-        desc: "Sacred seed cold extract revered for bio-energetic grounding."
-      },
-      {
-        icon: "bolt",
-        title: "Pranic Vitality",
-        desc: "Revives tired skin with energizing botanical phytonutrients."
-      },
-      {
-        icon: "shield",
-        title: "Aura Harmonizing",
-        desc: "Protective and shielding cleansing ritual passed down through monks."
-      }
-    ],
-    ingredients: [
-      { name: "Panchamukhi Rudraksha Extract", role: "Bio-Magnetic Vitality", icon: "all_inclusive" },
-      { name: "Himalayan Deodar Cedar", role: "Skin Firming & Tone", icon: "forest" },
-      { name: "Pure Jojoba Golden Oil", role: "Mimics Natural Sebum", icon: "water_drop" },
-      { name: "Cold-Pressed Castor Oil", role: "Velvety Cushioning Lather", icon: "spa" },
-      { name: "Ashwagandha Root Extract", role: "Adaptogenic Skin Defense", icon: "eco" },
-      { name: "Black Pepper & Clove Leaf", role: "Micro-Circulation Warmth", icon: "local_fire_department" }
-    ]
-  }
 ];
 
 export const ASSETS = {
@@ -324,13 +324,13 @@ export const FAQ_ITEMS = [
   },
   {
     category: "About Soaps",
-    question: "What makes traditional cold-cured soaps different from commercial bars?",
-    answer: "Commercial factory soaps often remove natural glycerin to sell separately in expensive creams and substitute it with synthetic surfactants. In contrast, our artisanal soaps undergo a slow 4 to 6 week cold cure that naturally retains 100% of the precious plant glycerin, providing superior hydration and conditioning."
+    question: "What makes traditional plant-extracted soaps different from commercial bars?",
+    answer: "Commercial factory soaps often remove natural glycerin to sell separately in expensive creams and substitute it with synthetic surfactants. In contrast, our artisanal soaps undergo a slow plant extraction and curing method that naturally retains 100% of the precious plant glycerin, providing superior hydration and conditioning."
   },
   {
     category: "About Soaps",
-    question: "How long does a single 125g bar typically last?",
-    answer: "With daily bathing by an individual, one 125g bar generally lasts between 3 to 4 weeks. Because our bars are rich in natural glycerin and cold-pressed oils, we recommend keeping your bar in a well-draining wooden soap dish away from standing water between uses to maximize its longevity."
+    question: "How long does a single 100g bar typically last?",
+    answer: "With daily bathing by an individual, one 100g bar generally lasts between 3 to 4 weeks. Because our bars are rich in natural glycerin and cold-pressed oils, we recommend keeping your bar in a well-draining wooden soap dish away from standing water between uses to maximize its longevity."
   },
   {
     category: "About Soaps",

@@ -5,13 +5,20 @@ import { initGA, trackPageView, trackViewItem, trackSelectItem, trackAddToCart, 
 import { updateDocumentHead } from './utils/seoHelper';
 import Breadcrumbs from './components/Breadcrumbs';
 import CartDrawer from './components/CartDrawer';
+import CheckoutModal from './components/CheckoutModal';
 import WishlistDrawer from './components/WishlistDrawer';
 import NeonBorder from './components/NeonBorder';
 import Soap3DViewer from './components/Soap3DViewer';
+import { ROLES, ROLE_LABELS } from './data/roles';
+import { initializeAuthStore, getCurrentUser, logoutUser, saveNewOrder } from './utils/auth';
+import AuthModal from './components/AuthModal';
+import AdminDashboard from './components/AdminDashboard';
+import UserAccountModal from './components/UserAccountModal';
 
 function resolveRouteFromLocation() {
   if (typeof window === 'undefined') return { page: 'home', slug: null };
-  const path = window.location.pathname.toLowerCase().replace(/\/$/, '') || '/';
+  const rawPath = window.location.pathname.toLowerCase().replace(/\/$/, '') || '/';
+  const path = rawPath.replace(/^\/ananta-vijaya/, '') || '/';
   const hash = window.location.hash.replace('#', '').toLowerCase();
 
   // Check product paths /products/:slug
@@ -29,6 +36,8 @@ function resolveRouteFromLocation() {
   if (path === '/contact' || hash === 'contact') return { page: 'contact', slug: null };
   if (path === '/faqs' || hash === 'faq' || hash === 'faqs') return { page: 'faqs', slug: null };
   if (path === '/ingredients' || hash === 'ingredients') return { page: 'ingredients', slug: null };
+  if (path === '/admin' || hash === 'admin') return { page: 'admin', slug: null };
+  if (path === '/account' || hash === 'account') return { page: 'account', slug: null };
 
   return { page: 'home', slug: null };
 }
@@ -62,9 +71,49 @@ export default function App() {
   const [cart, setCart] = useState([]);
   const [wishlist, setWishlist] = useState(['Kamalam Soap']);
   const [cartOpen, setCartOpen] = useState(false);
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [wishlistOpen, setWishlistOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
+
+  // Role-Based Access Control State (3 Roles: Super Admin, Manager, User)
+  const [currentUser, setCurrentUser] = useState(() => {
+    initializeAuthStore();
+    return getCurrentUser();
+  });
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [adminPortalOpen, setAdminPortalOpen] = useState(false);
+  const [userAccountOpen, setUserAccountOpen] = useState(false);
+
+  const handleOpenPortal = () => {
+    if (!currentUser) {
+      setAuthModalOpen(true);
+      return;
+    }
+    if (currentUser.role === ROLES.SUPER_ADMIN || currentUser.role === ROLES.MANAGER) {
+      setAdminPortalOpen(true);
+    } else {
+      setUserAccountOpen(true);
+    }
+  };
+
+  const handleLogout = () => {
+    logoutUser();
+    setCurrentUser(null);
+    setAdminPortalOpen(false);
+    setUserAccountOpen(false);
+    showToast('Signed out successfully.');
+  };
+
+  const handleAuthSuccess = (user) => {
+    setCurrentUser(user);
+    showToast(`Signed in as ${user.name} (${ROLE_LABELS[user.role] || user.role})`);
+    if (user.role === ROLES.SUPER_ADMIN || user.role === ROLES.MANAGER) {
+      setAdminPortalOpen(true);
+    } else {
+      setUserAccountOpen(true);
+    }
+  };
 
   const currentSoap = SOAP_PRODUCTS[activeSoapIndex] || SOAP_PRODUCTS[0];
   const ingredientSoap = SOAP_PRODUCTS[ingredientTabSoap] || SOAP_PRODUCTS[0];
@@ -92,6 +141,27 @@ export default function App() {
       window.removeEventListener('hashchange', handleHashChange);
     };
   }, []);
+
+  // Listen for admin/account routes
+  useEffect(() => {
+    if (currentRoute.page === 'admin') {
+      if (currentUser?.role === ROLES.SUPER_ADMIN || currentUser?.role === ROLES.MANAGER) {
+        setAdminPortalOpen(true);
+      } else {
+        setAuthModalOpen(true);
+      }
+    } else if (currentRoute.page === 'account') {
+      if (currentUser) {
+        if (currentUser.role === ROLES.USER) {
+          setUserAccountOpen(true);
+        } else {
+          setAdminPortalOpen(true);
+        }
+      } else {
+        setAuthModalOpen(true);
+      }
+    }
+  }, [currentRoute.page, currentUser]);
 
   // Dynamic Document Head, Canonical URL & Schema.org JSON-LD Updates
   useEffect(() => {
@@ -272,14 +342,14 @@ export default function App() {
         {
           id: "divine-collection-box",
           title,
-          price: "₹1,199",
+          price: "₹699",
           image: ASSETS.kamalamBox,
           quantity: 1
         }
       ];
     });
     trackGiftEnquiry();
-    trackAddToCart({ id: "divine-collection-box", title: "The Divine Collection - 5 Soap Gift Box", price: "₹1,199" }, 1);
+    trackAddToCart({ id: "divine-collection-box", title: "The Divine Collection - 5 Soap Gift Box", price: "₹699" }, 1);
     showToast("Added The Divine Collection Gift Box to Bag!");
     setCartOpen(true);
   };
@@ -338,204 +408,177 @@ export default function App() {
       {/* ============================================================ */}
       <header className="sticky top-0 left-0 w-full z-50 shadow-[0_1px_8px_rgba(57,37,29,0.06)]">
         {/* Top Notification Strip (Infinite Smooth Scrolling Marquee) */}
-        <div className="w-full bg-[#1E394C] py-2 overflow-hidden border-b border-[#C59A45]/30 select-none relative z-50">
-          <div className="animate-marquee flex items-center text-[10px] sm:text-xs text-[#FAF5EB] tracking-[0.22em] uppercase font-medium whitespace-nowrap">
+        <div className="w-full bg-[#00271d] py-2.5 sm:py-3 overflow-hidden border-b border-[#C59A45]/40 select-none relative z-50 shadow-sm">
+          <div className="animate-marquee flex items-center text-[11px] sm:text-[12px] md:text-[12.5px] text-white tracking-[0.14em] uppercase font-semibold whitespace-nowrap antialiased">
             {/* Set 1 */}
-            <div className="flex items-center gap-10 shrink-0 pr-10">
+            <div className="flex items-center gap-10 sm:gap-12 shrink-0 pr-10 sm:pr-12">
               <span className="flex items-center gap-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#fdcd73] animate-pulse"></span>
-                Tradition in Every Touch. Thoughtful Care in Every Day.
+                <span className="w-2 h-2 rounded-full bg-[#fdcd73] shadow-[0_0_8px_rgba(253,205,115,0.8)]"></span>
+                <span>Tradition in Every Touch. <span className="text-[#fdcd73] font-bold">Thoughtful Care in Every Day.</span></span>
               </span>
               <span className="flex items-center gap-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#fdcd73] animate-pulse"></span>
-                Free Express Shipping on Orders Above ₹499
+                <span className="w-2 h-2 rounded-full bg-[#fdcd73] shadow-[0_0_8px_rgba(253,205,115,0.8)]"></span>
+                <span className="text-[#fdcd73] font-bold">Free Express Shipping</span> on Orders Above ₹499
               </span>
               <span className="flex items-center gap-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#fdcd73] animate-pulse"></span>
-                100% Handcrafted Ayurvedic Cold-Cured Soaps
+                <span className="w-2 h-2 rounded-full bg-[#fdcd73] shadow-[0_0_8px_rgba(253,205,115,0.8)]"></span>
+                Handcrafted Ayurvedic <span className="text-[#fdcd73] font-bold">Plant Extraction</span> Soaps
               </span>
               <span className="flex items-center gap-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#fdcd73] animate-pulse"></span>
+                <span className="w-2 h-2 rounded-full bg-[#fdcd73] shadow-[0_0_8px_rgba(253,205,115,0.8)]"></span>
                 Pure Consecrated Botanicals &amp; Virgin Plant Oils
               </span>
               <span className="flex items-center gap-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#fdcd73] animate-pulse"></span>
-                Aged 45 Days • Zero Harsh Chemicals
+                <span className="w-2 h-2 rounded-full bg-[#fdcd73] shadow-[0_0_8px_rgba(253,205,115,0.8)]"></span>
+                <span className="text-[#fdcd73] font-bold">Zero Harsh Chemicals</span> • 100% Cruelty-Free
               </span>
             </div>
 
             {/* Set 2 (Duplicate for seamless continuous loop) */}
-            <div className="flex items-center gap-10 shrink-0 pr-10" aria-hidden="true">
+            <div className="flex items-center gap-10 sm:gap-12 shrink-0 pr-10 sm:pr-12" aria-hidden="true">
               <span className="flex items-center gap-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#fdcd73] animate-pulse"></span>
-                Tradition in Every Touch. Thoughtful Care in Every Day.
+                <span className="w-2 h-2 rounded-full bg-[#fdcd73] shadow-[0_0_8px_rgba(253,205,115,0.8)]"></span>
+                <span>Tradition in Every Touch. <span className="text-[#fdcd73] font-bold">Thoughtful Care in Every Day.</span></span>
               </span>
               <span className="flex items-center gap-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#fdcd73] animate-pulse"></span>
-                Free Express Shipping on Orders Above ₹499
+                <span className="w-2 h-2 rounded-full bg-[#fdcd73] shadow-[0_0_8px_rgba(253,205,115,0.8)]"></span>
+                <span className="text-[#fdcd73] font-bold">Free Express Shipping</span> on Orders Above ₹499
               </span>
               <span className="flex items-center gap-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#fdcd73] animate-pulse"></span>
-                100% Handcrafted Ayurvedic Cold-Cured Soaps
+                <span className="w-2 h-2 rounded-full bg-[#fdcd73] shadow-[0_0_8px_rgba(253,205,115,0.8)]"></span>
+                Handcrafted Ayurvedic <span className="text-[#fdcd73] font-bold">Plant Extraction</span> Soaps
               </span>
               <span className="flex items-center gap-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#fdcd73] animate-pulse"></span>
+                <span className="w-2 h-2 rounded-full bg-[#fdcd73] shadow-[0_0_8px_rgba(253,205,115,0.8)]"></span>
                 Pure Consecrated Botanicals &amp; Virgin Plant Oils
               </span>
               <span className="flex items-center gap-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#fdcd73] animate-pulse"></span>
-                Aged 45 Days • Zero Harsh Chemicals
+                <span className="w-2 h-2 rounded-full bg-[#fdcd73] shadow-[0_0_8px_rgba(253,205,115,0.8)]"></span>
+                <span className="text-[#fdcd73] font-bold">Zero Harsh Chemicals</span> • 100% Cruelty-Free
               </span>
             </div>
           </div>
         </div>
 
         {/* Main Navbar */}
-        <div className="h-16 sm:h-20 md:h-[84px] bg-[#FFF8F1]/95 backdrop-blur-md border-b border-[#E8D4B5]/60 transition-all relative">
-          <div className="max-w-[1440px] h-full mx-auto px-3 sm:px-6 lg:px-12 flex items-center justify-between">
-            {/* Logo Group */}
-            <button
-              onClick={() => navigateTo('home')}
-              className="flex items-center gap-2 sm:gap-3.5 shrink-0 group cursor-pointer text-left"
-              type="button"
-            >
-              <img
-                alt="Ananta Vijaya Sacred Logo"
-                className="h-9 sm:h-12 md:h-14 w-auto object-contain drop-shadow-[0_2px_8px_rgba(123,88,2,0.18)] transition-transform duration-300 group-hover:scale-105"
-                src={ASSETS.logo}
-              />
-              <div className="flex flex-col justify-center whitespace-nowrap">
-                <span className="font-serif text-base sm:text-xl lg:text-[22px] font-bold text-[#00271d] tracking-wider uppercase leading-none">
-                  Ananta Vijaya
-                </span>
-                <span className="font-label-sm text-[8px] sm:text-[10px] text-[#7B5802] tracking-[0.2em] sm:tracking-[0.22em] uppercase font-semibold mt-0.5 sm:mt-1">
-                  Natural Handmade Soaps
-                </span>
-              </div>
-            </button>
-
-            {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center gap-6 xl:gap-8 whitespace-nowrap">
+        <div className="h-20 sm:h-24 md:h-[96px] lg:h-[104px] bg-[#FFF8F1]/95 backdrop-blur-md border-b border-[#E8D4B5]/60 transition-all relative">
+          <div className="max-w-[1600px] h-full mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-between">
+            {/* 1. Left: Logo Group */}
+            <div className="shrink-0 flex items-center">
               <button
                 onClick={() => navigateTo('home')}
-                className={`font-label-md text-xs tracking-widest uppercase py-1 transition-colors ${currentRoute.page === 'home'
-                  ? 'text-[#00271d] font-semibold border-b-2 border-[#7B5802]'
-                  : 'text-[#414845] hover:text-[#00271d] hover:border-b-2 hover:border-[#7B5802]/60'
+                className="flex items-center gap-3 sm:gap-4 shrink-0 group cursor-pointer text-left py-1"
+                type="button"
+              >
+                <img
+                  alt="Ananta Vijaya Sacred Logo"
+                  className="h-14 sm:h-18 md:h-[76px] lg:h-[84px] w-auto object-contain shrink-0 drop-shadow-[0_4px_14px_rgba(123,88,2,0.25)] transition-transform duration-300 group-hover:scale-105"
+                  src={ASSETS.logo}
+                />
+                <div className="flex flex-col justify-center whitespace-nowrap">
+                  <span className="font-serif text-[14px] sm:text-[16px] md:text-[17px] lg:text-[18.5px] font-bold text-[#00271d] tracking-[0.06em] uppercase leading-none">
+                    Ananta Vijaya Pvt. Ltd.
+                  </span>
+                  <span className="font-label-sm text-[7.5px] sm:text-[9px] md:text-[9.5px] lg:text-[10px] text-[#7B5802] tracking-[0.18em] uppercase font-semibold mt-1">
+                    Nature's Trust &amp; Herbal Purity
+                  </span>
+                </div>
+              </button>
+            </div>
+
+            {/* 2. Center: Desktop Navigation Links (Centered with Equal Margins) */}
+            <nav className="hidden lg:flex items-center justify-center gap-7 xl:gap-9 2xl:gap-11 mx-auto whitespace-nowrap">
+              <button
+                onClick={() => navigateTo('home')}
+                className={`text-[12.5px] xl:text-[13px] tracking-[0.16em] uppercase font-semibold py-2 transition-all relative ${currentRoute.page === 'home'
+                  ? 'text-[#00271d] after:content-[\'\'] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#C59A45]'
+                  : 'text-[#414845] hover:text-[#00271d] hover:after:content-[\'\'] hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:w-full hover:after:h-[2px] hover:after:bg-[#C59A45]/50'
                   }`}
               >
                 Home
               </button>
               <button
                 onClick={() => navigateTo('about')}
-                className={`font-label-md text-xs tracking-widest uppercase py-1 transition-colors ${currentRoute.page === 'about' || currentRoute.page === 'our-story'
-                  ? 'text-[#00271d] font-semibold border-b-2 border-[#7B5802]'
-                  : 'text-[#414845] hover:text-[#00271d] hover:border-b-2 hover:border-[#7B5802]/60'
+                className={`text-[12.5px] xl:text-[13px] tracking-[0.16em] uppercase font-semibold py-2 transition-all relative ${currentRoute.page === 'about' || currentRoute.page === 'our-story'
+                  ? 'text-[#00271d] after:content-[\'\'] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#C59A45]'
+                  : 'text-[#414845] hover:text-[#00271d] hover:after:content-[\'\'] hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:w-full hover:after:h-[2px] hover:after:bg-[#C59A45]/50'
                   }`}
               >
                 Our Story
               </button>
               <button
                 onClick={() => navigateTo('shop')}
-                className={`font-label-md text-xs tracking-widest uppercase py-1 transition-colors ${currentRoute.page === 'shop' || currentRoute.page === 'our-soaps' || currentRoute.page === 'product'
-                  ? 'text-[#00271d] font-semibold border-b-2 border-[#7B5802]'
-                  : 'text-[#414845] hover:text-[#00271d] hover:border-b-2 hover:border-[#7B5802]/60'
+                className={`text-[12.5px] xl:text-[13px] tracking-[0.16em] uppercase font-semibold py-2 transition-all relative ${currentRoute.page === 'shop' || currentRoute.page === 'our-soaps' || currentRoute.page === 'product'
+                  ? 'text-[#00271d] after:content-[\'\'] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#C59A45]'
+                  : 'text-[#414845] hover:text-[#00271d] hover:after:content-[\'\'] hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:w-full hover:after:h-[2px] hover:after:bg-[#C59A45]/50'
                   }`}
               >
                 Our Soaps
               </button>
               <button
                 onClick={() => navigateTo('divine-collection')}
-                className={`font-label-md text-xs tracking-widest uppercase py-1 transition-colors ${currentRoute.page === 'divine-collection'
-                  ? 'text-[#00271d] font-semibold border-b-2 border-[#7B5802]'
-                  : 'text-[#414845] hover:text-[#00271d] hover:border-b-2 hover:border-[#7B5802]/60'
+                className={`text-[12.5px] xl:text-[13px] tracking-[0.16em] uppercase font-semibold py-2 transition-all relative ${currentRoute.page === 'divine-collection'
+                  ? 'text-[#00271d] after:content-[\'\'] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#C59A45]'
+                  : 'text-[#414845] hover:text-[#00271d] hover:after:content-[\'\'] hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:w-full hover:after:h-[2px] hover:after:bg-[#C59A45]/50'
                   }`}
               >
                 Divine Collection
               </button>
               <button
-                onClick={() => navigateTo('ingredients')}
-                className={`font-label-md text-xs tracking-widest uppercase py-1 transition-colors ${currentRoute.page === 'ingredients'
-                  ? 'text-[#00271d] font-semibold border-b-2 border-[#7B5802]'
-                  : 'text-[#414845] hover:text-[#00271d] hover:border-b-2 hover:border-[#7B5802]/60'
-                  }`}
-              >
-                Ingredients
-              </button>
-              <button
                 onClick={() => navigateTo('faqs')}
-                className={`font-label-md text-xs tracking-widest uppercase py-1 transition-colors ${currentRoute.page === 'faqs' || currentRoute.page === 'faq'
-                  ? 'text-[#00271d] font-semibold border-b-2 border-[#7B5802]'
-                  : 'text-[#414845] hover:text-[#00271d] hover:border-b-2 hover:border-[#7B5802]/60'
+                className={`text-[12.5px] xl:text-[13px] tracking-[0.16em] uppercase font-semibold py-2 transition-all relative ${currentRoute.page === 'faqs' || currentRoute.page === 'faq'
+                  ? 'text-[#00271d] after:content-[\'\'] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#C59A45]'
+                  : 'text-[#414845] hover:text-[#00271d] hover:after:content-[\'\'] hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:w-full hover:after:h-[2px] hover:after:bg-[#C59A45]/50'
                   }`}
               >
                 FAQ
               </button>
               <button
                 onClick={() => navigateTo('contact')}
-                className={`font-label-md text-xs tracking-widest uppercase py-1 transition-colors ${currentRoute.page === 'contact'
-                  ? 'text-[#00271d] font-semibold border-b-2 border-[#7B5802]'
-                  : 'text-[#414845] hover:text-[#00271d] hover:border-b-2 hover:border-[#7B5802]/60'
+                className={`text-[12.5px] xl:text-[13px] tracking-[0.16em] uppercase font-semibold py-2 transition-all relative ${currentRoute.page === 'contact'
+                  ? 'text-[#00271d] after:content-[\'\'] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#C59A45]'
+                  : 'text-[#414845] hover:text-[#00271d] hover:after:content-[\'\'] hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:w-full hover:after:h-[2px] hover:after:bg-[#C59A45]/50'
                   }`}
               >
                 Contact
               </button>
             </nav>
 
-            {/* Right Action Icons & Hamburger */}
-            <div className="flex items-center gap-1 sm:gap-2 md:gap-3 text-[#00271d] shrink-0">
+            {/* 3. Right: Action Icons (Search & Shopping Bag only, beautifully balanced) */}
+            <div className="shrink-0 flex items-center gap-2 sm:gap-3 text-[#00271d]">
               <button
-                aria-label="Search"
+                aria-label="Search Collection"
                 onClick={() => {
                   navigateTo('our-soaps');
                   showToast("Browsing complete soap collection");
                 }}
-                className="p-1.5 hover:text-[#7B5802] transition-colors"
+                className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#C59A45]/15 hover:text-[#7B5802] transition-colors"
                 type="button"
+                title="Search Soaps"
               >
-                <span className="material-symbols-outlined text-[20px] sm:text-[22px]">search</span>
-              </button>
-
-              <button
-                aria-label="Wishlist"
-                onClick={() => setWishlistOpen(true)}
-                className="p-1.5 hover:text-[#7B5802] transition-colors relative"
-                type="button"
-              >
-                <span className="material-symbols-outlined text-[20px] sm:text-[22px]">favorite</span>
-                {wishlist.length > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-[#7B5802] text-white text-[9px] sm:text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
-                    {wishlist.length}
-                  </span>
-                )}
+                <span className="material-symbols-outlined text-[21px] sm:text-[23px]">search</span>
               </button>
 
               <button
                 aria-label="Shopping Bag"
                 onClick={() => setCartOpen(true)}
-                className="p-1.5 hover:text-[#7B5802] transition-colors relative"
+                className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#C59A45]/15 hover:text-[#7B5802] transition-colors relative"
                 type="button"
+                title="Shopping Bag"
               >
-                <span className="material-symbols-outlined text-[20px] sm:text-[22px]">shopping_bag</span>
+                <span className="material-symbols-outlined text-[21px] sm:text-[23px]">shopping_bag</span>
                 {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-[#173D32] text-[#fdcd73] text-[9px] sm:text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
+                  <span className="absolute -top-0.5 -right-0.5 bg-[#00271d] text-[#fdcd73] border border-[#C59A45]/50 text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow-sm">
                     {cartCount}
                   </span>
                 )}
               </button>
 
-              <div
-                onClick={() => navigateTo('contact')}
-                className="hidden sm:flex w-8 h-8 rounded-full bg-[#00271d] items-center justify-center ml-0.5 text-white shadow-sm cursor-pointer hover:bg-[#173D32] transition-colors"
-                title="Account / Contact"
-              >
-                <span className="material-symbols-outlined text-[18px]">person</span>
-              </div>
-
               {/* Mobile/Tablet Hamburger Toggle */}
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden p-1.5 hover:text-[#7B5802] transition-colors text-[#00271d] flex items-center justify-center"
+                className="lg:hidden w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#C59A45]/15 hover:text-[#7B5802] transition-colors text-[#00271d]"
                 aria-label="Toggle Navigation Menu"
               >
                 <span className="material-symbols-outlined text-[25px] sm:text-[26px]">
@@ -546,31 +589,20 @@ export default function App() {
           </div>
 
           {/* Mobile Slide-Down Navigation Menu */}
-          {mobileMenuOpen && (
-            <div className="absolute top-full left-0 w-full bg-[#FFF8F1] border-b-2 border-[#C59A45]/40 shadow-[0_20px_40px_rgba(57,37,29,0.25)] z-50 lg:hidden px-4 sm:px-6 py-4 flex flex-col gap-1 max-h-[85vh] overflow-y-auto">
-              {/* Mobile Profile & Contact Shortcut Header */}
-              <div className="flex items-center justify-between pb-3 mb-2 border-b border-[#E8D4B5] px-1">
-                <button
-                  type="button"
-                  onClick={() => navigateTo('contact')}
-                  className="flex items-center gap-2.5 text-left group"
-                >
-                  <div className="w-8 h-8 rounded-full bg-[#00271d] flex items-center justify-center text-white shadow-sm">
-                    <span className="material-symbols-outlined text-[18px]">person</span>
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-xs font-bold text-[#173D32] group-hover:text-[#7B5802] transition-colors">Apothecary Atelier</span>
-                    <span className="text-[10px] text-[#7B5802]">Contact &amp; Personal Inquiries</span>
-                  </div>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="p-1 rounded-full text-[#414845] hover:text-[#00271d]"
-                >
-                  <span className="material-symbols-outlined text-[20px]">close</span>
-                </button>
-              </div>
+        {mobileMenuOpen && (
+          <div className="absolute top-full left-0 w-full bg-[#FFF8F1] border-b-2 border-[#C59A45]/40 shadow-[0_20px_40px_rgba(57,37,29,0.25)] z-50 lg:hidden px-4 sm:px-6 py-4 flex flex-col gap-1 max-h-[85vh] overflow-y-auto">
+            {/* Mobile Menu Header */}
+            <div className="flex items-center justify-between pb-3 mb-2 border-b border-[#E8D4B5] px-1">
+              <span className="font-serif text-sm font-semibold text-[#173D32] tracking-wider uppercase">Menu</span>
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-1 rounded-full text-[#414845] hover:text-[#00271d]"
+                aria-label="Close menu"
+              >
+                <span className="material-symbols-outlined text-[20px]">close</span>
+              </button>
+            </div>
 
               <button
                 type="button"
@@ -610,15 +642,6 @@ export default function App() {
               </button>
               <button
                 type="button"
-                onClick={() => navigateTo('ingredients')}
-                className={`flex items-center justify-between py-2.5 px-3 rounded-lg transition-colors uppercase font-semibold text-xs tracking-widest border-b border-[#E8D4B5]/60 text-left w-full ${currentRoute.page === 'ingredients' ? 'bg-[#faecd4] text-[#00271d] font-bold' : 'text-[#173D32] hover:bg-[#E8D4B5]/50'
-                  }`}
-              >
-                <span>Ingredients</span>
-                <span className="material-symbols-outlined text-[16px] text-[#C59A45]">east</span>
-              </button>
-              <button
-                type="button"
                 onClick={() => navigateTo('faqs')}
                 className={`flex items-center justify-between py-2.5 px-3 rounded-lg transition-colors uppercase font-semibold text-xs tracking-widest border-b border-[#E8D4B5]/60 text-left w-full ${currentRoute.page === 'faqs' || currentRoute.page === 'faq' ? 'bg-[#faecd4] text-[#00271d] font-bold' : 'text-[#173D32] hover:bg-[#E8D4B5]/50'
                   }`}
@@ -647,7 +670,7 @@ export default function App() {
                   className="w-full py-2.5 px-4 bg-[#C59A45] text-[#173D32] font-serif font-bold text-xs uppercase tracking-wider rounded-lg shadow-sm flex items-center justify-center gap-2"
                 >
                   <span className="material-symbols-outlined text-[16px]">redeem</span>
-                  <span>Order Divine Gift Box (₹1,199)</span>
+                  <span>Order Divine Gift Box (₹699)</span>
                 </button>
                 <a
                   href="https://wa.me/917386759777?text=Hello%20Ananta%20Vijaya%2C%20I%20have%20an%20inquiry"
@@ -730,7 +753,7 @@ export default function App() {
                     <div className="pt-2 flex flex-wrap items-center gap-2.5 sm:gap-4 text-[#414845] font-label-sm text-[10px] sm:text-[11px] uppercase tracking-wider">
                       <div className="flex items-center gap-1.5 bg-[#FAF5EB]/90 sm:bg-transparent px-2.5 py-1 sm:p-0 rounded-full sm:rounded-none border border-[#E8D4B5]/60 sm:border-none shadow-sm sm:shadow-none">
                         <span className="material-symbols-outlined text-[#7B5802] text-[15px] sm:text-[16px]">verified</span>
-                        <span className="font-semibold text-[#00271d]">100% Handcrafted</span>
+                        <span className="font-semibold text-[#00271d]">Handcrafted</span>
                       </div>
                       <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-[#7B5802]/50"></span>
                       <div className="flex items-center gap-1.5 bg-[#FAF5EB]/90 sm:bg-transparent px-2.5 py-1 sm:p-0 rounded-full sm:rounded-none border border-[#E8D4B5]/60 sm:border-none shadow-sm sm:shadow-none">
@@ -819,35 +842,35 @@ export default function App() {
                       {/* 9. The 5 Soap Boxes Row (Resting on top of the stone pedestal - Moved Down) */}
                       <div className="absolute bottom-[18.5%] sm:bottom-[19%] inset-x-0 w-[95%] sm:w-[93%] mx-auto flex items-end justify-center select-none z-20 pointer-events-auto">
                         
-                        {/* Box 1: Vibhudi Soap (Navy Blue) */}
+                        {/* Box 1: Kamalam Soap (Pink) */}
                         <div 
                           className="w-[18%] sm:w-[17.5%] flex flex-col items-center z-10 transition-transform duration-300 hover:-translate-y-2 group cursor-pointer origin-bottom"
                           onClick={() => selectSoap(3, true)}
                         >
                           <div className="relative w-full">
-                            <img alt="Vibhudi Soap Box" className="w-full h-auto object-contain drop-shadow-[0_16px_22px_rgba(57,37,29,0.48)]" src={ASSETS.vibhudiBox} />
+                            <img alt="Kamalam Soap Box" className="w-full h-auto object-contain drop-shadow-[0_16px_22px_rgba(57,37,29,0.48)]" src={ASSETS.kamalamBox} />
                             <div className="absolute -bottom-1 inset-x-2 h-3.5 bg-[#173D32]/45 blur-sm rounded-full -z-10"></div>
                           </div>
                         </div>
 
-                        {/* Box 2: Kadamba Soap (Orange) */}
+                        {/* Box 2: Rudraksha Soap (Dark Brown) */}
                         <div 
                           className="w-[20%] sm:w-[19.5%] flex flex-col items-center z-15 -ml-[1.5%] transition-transform duration-300 hover:-translate-y-2 group cursor-pointer origin-bottom"
                           onClick={() => selectSoap(1, true)}
                         >
                           <div className="relative w-full">
-                            <img alt="Kadamba Soap Box" className="w-full h-auto object-contain drop-shadow-[0_18px_24px_rgba(57,37,29,0.52)]" src={ASSETS.kadambaBox} />
+                            <img alt="Rudraksha Soap Box" className="w-full h-auto object-contain drop-shadow-[0_18px_24px_rgba(57,37,29,0.52)]" src={ASSETS.rudrakshaBox} />
                             <div className="absolute -bottom-1 inset-x-2 h-3.5 bg-[#173D32]/50 blur-sm rounded-full -z-10"></div>
                           </div>
                         </div>
 
-                        {/* Box 3: Kamalam Soap (Pink - Center Hero) */}
+                        {/* Box 3: Vibhudi Soap (Navy Blue - Center Hero) */}
                         <div 
                           className="w-[27%] sm:w-[26.5%] flex flex-col items-center z-25 -ml-[1.5%] -mr-[1.5%] scale-[1.08] origin-bottom transition-transform duration-300 hover:-translate-y-2 group cursor-pointer"
                           onClick={() => selectSoap(0, true)}
                         >
                           <div className="relative w-full">
-                            <img alt="Kamalam Soap Box" className="w-full h-auto object-contain drop-shadow-[0_24px_34px_rgba(23,61,50,0.6)]" src={ASSETS.kamalamBox} />
+                            <img alt="Vibhudi Soap Box" className="w-full h-auto object-contain drop-shadow-[0_24px_34px_rgba(23,61,50,0.6)]" src={ASSETS.vibhudiBox} />
                             <div className="absolute -bottom-1 inset-x-2 h-4.5 bg-[#173d32]/65 blur-md rounded-full -z-10"></div>
                           </div>
                         </div>
@@ -863,13 +886,13 @@ export default function App() {
                           </div>
                         </div>
 
-                        {/* Box 5: Rudraksha Soap (Dark Brown) */}
+                        {/* Box 5: Kadamba Soap (Orange) */}
                         <div 
                           className="w-[18%] sm:w-[17.5%] flex flex-col items-center z-10 -ml-[1.5%] transition-transform duration-300 hover:-translate-y-2 group cursor-pointer origin-bottom"
                           onClick={() => selectSoap(4, true)}
                         >
                           <div className="relative w-full">
-                            <img alt="Rudraksha Soap Box" className="w-full h-auto object-contain drop-shadow-[0_16px_22px_rgba(57,37,29,0.48)]" src={ASSETS.rudrakshaBox} />
+                            <img alt="Kadamba Soap Box" className="w-full h-auto object-contain drop-shadow-[0_16px_22px_rgba(57,37,29,0.48)]" src={ASSETS.kadambaBox} />
                             <div className="absolute -bottom-1 inset-x-2 h-3.5 bg-[#173D32]/45 blur-sm rounded-full -z-10"></div>
                           </div>
                         </div>
@@ -919,8 +942,8 @@ export default function App() {
                   </div>
 </div>
 
-                {/* 4-FEATURE LUXURY TRUST BAR (Inspired by Reference Design) */}
-                <div className="mt-10 sm:mt-14 max-w-6xl mx-auto">
+                {/* 3-FEATURE LUXURY TRUST BAR (Inspired by Reference Design) */}
+                <div className="mt-10 sm:mt-14 max-w-5xl mx-auto">
                   <div className="relative bg-[#FAF5EB]/95 border border-[#E8D4B5] rounded-xl sm:rounded-2xl px-5 sm:px-8 py-5 sm:py-6 shadow-[0_4px_20px_rgba(57,37,29,0.06)]">
                     {/* Ornate Corner Accents */}
                     <div className="absolute top-2 left-2 w-3.5 h-3.5 border-t-2 border-l-2 border-[#C59A45]/70 rounded-tl-sm pointer-events-none"></div>
@@ -928,14 +951,14 @@ export default function App() {
                     <div className="absolute bottom-2 left-2 w-3.5 h-3.5 border-b-2 border-l-2 border-[#C59A45]/70 rounded-bl-sm pointer-events-none"></div>
                     <div className="absolute bottom-2 right-2 w-3.5 h-3.5 border-b-2 border-r-2 border-[#C59A45]/70 rounded-br-sm pointer-events-none"></div>
 
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 items-center">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-center">
                       {/* Feature 1 */}
                       <div className="flex items-center gap-3 sm:gap-3.5 pr-2">
                         <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#faecd4] border border-[#E8D4B5] flex items-center justify-center shrink-0 text-[#7B5802] shadow-sm">
                           <span className="material-symbols-outlined text-[20px] sm:text-[22px]">eco</span>
                         </div>
                         <div>
-                          <div className="font-serif font-bold text-xs sm:text-sm text-[#00271d] leading-tight">100% Handcrafted</div>
+                          <div className="font-serif font-bold text-xs sm:text-sm text-[#00271d] leading-tight">Handcrafted</div>
                           <div className="font-sans text-[11px] sm:text-xs text-[#576B65] leading-tight mt-0.5">Traditional small-batch process</div>
                         </div>
                       </div>
@@ -961,17 +984,6 @@ export default function App() {
                           <div className="font-sans text-[11px] sm:text-xs text-[#576B65] leading-tight mt-0.5">Nourishing & skin-friendly</div>
                         </div>
                       </div>
-
-                      {/* Feature 4 */}
-                      <div className="flex items-center gap-3 sm:gap-3.5">
-                        <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#faecd4] border border-[#E8D4B5] flex items-center justify-center shrink-0 text-[#7B5802] shadow-sm">
-                          <span className="material-symbols-outlined text-[20px] sm:text-[22px]">local_florist</span>
-                        </div>
-                        <div>
-                          <div className="font-serif font-bold text-xs sm:text-sm text-[#00271d] leading-tight">Aged 45 Days</div>
-                          <div className="font-sans text-[11px] sm:text-xs text-[#576B65] leading-tight mt-0.5">For a richer, gentle cleanse</div>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -993,7 +1005,7 @@ export default function App() {
                     The Essence of Sacred Botanicals
                   </h3>
                   <p className="font-sans text-xs sm:text-sm text-[#414845] max-w-lg mt-1.5 leading-relaxed">
-                    Handcrafted with reverent care, using time-honored ingredients, cold-pressed virgin oils, and sacred herbs.
+                    Handcrafted with reverent care, using time-honored ingredients, plant extraction methods, and sacred herbs.
                   </p>
                 </div>
                 <div className="hidden sm:flex items-center gap-2 opacity-80 shrink-0">
@@ -1034,7 +1046,7 @@ export default function App() {
                   </h2>
 
                   <p className="font-sans text-sm sm:text-base text-[#414845] max-w-3xl mx-auto leading-relaxed mb-6">
-                    Born from a deep reverence for classical Indian Ayurveda and temple traditions, Ananta Vijaya’s Lotica Glow collection is a celebration of conscious purity. We handcraft each soap using time-honored cold process methods, infusing consecrated herbs, pure essential oils, and nourishing plant butters.
+                    Born from a deep reverence for traditional Indian herbal knowledge and temple traditions, Ananta Vijaya’s Lotica Glow collection is a celebration of conscious purity. We handcraft each soap using time-honored plant extraction methods, infusing carefully selected herbs, pure essential oils, and nourishing plant butters.
                   </p>
 
                   <button
@@ -1048,36 +1060,40 @@ export default function App() {
 
                   {/* 4 Feature/Stat Boxes */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 pt-6 border-t border-[#E8D4B5]/60">
-                    <div className="p-4 rounded-xl bg-[#FFF8F1] border border-[#E8D4B5]/80 flex flex-col items-center">
-                      <span className="font-serif text-2xl sm:text-3xl font-bold text-[#173D32]">100%</span>
-                      <span className="font-label-sm text-[11px] uppercase tracking-widest text-[#7B5802] font-semibold mt-1">
+                    <div className="p-4 sm:p-5 rounded-xl bg-[#FFF8F1] border border-[#E8D4B5]/80 flex flex-col items-center justify-center text-center">
+                      <span className="font-serif text-lg sm:text-xl font-bold text-[#173D32]">
                         Pure Botanicals
                       </span>
-                      <span className="text-[11px] text-[#414845]/80 mt-0.5">Cold-pressed plant oils</span>
-                    </div>
-
-                    <div className="p-4 rounded-xl bg-[#FFF8F1] border border-[#E8D4B5]/80 flex flex-col items-center">
-                      <span className="font-serif text-2xl sm:text-3xl font-bold text-[#173D32]">4–6 Wks</span>
-                      <span className="font-label-sm text-[11px] uppercase tracking-widest text-[#7B5802] font-semibold mt-1">
-                        Cold Cured
+                      <span className="text-[11px] text-[#414845]/80 mt-1">
+                        Cold-pressed plant oils
                       </span>
-                      <span className="text-[11px] text-[#414845]/80 mt-0.5">Patient artisanal slow aging</span>
                     </div>
 
-                    <div className="p-4 rounded-xl bg-[#FFF8F1] border border-[#E8D4B5]/80 flex flex-col items-center">
-                      <span className="font-serif text-2xl sm:text-3xl font-bold text-[#173D32]">100%</span>
-                      <span className="font-label-sm text-[11px] uppercase tracking-widest text-[#7B5802] font-semibold mt-1">
+                    <div className="p-4 sm:p-5 rounded-xl bg-[#FFF8F1] border border-[#E8D4B5]/80 flex flex-col items-center justify-center text-center">
+                      <span className="font-serif text-lg sm:text-xl font-bold text-[#173D32]">
+                        Plant Extraction
+                      </span>
+                      <span className="text-[11px] text-[#414845]/80 mt-1">
+                        Patient artisanal slow aging
+                      </span>
+                    </div>
+
+                    <div className="p-4 sm:p-5 rounded-xl bg-[#FFF8F1] border border-[#E8D4B5]/80 flex flex-col items-center justify-center text-center">
+                      <span className="font-serif text-lg sm:text-xl font-bold text-[#173D32]">
                         Vegan &amp; Ethical
                       </span>
-                      <span className="text-[11px] text-[#414845]/80 mt-0.5">Cruelty-free &amp; no animal fat</span>
+                      <span className="text-[11px] text-[#414845]/80 mt-1">
+                        Cruelty-free &amp; no animal fat
+                      </span>
                     </div>
 
-                    <div className="p-4 rounded-xl bg-[#FFF8F1] border border-[#E8D4B5]/80 flex flex-col items-center">
-                      <span className="font-serif text-2xl sm:text-3xl font-bold text-[#173D32]">Small</span>
-                      <span className="font-label-sm text-[11px] uppercase tracking-widest text-[#7B5802] font-semibold mt-1">
-                        Batch Poured
+                    <div className="p-4 sm:p-5 rounded-xl bg-[#FFF8F1] border border-[#E8D4B5]/80 flex flex-col items-center justify-center text-center">
+                      <span className="font-serif text-lg sm:text-xl font-bold text-[#173D32]">
+                        Small Batch Poured
                       </span>
-                      <span className="text-[11px] text-[#414845]/80 mt-0.5">Hand-cut in limited quantities</span>
+                      <span className="text-[11px] text-[#414845]/80 mt-1">
+                        Hand-cut in limited quantities
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -1153,7 +1169,7 @@ export default function App() {
                         </span>
                       )}
                       <span className="text-xs text-[#7B5802] font-medium ml-auto">
-                        (125g Cold-Cured Bar)
+                        (100g Bar)
                       </span>
                     </div>
 
@@ -1486,7 +1502,7 @@ export default function App() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-8">
                       <div className="flex items-center gap-2.5 text-xs sm:text-sm text-[#FAF5EB]">
                         <span className="material-symbols-outlined text-[#fdcd73] text-[18px]">verified</span>
-                        <span>5 Full-Sized 125g Bars</span>
+                        <span>5 Full-Sized 100g Bars</span>
                       </div>
                       <div className="flex items-center gap-2.5 text-xs sm:text-sm text-[#FAF5EB]">
                         <span className="material-symbols-outlined text-[#fdcd73] text-[18px]">redeem</span>
@@ -1508,7 +1524,7 @@ export default function App() {
                         className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#C59A45] hover:bg-[#b08638] text-[#173D32] font-serif font-bold text-sm tracking-wider uppercase rounded-full shadow-lg hover:shadow-xl transition-all transform active:scale-95"
                         type="button"
                       >
-                        <span>Order Divine Box — ₹1,199</span>
+                        <span>Order Divine Box — ₹699</span>
                         <span className="material-symbols-outlined text-[18px]">east</span>
                       </button>
 
@@ -1782,15 +1798,15 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Chapter 2: The 45-Day Cold Process Craft */}
+              {/* Chapter 2: The Plant Extraction Craft */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 <div className="lg:col-span-6 order-2 lg:order-1 relative rounded-3xl overflow-hidden shadow-xl border border-[#E8D4B5] bg-[#FAF5EB] p-8 sm:p-10 flex flex-col justify-center items-center text-center group hover:border-[#C59A45] transition-colors">
                   <div className="w-16 h-16 rounded-full bg-white/80 shadow-md flex items-center justify-center mb-4 border border-[#C59A45]/30 group-hover:scale-110 transition-transform duration-500">
                     <span className="material-symbols-outlined text-4xl text-[#C59A45] animate-pulse">hourglass_top</span>
                   </div>
-                  <h3 className="font-serif text-3xl sm:text-4xl font-bold text-[#173D32] mb-1">45 Days</h3>
+                  <h3 className="font-serif text-3xl sm:text-4xl font-bold text-[#173D32] mb-1">Slow Cured</h3>
                   <span className="font-label-sm text-xs uppercase tracking-widest text-[#7B5802] font-semibold mb-3">
-                    Slow Cold-Process Curing
+                    Pure Plant Extraction Curing
                   </span>
                   <p className="text-xs sm:text-sm text-[#414845] leading-relaxed max-w-sm">
                     Unlike commercial hot-pour factory bars that strip out natural glycerin, each bar of Lotica Glow rests untouched in our temperature-controlled curing chambers for 6 weeks, retaining 100% of its moisture-rich plant glycerin.
@@ -1939,7 +1955,7 @@ export default function App() {
                         </span>
                       )}
                       <span className="text-xs text-[#7B5802] font-medium ml-auto">
-                        (125g Cold-Cured Bar)
+                        (100g Bar)
                       </span>
                     </div>
 
@@ -2230,7 +2246,7 @@ export default function App() {
                     {currentSoap.title} <span className="text-[#7B5802] font-normal italic text-2xl sm:text-3xl block sm:inline sm:ml-2">– {currentSoap.subtitle}</span>
                   </h1>
                   <p className="font-sans text-xs sm:text-sm text-[#414845] mt-2 max-w-2xl leading-relaxed">
-                    {currentSoap.tagline}. Traditional cold-cured botanical bar by Ananta Vijaya – Lotica Glow, Hyderabad, Telangana.
+                    {currentSoap.tagline}. Traditional plant extraction botanical bar by Ananta Vijaya – Lotica Glow, Hyderabad, Telangana.
                   </p>
                 </div>
               </div>
@@ -2273,7 +2289,7 @@ export default function App() {
                         </span>
                       )}
                       <span className="text-xs text-[#7B5802] font-medium ml-auto">
-                        (125g Traditional Bar)
+                        (100g Traditional Bar)
                       </span>
                     </div>
 
@@ -2370,7 +2386,7 @@ export default function App() {
                     {/* Pedestal Base */}
                     <div className="w-56 h-6 bg-[#C59A45]/30 rounded-[100%] blur-sm -mt-2"></div>
                     <span className="mt-3 text-[11px] text-[#7B5802] uppercase tracking-[0.2em] font-semibold">
-                      Aged 45 Days • Small Batch Cured
+                      Small Batch Cured
                     </span>
                   </div>
 
@@ -2611,7 +2627,7 @@ export default function App() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-8">
                       <div className="flex items-center gap-2.5 text-xs sm:text-sm text-[#FAF5EB]">
                         <span className="material-symbols-outlined text-[#fdcd73] text-[18px]">verified</span>
-                        <span>5 Full-Sized 125g Bars</span>
+                        <span>5 Full-Sized 100g Bars</span>
                       </div>
                       <div className="flex items-center gap-2.5 text-xs sm:text-sm text-[#FAF5EB]">
                         <span className="material-symbols-outlined text-[#fdcd73] text-[18px]">redeem</span>
@@ -2633,7 +2649,7 @@ export default function App() {
                         className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#C59A45] hover:bg-[#b08638] text-[#173D32] font-serif font-bold text-sm tracking-wider uppercase rounded-full shadow-lg hover:shadow-xl transition-all transform active:scale-95"
                         type="button"
                       >
-                        <span>Order Divine Box — ₹1,199</span>
+                        <span>Order Divine Box — ₹699</span>
                         <span className="material-symbols-outlined text-[18px]">east</span>
                       </button>
 
@@ -3071,34 +3087,58 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 pb-12 border-b border-[#C59A45]/20">
             {/* Column 1: Brand Info */}
             <div className="lg:col-span-4 flex flex-col gap-4">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-4">
                 <img
                   alt="Ananta Vijaya Sacred Logo"
-                  className="h-12 w-auto object-contain drop-shadow"
+                  className="h-20 sm:h-24 md:h-[104px] w-auto object-contain shrink-0 drop-shadow-[0_4px_16px_rgba(0,0,0,0.4)]"
                   src={ASSETS.logo}
                 />
                 <div className="flex flex-col">
-                  <span className="font-serif text-xl font-bold uppercase tracking-wider text-white">
-                    Ananta Vijaya
+                  <span className="font-serif text-xl sm:text-2xl font-bold uppercase tracking-wider text-white">
+                    Ananta Vijaya Pvt. Ltd.
                   </span>
-                  <span className="font-label-sm text-[10px] text-[#ffdea6] tracking-[0.25em] uppercase font-semibold">
-                    Natural Handmade Soaps
+                  <span className="font-label-sm text-[10px] sm:text-[11px] text-[#ffdea6] tracking-[0.18em] uppercase font-semibold">
+                    Nature's Trust &amp; Herbal Purity
                   </span>
                 </div>
               </div>
               <p className="font-sans text-xs sm:text-sm text-[#a7cfc0] leading-relaxed max-w-sm">
-                Honoring ancient Indian heritage through pure, handcrafted Ayurvedic soaps and mindful daily rituals. Made in small batches using traditional cold process methods.
+                Honoring ancient Indian heritage through pure, handcrafted Ayurvedic soaps and mindful daily rituals. Made in small batches using traditional plant extraction methods.
               </p>
               <div className="flex items-center gap-3 text-[#ffdea6] pt-1">
-                <button type="button" onClick={() => navigateTo('home')} aria-label="Website" className="p-1.5 rounded-full hover:bg-white/10 transition-colors">
-                  <span className="material-symbols-outlined text-[20px]">public</span>
-                </button>
-                <button type="button" onClick={() => navigateTo('our-story')} aria-label="Ayurveda" className="p-1.5 rounded-full hover:bg-white/10 transition-colors">
-                  <span className="material-symbols-outlined text-[20px]">spa</span>
-                </button>
-                <button type="button" onClick={() => navigateTo('ingredients')} aria-label="Botanicals" className="p-1.5 rounded-full hover:bg-white/10 transition-colors">
-                  <span className="material-symbols-outlined text-[20px]">local_florist</span>
-                </button>
+                <a
+                  href="https://www.instagram.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="w-9 h-9 rounded-full bg-white/5 border border-[#C59A45]/30 flex items-center justify-center hover:bg-[#C59A45] hover:text-[#00271d] hover:border-[#C59A45] transition-all duration-300 shadow-sm"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  </svg>
+                </a>
+                <a
+                  href="https://www.facebook.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="w-9 h-9 rounded-full bg-white/5 border border-[#C59A45]/30 flex items-center justify-center hover:bg-[#C59A45] hover:text-[#00271d] hover:border-[#C59A45] transition-all duration-300 shadow-sm"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </a>
+                <a
+                  href="https://www.youtube.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="YouTube"
+                  className="w-9 h-9 rounded-full bg-white/5 border border-[#C59A45]/30 flex items-center justify-center hover:bg-[#C59A45] hover:text-[#00271d] hover:border-[#C59A45] transition-all duration-300 shadow-sm"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                </a>
               </div>
             </div>
 
@@ -3179,6 +3219,15 @@ export default function App() {
               <button type="button" onClick={() => navigateTo('home')} className="hover:text-white transition-colors">Terms of Ritual</button>
               <span>•</span>
               <button type="button" onClick={() => navigateTo('contact')} className="hover:text-white transition-colors">Shipping &amp; Care</button>
+              <span>•</span>
+              <button
+                type="button"
+                onClick={handleOpenPortal}
+                className="hover:text-[#fdcd73] transition-colors font-semibold"
+                title="Super Admin • Manager • User"
+              >
+                🔐 Staff &amp; Roles Portal ({currentUser ? ROLE_LABELS[currentUser.role] : 'Sign In'})
+              </button>
             </div>
           </div>
         </div>
@@ -3201,7 +3250,32 @@ export default function App() {
         </span>
       </a>
 
-      {/* Cart & Wishlist Drawers */}
+      {/* Floating Role Portal Pill (Bottom Left) */}
+      <div className="fixed bottom-5 left-5 sm:bottom-6 sm:left-6 z-40">
+        <button
+          type="button"
+          onClick={handleOpenPortal}
+          className="flex items-center gap-2 px-3.5 py-2.5 rounded-full bg-[#00271d]/90 hover:bg-[#00271d] text-[#fdcd73] text-xs font-semibold backdrop-blur-md border border-[#C59A45]/40 shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 group"
+          title="Role Portal: Super Admin • Manager • User"
+        >
+          <span className="material-symbols-outlined text-[17px] text-[#fdcd73]">
+            {currentUser?.role === ROLES.SUPER_ADMIN
+              ? 'shield_person'
+              : currentUser?.role === ROLES.MANAGER
+              ? 'manage_accounts'
+              : currentUser?.role === ROLES.USER
+              ? 'person'
+              : 'admin_panel_settings'}
+          </span>
+          <span className="font-sans tracking-wide">
+            {currentUser
+              ? `${ROLE_LABELS[currentUser.role] || 'User'} Portal`
+              : 'Staff & Roles'}
+          </span>
+        </button>
+      </div>
+
+      {/* Cart & Wishlist Drawers & Razorpay Checkout Modal */}
       <CartDrawer
         isOpen={cartOpen}
         onClose={() => setCartOpen(false)}
@@ -3216,6 +3290,21 @@ export default function App() {
           }
         }}
         onRemoveItem={(id) => setCart((prev) => prev.filter((item) => item.id !== id))}
+        onCheckout={() => {
+          setCartOpen(false);
+          setCheckoutOpen(true);
+        }}
+      />
+
+      <CheckoutModal
+        isOpen={checkoutOpen}
+        onClose={() => setCheckoutOpen(false)}
+        cartItems={cart}
+        onPaymentSuccess={(order) => {
+          saveNewOrder(order);
+          setCart([]);
+          showToast(`Sacred Order ${order.orderId} Confirmed!`);
+        }}
       />
 
       <WishlistDrawer
@@ -3229,6 +3318,38 @@ export default function App() {
         }}
         onRemoveWishlist={toggleWishlist}
       />
+
+      {/* 3 Role-Based Modals: Super Admin, Manager, User */}
+      <AuthModal
+        isOpen={authModalOpen}
+        onClose={() => setAuthModalOpen(false)}
+        onAuthSuccess={handleAuthSuccess}
+      />
+
+      {adminPortalOpen && (currentUser?.role === ROLES.SUPER_ADMIN || currentUser?.role === ROLES.MANAGER) && (
+        <AdminDashboard
+          currentUser={currentUser}
+          onLogout={handleLogout}
+          onClose={() => setAdminPortalOpen(false)}
+          onSwitchRole={() => {
+            setAdminPortalOpen(false);
+            setAuthModalOpen(true);
+          }}
+        />
+      )}
+
+      {userAccountOpen && currentUser?.role === ROLES.USER && (
+        <UserAccountModal
+          currentUser={currentUser}
+          isOpen={userAccountOpen}
+          onClose={() => setUserAccountOpen(false)}
+          onLogout={handleLogout}
+          onSwitchRole={() => {
+            setUserAccountOpen(false);
+            setAuthModalOpen(true);
+          }}
+        />
+      )}
     </div>
   );
 }
