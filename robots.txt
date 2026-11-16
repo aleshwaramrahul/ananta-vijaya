@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /checkout/
+Disallow: /cart/
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://anantavijaya.com/sitemap.xml

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Homepage -->
+  <url>
+    <loc>https://anantavijaya.com/</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Shop / Soap Collection -->
+  <url>
+    <loc>https://anantavijaya.com/shop</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- The Divine Collection Gift Box -->
+  <url>
+    <loc>https://anantavijaya.com/divine-collection</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://lh3.googleusercontent.com/aida-public/AB6AXuCesOYXGP9LnYp5qJLNQ6D1Qypte5dvZ_CsIi_XkXSWGr07UyQDaWGvt7xY7drIJ9L9H0_mGcuh-9RNU4b9CmAlSzC3XMFXTD31k4esRfIoePG4OuLOUOzKUTAbwh9gggQaw5azXy3MYE0MiA8asw1_FqK6NCc1wPvKsYE9J-nddCf462yizZYF56zovCcTVGuIrt-vZjoIKFNv_1f0TSZSoF2GmyhsnZG7FPIkyn_q3xVlZCpMQ5Vs8g</image:loc>
+      <image:title>Lotica Glow Divine Collection premium five-soap gift box</image:title>
+      <image:caption>The Divine Collection 5-soap festive gift box by Ananta Vijaya - Lotica Glow</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Individual Products -->
+  <url>
+    <loc>https://anantavijaya.com/products/kamalam-soap</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lh3.googleusercontent.com/aida-public/AB6AXuCesOYXGP9LnYp5qJLNQ6D1Qypte5dvZ_CsIi_XkXSWGr07UyQDaWGvt7xY7drIJ9L9H0_mGcuh-9RNU4b9CmAlSzC3XMFXTD31k4esRfIoePG4OuLOUOzKUTAbwh9gggQaw5azXy3MYE0MiA8asw1_FqK6NCc1wPvKsYE9J-nddCf462yizZYF56zovCcTVGuIrt-vZjoIKFNv_1f0TSZSoF2GmyhsnZG7FPIkyn_q3xVlZCpMQ5Vs8g</image:loc>
+      <image:title>Lotica Glow Kamalam Soap product packaging</image:title>
+      <image:caption>Sacred Lotus &amp; Wild Rose traditional cold-cured soap</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://anantavijaya.com/products/kadamba-soap</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lh3.googleusercontent.com/aida-public/AB6AXuBVmdbd_bOv7DSQeUt1O4WIQ8d07_Jx-ORQXLM4-3muFdtS_kG1ET4uv9QTTTkX6JcS1wBIaq__Skv-H6nLlLECGBsV4tmsChQzjUbDtOjJ7DXV8wNtjoFwTkXH7elasXuaPloJId_7KwUu2MQ9PFszsAM2ANOD2G6oIYm_JSaOUo26w1VORXI-ZHxi6_EKUbPE2atOolg8p3CP0DURns9voCyFtkZ2fFX12xsSvJBWsMVUc6Q6suiKQw</image:loc>
+      <image:title>Lotica Glow Kadamba Soap product packaging</image:title>
+      <image:caption>Golden Blossom &amp; Wild Honey traditional cold-cured soap</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://anantavijaya.com/products/bilvam-soap</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lh3.googleusercontent.com/aida-public/AB6AXuBfolV1LLaXtImFD1RJED9kb67IiyTeUMFOLn7F0PdnKf7x4i0EZi0GcvIp2WyFRU345kGCkvaVs_U-riFWenoDGxLhE8_8DPAt-JfaoIfJahD9fp6SQdSenpZmDlD0fIBxIlt0kgEIJ-_oXOeQfRTWUts2l4aBKhDObZvb6dZ_aORjAhakYFQt0cgsvCjs_txWzdtrgKMc9P85WxpCpbaEZ3aV93mPj9z9PRs6lsbYhuJ5mdWDMnd5lQ</image:loc>
+      <image:title>Lotica Glow Bilvam Soap product packaging</image:title>
+      <image:caption>Auspicious Bael Leaf &amp; Vetiver traditional cold-cured soap</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://anantavijaya.com/products/vibhudi-soap</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lh3.googleusercontent.com/aida-public/AB6AXuDSVS8HEVM89-MBcnmX0PVXNKk4HsautT7T3V2L8hupVEvVao6qZT2oooT_fX388TDpVkYanPyIl4ox9ABoy_dCV8u4_9jHMZ5bSL6jcAQ3IN5J2HoaogXecxigyJ1hSCwkXf62ph4-x-Wq-0p8xUTapBCr04vNy-uGL-ZOtIHWJgn3W4UmgqnoacbYApgzemNYmg1HlV8j0VM_ipzlOzqmtuyG0l3cyhiXiGL0jC3thp7bVmapHf21IA</image:loc>
+      <image:title>Lotica Glow Vibhudi Soap product packaging</image:title>
+      <image:caption>Sacred Ash &amp; Holy Tulsi traditional cold-cured soap</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://anantavijaya.com/products/rudraksha-soap</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lh3.googleusercontent.com/aida-public/AB6AXuAAclUCm04GaDvbK0bXL289HD3OJ7qQuiJEK3peM8anDL8UoGMc7Tyu4qzvErh9WxXQ70dq8jPTNhFWGRmDnZVlWuKULgYxw7NnAGS1omr7hO0ilFQLJUg5zO_MUwyHAkrrK_fyJy6-90Fe5tTvBFtcH2fjEt4qd_UP_iAAnF3nXqpAlq8mrFkauIquLZuLO1Gcnt8u86X6K688aapasC_rUqvNffFRJDDZUDGCwG0ymnXQfyqfN0hozg</image:loc>
+      <image:title>Lotica Glow Rudraksha Soap product packaging</image:title>
+      <image:caption>Sacred Bead &amp; Himalayan Cedar traditional cold-cured soap</image:caption>
+    </image:image>
+  </url>
+
+  <!-- About Us -->
+  <url>
+    <loc>https://anantavijaya.com/about</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Ingredients -->
+  <url>
+    <loc>https://anantavijaya.com/ingredients</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- FAQs -->
+  <url>
+    <loc>https://anantavijaya.com/faqs</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://anantavijaya.com/contact</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>
