@@ -509,6 +509,24 @@ const ROUTES_DATA = [
     }
   },
   {
+    path: '/5-elements',
+    outputPath: path.join(DIST_DIR, '5-elements', 'index.html'),
+    title: 'The 5 Elements & Sacred Botanicals | Lotica Glow Soaps',
+    description: 'Explore the verified botanicals and 5 sacred elements behind Lotica Glow soaps: Pink Lotus, Bilva leaves, Kadamba blossoms, Krishna Tulsi, Sacred Ash and Rudraksha.',
+    keywords: '5 elements soaps, Lotica Glow ingredients, sacred lotus extract, bilva patra soap, kadamba flower, krishna tulsi, rudraksha extract, botanical soaps',
+    canonical: `${SITE_URL}/5-elements`,
+    ogImage: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCesOYXGP9LnYp5qJLNQ6D1Qypte5dvZ_CsIi_XkXSWGr07UyQDaWGvt7xY7drIJ9L9H0_mGcuh-9RNU4b9CmAlSzC3XMFXTD31k4esRfIoePG4OuLOUOzKUTAbwh9gggQaw5azXy3MYE0MiA8asw1_FqK6NCc1wPvKsYE9J-nddCf462yizZYF56zovCcTVGuIrt-vZjoIKFNv_1f0TSZSoF2GmyhsnZG7FPIkyn_q3xVlZCpMQ5Vs8g',
+    ogType: 'website',
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": `${SITE_URL}/` },
+        { "@type": "ListItem", "position": 2, "name": "5 Elements", "item": `${SITE_URL}/5-elements` }
+      ]
+    }
+  },
+  {
     path: '/ingredients',
     outputPath: path.join(DIST_DIR, 'ingredients', 'index.html'),
     title: 'Sacred Botanicals & Ingredients | Lotica Glow Soaps',

@@ -15,7 +15,7 @@ export default function Header({ cartCount = 0, wishlistCount = 0, onCartClick, 
       </div>
 
       {/* Main Navigation Bar */}
-      <div className="h-20 sm:h-24 md:h-[96px] lg:h-[104px] bg-surface/95 backdrop-blur-md transition-all border-b border-[#E8D4B5]/60">
+      <div className="h-20 sm:h-24 md:h-[96px] lg:h-[104px] bg-surface/95 backdrop-blur-md transition-all border-b border-white/60">
         <div className="max-w-[1600px] h-full mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-between">
           
           {/* 1. Left: Logo Brand Group */}
@@ -62,6 +62,12 @@ export default function Header({ cartCount = 0, wishlistCount = 0, onCartClick, 
               className="text-[12.5px] xl:text-[13px] tracking-[0.16em] uppercase font-semibold py-2 transition-all relative text-[#414845] hover:text-[#00271d] hover:after:content-[''] hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:w-full hover:after:h-[2px] hover:after:bg-[#C59A45]/50"
             >
               Divine Collection
+            </a>
+            <a
+              href="#5-elements"
+              className="text-[12.5px] xl:text-[13px] tracking-[0.16em] uppercase font-semibold py-2 transition-all relative text-[#414845] hover:text-[#00271d] hover:after:content-[''] hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:w-full hover:after:h-[2px] hover:after:bg-[#C59A45]/50"
+            >
+              5 Elements
             </a>
             <a
               href="#faqs"
@@ -116,7 +122,7 @@ export default function Header({ cartCount = 0, wishlistCount = 0, onCartClick, 
 
         {/* Mobile/Tablet Dropdown Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-surface-container-high border-b border-[#E8D4B5] px-6 py-4 flex flex-col gap-3 shadow-xl">
+          <div className="lg:hidden bg-surface-container-high border-b border-white px-6 py-4 flex flex-col gap-3 shadow-xl">
             <a
               href="#home"
               onClick={() => setMobileMenuOpen(false)}

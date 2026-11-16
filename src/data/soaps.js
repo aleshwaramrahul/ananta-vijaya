@@ -15,6 +15,8 @@ import jasmineFlowersImg from '../assets/images/jasmine_flowers.png';
 import pinkLotusImg from '../assets/images/pink_lotus.png';
 import rudrakshaMalaImg from '../assets/images/rudraksha_mala.png';
 import sanctuaryRitualImg from '../assets/images/sanctuary_ritual.png';
+import bilvaFruitImg from '../assets/images/bilva_fruit.png';
+import kadambaFlowerImg from '../assets/images/kadamba_flower.png';
 
 // 3D Packaging Textures
 import kamalamFront from '../assets/textures/kamalam/front.jpg';
@@ -299,6 +301,8 @@ export const ASSETS = {
   logo: logoImg,
   lotusMandala: lotusMandalaImg,
   bilvamLeaves: bilvamLeavesImg,
+  bilvaFruit: bilvaFruitImg,
+  kadambaFlower: kadambaFlowerImg,
   hangingBells: hangingBellsImg,
   stonePedestal: singleStonePedestalImg,
   templeArch: templeArchImg,

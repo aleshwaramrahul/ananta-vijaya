@@ -27,7 +27,7 @@ main > :last-child {
 }
 
 ::-webkit-scrollbar-track {
-  background: #FFF8F1;
+  background: #ffffff;
 }
 
 ::-webkit-scrollbar-thumb {

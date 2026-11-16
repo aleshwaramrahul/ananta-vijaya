@@ -14,6 +14,7 @@ import { initializeAuthStore, getCurrentUser, logoutUser, saveNewOrder } from '.
 import AuthModal from './components/AuthModal';
 import AdminDashboard from './components/AdminDashboard';
 import UserAccountModal from './components/UserAccountModal';
+import ComingSoonCoverflow from './components/ComingSoonCoverflow';
 
 function resolveRouteFromLocation() {
   if (typeof window === 'undefined') return { page: 'home', slug: null };
@@ -35,7 +36,7 @@ function resolveRouteFromLocation() {
   if (path === '/divine-collection' || hash === 'divine-collection') return { page: 'divine-collection', slug: null };
   if (path === '/contact' || hash === 'contact') return { page: 'contact', slug: null };
   if (path === '/faqs' || hash === 'faq' || hash === 'faqs') return { page: 'faqs', slug: null };
-  if (path === '/ingredients' || hash === 'ingredients') return { page: 'ingredients', slug: null };
+  if (path === '/5-elements' || path === '/five-elements' || hash === '5-elements' || hash === 'five-elements' || path === '/ingredients' || hash === 'ingredients') return { page: '5-elements', slug: null };
   if (path === '/admin' || hash === 'admin') return { page: 'admin', slug: null };
   if (path === '/account' || hash === 'account') return { page: 'account', slug: null };
 
@@ -242,7 +243,7 @@ export default function App() {
     else if (page === 'divine-collection') targetPath = '/divine-collection';
     else if (page === 'contact') targetPath = '/contact';
     else if (page === 'faqs' || page === 'faq') targetPath = '/faqs';
-    else if (page === 'ingredients') targetPath = '/ingredients';
+    else if (page === '5-elements' || page === 'ingredients') targetPath = '/5-elements';
     else if (page === 'product' && slug) targetPath = `/products/${slug}`;
 
     try {
@@ -394,7 +395,7 @@ export default function App() {
     : FAQ_ITEMS.filter((item) => item.category === faqCategory);
 
   return (
-    <div className="bg-[#FFF8F1] font-body-md text-[#211B0C] antialiased min-h-screen relative selection:bg-[#fdcd73] selection:text-[#173D32] w-full overflow-x-clip">
+    <div className="bg-white font-body-md text-[#211B0C] antialiased min-h-screen relative selection:bg-[#fdcd73] selection:text-[#173D32] w-full overflow-x-clip">
       {/* Toast Notification */}
       {toastMessage && (
         <div className="fixed bottom-6 right-6 z-50 bg-[#173D32] text-[#ffdea6] px-5 py-3 rounded-full shadow-2xl border border-[#C59A45]/50 flex items-center gap-2.5 animate-bounce">
@@ -461,7 +462,7 @@ export default function App() {
         </div>
 
         {/* Main Navbar */}
-        <div className="h-20 sm:h-24 md:h-[96px] lg:h-[104px] bg-[#FFF8F1]/95 backdrop-blur-md border-b border-[#E8D4B5]/60 transition-all relative">
+        <div className="h-20 sm:h-24 md:h-[96px] lg:h-[104px] bg-white/95 backdrop-blur-md border-b border-white transition-all relative">
           <div className="max-w-[1600px] h-full mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-between">
             {/* 1. Left: Logo Group */}
             <div className="shrink-0 flex items-center">
@@ -523,6 +524,15 @@ export default function App() {
                   }`}
               >
                 Divine Collection
+              </button>
+              <button
+                onClick={() => navigateTo('5-elements')}
+                className={`text-[12.5px] xl:text-[13px] tracking-[0.16em] uppercase font-semibold py-2 transition-all relative ${currentRoute.page === '5-elements' || currentRoute.page === 'ingredients'
+                  ? 'text-[#00271d] after:content-[\'\'] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#C59A45]'
+                  : 'text-[#414845] hover:text-[#00271d] hover:after:content-[\'\'] hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:w-full hover:after:h-[2px] hover:after:bg-[#C59A45]/50'
+                  }`}
+              >
+                5 Elements
               </button>
               <button
                 onClick={() => navigateTo('faqs')}
@@ -590,9 +600,9 @@ export default function App() {
 
           {/* Mobile Slide-Down Navigation Menu */}
         {mobileMenuOpen && (
-          <div className="absolute top-full left-0 w-full bg-[#FFF8F1] border-b-2 border-[#C59A45]/40 shadow-[0_20px_40px_rgba(57,37,29,0.25)] z-50 lg:hidden px-4 sm:px-6 py-4 flex flex-col gap-1 max-h-[85vh] overflow-y-auto">
+          <div className="absolute top-full left-0 w-full bg-white border-b-2 border-[#C59A45]/40 shadow-[0_20px_40px_rgba(57,37,29,0.15)] z-50 lg:hidden px-4 sm:px-6 py-4 flex flex-col gap-1 max-h-[85vh] overflow-y-auto">
             {/* Mobile Menu Header */}
-            <div className="flex items-center justify-between pb-3 mb-2 border-b border-[#E8D4B5] px-1">
+            <div className="flex items-center justify-between pb-3 mb-2 border-b border-white px-1">
               <span className="font-serif text-sm font-semibold text-[#173D32] tracking-wider uppercase">Menu</span>
               <button
                 type="button"
@@ -607,7 +617,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => navigateTo('home')}
-                className={`flex items-center justify-between py-2.5 px-3 rounded-lg transition-colors uppercase font-semibold text-xs tracking-widest border-b border-[#E8D4B5]/60 text-left w-full ${currentRoute.page === 'home' ? 'bg-[#faecd4] text-[#00271d] font-bold' : 'text-[#173D32] hover:bg-[#E8D4B5]/50'
+                className={`flex items-center justify-between py-2.5 px-3 rounded-lg transition-colors uppercase font-semibold text-xs tracking-widest border-b border-white text-left w-full ${currentRoute.page === 'home' ? 'bg-[#faecd4] text-[#00271d] font-bold' : 'text-[#173D32] hover:bg-[#E8D4B5]/50'
                   }`}
               >
                 <span>Home</span>
@@ -616,7 +626,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => navigateTo('about')}
-                className={`flex items-center justify-between py-2.5 px-3 rounded-lg transition-colors uppercase font-semibold text-xs tracking-widest border-b border-[#E8D4B5]/60 text-left w-full ${currentRoute.page === 'about' || currentRoute.page === 'our-story' ? 'bg-[#faecd4] text-[#00271d] font-bold' : 'text-[#173D32] hover:bg-[#E8D4B5]/50'
+                className={`flex items-center justify-between py-2.5 px-3 rounded-lg transition-colors uppercase font-semibold text-xs tracking-widest border-b border-white text-left w-full ${currentRoute.page === 'about' || currentRoute.page === 'our-story' ? 'bg-[#faecd4] text-[#00271d] font-bold' : 'text-[#173D32] hover:bg-[#E8D4B5]/50'
                   }`}
               >
                 <span>Our Story</span>
@@ -625,7 +635,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => navigateTo('shop')}
-                className={`flex items-center justify-between py-2.5 px-3 rounded-lg transition-colors uppercase font-semibold text-xs tracking-widest border-b border-[#E8D4B5]/60 text-left w-full ${currentRoute.page === 'shop' || currentRoute.page === 'our-soaps' || currentRoute.page === 'product' ? 'bg-[#faecd4] text-[#00271d] font-bold' : 'text-[#173D32] hover:bg-[#E8D4B5]/50'
+                className={`flex items-center justify-between py-2.5 px-3 rounded-lg transition-colors uppercase font-semibold text-xs tracking-widest border-b border-white text-left w-full ${currentRoute.page === 'shop' || currentRoute.page === 'our-soaps' || currentRoute.page === 'product' ? 'bg-[#faecd4] text-[#00271d] font-bold' : 'text-[#173D32] hover:bg-[#E8D4B5]/50'
                   }`}
               >
                 <span>Our Soaps</span>
@@ -634,7 +644,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => navigateTo('divine-collection')}
-                className={`flex items-center justify-between py-2.5 px-3 rounded-lg transition-colors uppercase font-semibold text-xs tracking-widest border-b border-[#E8D4B5]/60 text-left w-full ${currentRoute.page === 'divine-collection' ? 'bg-[#faecd4] text-[#00271d] font-bold' : 'text-[#173D32] hover:bg-[#E8D4B5]/50'
+                className={`flex items-center justify-between py-2.5 px-3 rounded-lg transition-colors uppercase font-semibold text-xs tracking-widest border-b border-white text-left w-full ${currentRoute.page === 'divine-collection' ? 'bg-[#faecd4] text-[#00271d] font-bold' : 'text-[#173D32] hover:bg-[#E8D4B5]/50'
                   }`}
               >
                 <span>Divine Collection</span>
@@ -642,8 +652,17 @@ export default function App() {
               </button>
               <button
                 type="button"
+                onClick={() => navigateTo('5-elements')}
+                className={`flex items-center justify-between py-2.5 px-3 rounded-lg transition-colors uppercase font-semibold text-xs tracking-widest border-b border-white text-left w-full ${currentRoute.page === '5-elements' || currentRoute.page === 'ingredients' ? 'bg-[#faecd4] text-[#00271d] font-bold' : 'text-[#173D32] hover:bg-[#E8D4B5]/50'
+                  }`}
+              >
+                <span>5 Elements</span>
+                <span className="material-symbols-outlined text-[16px] text-[#C59A45]">east</span>
+              </button>
+              <button
+                type="button"
                 onClick={() => navigateTo('faqs')}
-                className={`flex items-center justify-between py-2.5 px-3 rounded-lg transition-colors uppercase font-semibold text-xs tracking-widest border-b border-[#E8D4B5]/60 text-left w-full ${currentRoute.page === 'faqs' || currentRoute.page === 'faq' ? 'bg-[#faecd4] text-[#00271d] font-bold' : 'text-[#173D32] hover:bg-[#E8D4B5]/50'
+                className={`flex items-center justify-between py-2.5 px-3 rounded-lg transition-colors uppercase font-semibold text-xs tracking-widest border-b border-white text-left w-full ${currentRoute.page === 'faqs' || currentRoute.page === 'faq' ? 'bg-[#faecd4] text-[#00271d] font-bold' : 'text-[#173D32] hover:bg-[#E8D4B5]/50'
                   }`}
               >
                 <span>FAQ</span>
@@ -695,11 +714,10 @@ export default function App() {
         {currentPage === 'home' && (
           <div>
             {/* 2. HERO SECTION (Exact Match to Screenshot 1) */}
-            <section className="relative w-full bg-[#FFF2DB] overflow-hidden pt-6 sm:pt-8 pb-10 sm:pb-12 lg:pb-16">
+            <section className="relative w-full bg-white overflow-hidden pt-6 sm:pt-8 pb-10 sm:pb-12 lg:pb-16">
               {/* Subtle Ambient Radial Glow */}
-              <div className="absolute inset-0 pointer-events-none opacity-40">
-                <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full bg-gradient-to-b from-[#ffdea6]/40 via-[#faecd4] to-transparent blur-3xl"></div>
-                <div className="absolute top-12 left-10 w-96 h-96 rounded-full bg-[#c2ebdb]/20 blur-2xl"></div>
+              <div className="absolute inset-0 pointer-events-none opacity-20">
+                <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full bg-gradient-to-b from-[#ffdea6]/20 to-transparent blur-3xl"></div>
               </div>
 
               <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
@@ -742,7 +760,7 @@ export default function App() {
                       </button>
                       <button
                         onClick={() => navigateTo('our-story')}
-                        className="inline-flex items-center justify-center px-6 py-3.5 sm:py-3 bg-[#FAF5EB] text-[#39251D] font-label-md text-xs uppercase tracking-widest hover:bg-[#faecd4] transition-all duration-300 shadow-sm rounded-full border border-[#E8D4B5] text-center"
+                        className="inline-flex items-center justify-center px-6 py-3.5 sm:py-3 bg-white text-[#39251D] font-label-md text-xs uppercase tracking-widest hover:bg-gray-50 transition-all duration-300 shadow-sm rounded-full border border-[#E8D4B5] text-center"
                         type="button"
                       >
                         Our Story
@@ -751,17 +769,17 @@ export default function App() {
 
                     {/* 3 Trust Indicators */}
                     <div className="pt-2 flex flex-wrap items-center gap-2.5 sm:gap-4 text-[#414845] font-label-sm text-[10px] sm:text-[11px] uppercase tracking-wider">
-                      <div className="flex items-center gap-1.5 bg-[#FAF5EB]/90 sm:bg-transparent px-2.5 py-1 sm:p-0 rounded-full sm:rounded-none border border-[#E8D4B5]/60 sm:border-none shadow-sm sm:shadow-none">
+                      <div className="flex items-center gap-1.5 bg-white/90 sm:bg-transparent px-2.5 py-1 sm:p-0 rounded-full sm:rounded-none border border-[#E8D4B5]/60 sm:border-none shadow-sm sm:shadow-none">
                         <span className="material-symbols-outlined text-[#7B5802] text-[15px] sm:text-[16px]">verified</span>
                         <span className="font-semibold text-[#00271d]">Handcrafted</span>
                       </div>
                       <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-[#7B5802]/50"></span>
-                      <div className="flex items-center gap-1.5 bg-[#FAF5EB]/90 sm:bg-transparent px-2.5 py-1 sm:p-0 rounded-full sm:rounded-none border border-[#E8D4B5]/60 sm:border-none shadow-sm sm:shadow-none">
+                      <div className="flex items-center gap-1.5 bg-white/90 sm:bg-transparent px-2.5 py-1 sm:p-0 rounded-full sm:rounded-none border border-[#E8D4B5]/60 sm:border-none shadow-sm sm:shadow-none">
                         <span className="material-symbols-outlined text-[#7B5802] text-[15px] sm:text-[16px]">spa</span>
                         <span className="font-semibold text-[#00271d]">Devotional Pure Herbs</span>
                       </div>
                       <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-[#7B5802]/50"></span>
-                      <div className="flex items-center gap-1.5 bg-[#FAF5EB]/90 sm:bg-transparent px-2.5 py-1 sm:p-0 rounded-full sm:rounded-none border border-[#E8D4B5]/60 sm:border-none shadow-sm sm:shadow-none">
+                      <div className="flex items-center gap-1.5 bg-white/90 sm:bg-transparent px-2.5 py-1 sm:p-0 rounded-full sm:rounded-none border border-[#E8D4B5]/60 sm:border-none shadow-sm sm:shadow-none">
                         <span className="material-symbols-outlined text-[#7B5802] text-[15px] sm:text-[16px]">local_florist</span>
                         <span className="font-semibold text-[#00271d]">Sacred Botanicals</span>
                       </div>
@@ -908,32 +926,42 @@ export default function App() {
                         />
                       </div>
 
-                      {/* 11. Foreground Sacred Offerings (Resting directly along the front of the stone ledge - Moved Down) */}
-                      <div className="absolute inset-x-0 bottom-[-4%] sm:bottom-[-5%] w-full h-[32%] pointer-events-none z-30">
+                      {/* 11. Foreground Sacred Offerings (Directly aligned 1-to-1 beneath each soap box) */}
+                      <div className="absolute inset-x-0 bottom-[-4%] sm:bottom-[-5%] w-[95%] sm:w-[93%] mx-auto flex items-end justify-center pointer-events-none z-30">
                         
-                        {/* Lit Brass Diya (Bottom Left) */}
-                        <div className="absolute bottom-[6%] left-[2.5%] sm:left-[3.5%] w-[13.5%] sm:w-[14.5%] drop-shadow-xl">
-                          <img alt="Traditional Brass Diya Flame" className="w-full h-auto object-contain" src={ASSETS.brassDiya} />
+                        {/* Offering 1: Blooming Pink Lotus (Directly under Kamalam Lotus Soap) */}
+                        <div className="w-[18%] sm:w-[17.5%] flex flex-col items-center justify-end z-25">
+                          <div className="w-[85%] sm:w-[90%] drop-shadow-xl">
+                            <img alt="Sacred Pink Lotus Flower" className="w-full h-auto object-contain" src={ASSETS.pinkLotus} />
+                          </div>
                         </div>
 
-                        {/* White Ash Powder Bowl (Beside Diya) */}
-                        <div className="absolute bottom-[6%] left-[16%] sm:left-[17%] w-[10.5%] sm:w-[11.5%] drop-shadow-lg">
-                          <img alt="Ayurvedic Herbal Powder Bowl" className="w-full h-auto object-contain" src={ASSETS.powderBowl} />
+                        {/* Offering 2: Sacred Rudraksha Beads (Directly under Rudraksha Soap) */}
+                        <div className="w-[20%] sm:w-[19.5%] -ml-[1.5%] flex flex-col items-center justify-end z-20">
+                          <div className="w-[72%] sm:w-[76%] drop-shadow-lg">
+                            <img alt="Sacred Rudraksha Beads" className="w-full h-auto object-contain" src={ASSETS.rudrakshaMala} />
+                          </div>
                         </div>
 
-                        {/* Fresh White Jasmine Flowers (Center Front) */}
-                        <div className="absolute bottom-[2%] left-1/2 -translate-x-1/2 w-[25%] sm:w-[27%] drop-shadow-2xl z-35">
-                          <img alt="White Jasmine Flowers" className="w-full h-auto object-contain" src={ASSETS.jasmineFlowers} />
+                        {/* Offering 3: Sacred Vibhudi Ash Bowl (Directly under Vibhudi Soap - Center) */}
+                        <div className="w-[27%] sm:w-[26.5%] -ml-[1.5%] -mr-[1.5%] flex flex-col items-center justify-end z-35">
+                          <div className="w-[90%] sm:w-[94%] drop-shadow-2xl transition-transform duration-300 hover:scale-105">
+                            <img alt="Sacred Vibhudi Ash Bowl with Holy Tulsi and Jasmine" className="w-full h-auto object-contain" src={ASSETS.powderBowl} />
+                          </div>
                         </div>
 
-                        {/* Blooming Pink Lotus (Mid Right) */}
-                        <div className="absolute bottom-[6%] right-[15%] sm:right-[16%] w-[14.5%] sm:w-[15.5%] drop-shadow-xl">
-                          <img alt="Sacred Pink Lotus Flower" className="w-full h-auto object-contain" src={ASSETS.pinkLotus} />
+                        {/* Offering 4: Sacred Bilva Fruit & Leaves (Directly under Bilvam Soap) */}
+                        <div className="w-[20%] sm:w-[19.5%] flex flex-col items-center justify-end z-35">
+                          <div className="w-[98%] sm:w-[105%] drop-shadow-2xl transition-transform duration-300 hover:scale-105">
+                            <img alt="Sacred Bilva Bael Fruit and Consecrated Leaves" className="w-full h-auto object-contain" src={ASSETS.bilvaFruit} />
+                          </div>
                         </div>
 
-                        {/* Sacred Rudraksha Beads Cluster (Far Right) */}
-                        <div className="absolute bottom-[6%] right-[2.5%] sm:right-[3.5%] w-[10.5%] sm:w-[11.5%] drop-shadow-lg">
-                          <img alt="Sacred Rudraksha Beads" className="w-full h-auto object-contain" src={ASSETS.rudrakshaMala} />
+                        {/* Offering 5: Sacred Kadamba Flower (Directly under Kadamba Soap) */}
+                        <div className="w-[18%] sm:w-[17.5%] -ml-[1.5%] flex flex-col items-center justify-end z-30">
+                          <div className="w-[82%] sm:w-[88%] drop-shadow-2xl transition-transform duration-300 hover:scale-105">
+                            <img alt="Sacred Kadamba Blossom Flower and Leaves" className="w-full h-auto object-contain" src={ASSETS.kadambaFlower} />
+                          </div>
                         </div>
 
                       </div>
@@ -944,7 +972,7 @@ export default function App() {
 
                 {/* 3-FEATURE LUXURY TRUST BAR (Inspired by Reference Design) */}
                 <div className="mt-10 sm:mt-14 max-w-5xl mx-auto">
-                  <div className="relative bg-[#FAF5EB]/95 border border-[#E8D4B5] rounded-xl sm:rounded-2xl px-5 sm:px-8 py-5 sm:py-6 shadow-[0_4px_20px_rgba(57,37,29,0.06)]">
+                  <div className="relative bg-white border border-[#E8D4B5] rounded-xl sm:rounded-2xl px-5 sm:px-8 py-5 sm:py-6 shadow-[0_4px_20px_rgba(57,37,29,0.06)]">
                     {/* Ornate Corner Accents */}
                     <div className="absolute top-2 left-2 w-3.5 h-3.5 border-t-2 border-l-2 border-[#C59A45]/70 rounded-tl-sm pointer-events-none"></div>
                     <div className="absolute top-2 right-2 w-3.5 h-3.5 border-t-2 border-r-2 border-[#C59A45]/70 rounded-tr-sm pointer-events-none"></div>
@@ -991,7 +1019,7 @@ export default function App() {
             </section>
 
             {/* BOTANICAL TRANSITION DIVIDER */}
-            <div className="w-full bg-[#FFF8F1] py-8 sm:py-10 border-y border-[#E8D4B5]/50 relative overflow-hidden">
+            <div className="w-full bg-white py-8 sm:py-10 border-y border-white relative overflow-hidden">
               <div className="max-w-4xl mx-auto px-4 flex items-center justify-center gap-4 sm:gap-8 text-center">
                 <div className="hidden sm:flex items-center gap-2 opacity-80 shrink-0">
                   <span className="material-symbols-outlined text-2xl text-[#173D32] -rotate-45">eco</span>
@@ -1016,7 +1044,7 @@ export default function App() {
             </div>
 
             {/* 3. ABOUT TEASER SECTION */}
-            <section className="w-full pt-10 lg:pt-14 pb-4 sm:pb-6 bg-[#FFF8F1]">
+            <section className="w-full pt-10 lg:pt-14 pb-4 sm:pb-6 bg-white">
               <div className="max-w-[1140px] mx-auto px-4 sm:px-6">
                 <div className="rounded-3xl bg-white/85 border border-[#E8D4B5] p-8 sm:p-12 lg:p-14 shadow-[0_12px_36px_rgba(57,37,29,0.06)] relative text-center">
                   {/* Neon Border Effect */}
@@ -1033,7 +1061,7 @@ export default function App() {
                     />
                   </div>
 
-                  <div className="inline-flex items-center gap-2 mb-3 px-4 py-1 rounded-full bg-[#FAF5EB] border border-[#C59A45]/30 relative z-20">
+                  <div className="inline-flex items-center gap-2 mb-3 px-4 py-1 rounded-full bg-white border border-[#C59A45]/30 relative z-20">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#C59A45]"></span>
                     <span className="font-label-sm text-[11px] uppercase tracking-[0.2em] text-[#7B5802] font-semibold">
                       Heritage & Devotion
@@ -1060,7 +1088,7 @@ export default function App() {
 
                   {/* 4 Feature/Stat Boxes */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 pt-6 border-t border-[#E8D4B5]/60">
-                    <div className="p-4 sm:p-5 rounded-xl bg-[#FFF8F1] border border-[#E8D4B5]/80 flex flex-col items-center justify-center text-center">
+                    <div className="p-4 sm:p-5 rounded-xl bg-white border border-[#E8D4B5]/80 flex flex-col items-center justify-center text-center">
                       <span className="font-serif text-lg sm:text-xl font-bold text-[#173D32]">
                         Pure Botanicals
                       </span>
@@ -1069,7 +1097,7 @@ export default function App() {
                       </span>
                     </div>
 
-                    <div className="p-4 sm:p-5 rounded-xl bg-[#FFF8F1] border border-[#E8D4B5]/80 flex flex-col items-center justify-center text-center">
+                    <div className="p-4 sm:p-5 rounded-xl bg-white border border-[#E8D4B5]/80 flex flex-col items-center justify-center text-center">
                       <span className="font-serif text-lg sm:text-xl font-bold text-[#173D32]">
                         Plant Extraction
                       </span>
@@ -1078,7 +1106,7 @@ export default function App() {
                       </span>
                     </div>
 
-                    <div className="p-4 sm:p-5 rounded-xl bg-[#FFF8F1] border border-[#E8D4B5]/80 flex flex-col items-center justify-center text-center">
+                    <div className="p-4 sm:p-5 rounded-xl bg-white border border-[#E8D4B5]/80 flex flex-col items-center justify-center text-center">
                       <span className="font-serif text-lg sm:text-xl font-bold text-[#173D32]">
                         Vegan &amp; Ethical
                       </span>
@@ -1087,7 +1115,7 @@ export default function App() {
                       </span>
                     </div>
 
-                    <div className="p-4 sm:p-5 rounded-xl bg-[#FFF8F1] border border-[#E8D4B5]/80 flex flex-col items-center justify-center text-center">
+                    <div className="p-4 sm:p-5 rounded-xl bg-white border border-[#E8D4B5]/80 flex flex-col items-center justify-center text-center">
                       <span className="font-serif text-lg sm:text-xl font-bold text-[#173D32]">
                         Small Batch Poured
                       </span>
@@ -1101,7 +1129,7 @@ export default function App() {
             </section>
 
             {/* 4. EXPLORE THE LADWA GLOW SOAP COLLECTION (Exact Match to Screenshot 2) */}
-            <section id="collection" className="w-full bg-[#FAF5EB] pt-6 sm:pt-8 pb-12 sm:pb-16 relative overflow-hidden scroll-mt-24">
+            <section id="collection" className="w-full bg-white pt-6 sm:pt-8 pb-12 sm:pb-16 relative overflow-hidden scroll-mt-24">
               <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
                 <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-4 sm:mb-6">
                   <div className="inline-flex items-center gap-2 mb-2 px-4 py-1 rounded-full bg-[#E8D4B5]/60 border border-[#C59A45]/30">
@@ -1175,7 +1203,7 @@ export default function App() {
 
                     {/* Quantity & CTA */}
                     <div className="flex items-center gap-2 sm:gap-3 mb-6">
-                      <div className="flex items-center border border-[#E8D4B5] rounded-full bg-[#FFF8F1] px-1.5 sm:px-2 py-1 shrink-0">
+                      <div className="flex items-center border border-[#E8D4B5] rounded-full bg-white px-1.5 sm:px-2 py-1 shrink-0">
                         <button
                           type="button"
                           aria-label="Decrease quantity"
@@ -1211,7 +1239,7 @@ export default function App() {
                       <button
                         aria-label="Add to Wishlist"
                         onClick={() => toggleWishlist(currentSoap.title)}
-                        className="p-3 sm:p-3.5 rounded-full border border-[#E8D4B5] hover:border-[#C59A45] text-[#173D32] hover:text-[#C59A45] bg-[#FFF8F1] transition-colors flex items-center justify-center shadow-sm shrink-0"
+                        className="p-3 sm:p-3.5 rounded-full border border-[#E8D4B5] hover:border-[#C59A45] text-[#173D32] hover:text-[#C59A45] bg-white transition-colors flex items-center justify-center shadow-sm shrink-0"
                         type="button"
                       >
                         <span className={`material-symbols-outlined text-[18px] sm:text-[20px] ${wishlist.includes(currentSoap.title) ? 'text-[#C59A45] fill-current' : ''}`}>
@@ -1312,7 +1340,7 @@ export default function App() {
 
                   {/* RIGHT COLUMN: Vertical 5-Item Soap Selector */}
                   <div className="lg:col-span-3 flex flex-col order-3">
-                    <div className="flex items-center justify-between pb-3 mb-2 border-b border-[#E8D4B5]">
+                    <div className="flex items-center justify-between pb-3 mb-2 border-b border-white">
                       <div>
                         <h4 className="font-serif text-base text-[#173D32] font-semibold">Select Formulation</h4>
                         <span className="text-xs text-[#7B5802]/80">5 Sacred Varieties</span>
@@ -1544,7 +1572,7 @@ export default function App() {
             </section>
 
             {/* 6. WHY CHOOSE LADWA GLOW? (4 Value Pillars) */}
-            <section className="w-full bg-[#FAF5EB] py-14 lg:py-20 border-y border-[#E8D4B5]/50">
+            <section className="w-full bg-white py-14 lg:py-20 border-y border-white">
               <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-12">
                 <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-10">
                   <div className="inline-flex items-center gap-2 mb-2 px-4 py-1 rounded-full bg-[#E8D4B5]/60 border border-[#C59A45]/30">
@@ -1564,7 +1592,7 @@ export default function App() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                   <div className="bg-white rounded-2xl p-6 sm:p-7 border border-[#E8D4B5] hover:border-[#C59A45] hover:-translate-y-1.5 transition-all duration-300 shadow-sm flex flex-col items-start group">
-                    <div className="w-12 h-12 rounded-xl bg-[#FAF5EB] group-hover:bg-[#173D32] flex items-center justify-center text-[#7B5802] group-hover:text-[#ffdea6] transition-colors mb-4 shadow-sm">
+                    <div className="w-12 h-12 rounded-xl bg-white border border-[#E8D4B5]/60 group-hover:bg-[#173D32] flex items-center justify-center text-[#7B5802] group-hover:text-[#ffdea6] transition-colors mb-4 shadow-sm">
                       <span className="material-symbols-outlined text-[26px]">eco</span>
                     </div>
                     <h3 className="font-serif text-lg font-bold text-[#173D32] mb-2">
@@ -1576,7 +1604,7 @@ export default function App() {
                   </div>
 
                   <div className="bg-white rounded-2xl p-6 sm:p-7 border border-[#E8D4B5] hover:border-[#C59A45] hover:-translate-y-1.5 transition-all duration-300 shadow-sm flex flex-col items-start group">
-                    <div className="w-12 h-12 rounded-xl bg-[#FAF5EB] group-hover:bg-[#173D32] flex items-center justify-center text-[#7B5802] group-hover:text-[#ffdea6] transition-colors mb-4 shadow-sm">
+                    <div className="w-12 h-12 rounded-xl bg-white border border-[#E8D4B5]/60 group-hover:bg-[#173D32] flex items-center justify-center text-[#7B5802] group-hover:text-[#ffdea6] transition-colors mb-4 shadow-sm">
                       <span className="material-symbols-outlined text-[26px]">verified_user</span>
                     </div>
                     <h3 className="font-serif text-lg font-bold text-[#173D32] mb-2">
@@ -1588,7 +1616,7 @@ export default function App() {
                   </div>
 
                   <div className="bg-white rounded-2xl p-6 sm:p-7 border border-[#E8D4B5] hover:border-[#C59A45] hover:-translate-y-1.5 transition-all duration-300 shadow-sm flex flex-col items-start group">
-                    <div className="w-12 h-12 rounded-xl bg-[#FAF5EB] group-hover:bg-[#173D32] flex items-center justify-center text-[#7B5802] group-hover:text-[#ffdea6] transition-colors mb-4 shadow-sm">
+                    <div className="w-12 h-12 rounded-xl bg-white border border-[#E8D4B5]/60 group-hover:bg-[#173D32] flex items-center justify-center text-[#7B5802] group-hover:text-[#ffdea6] transition-colors mb-4 shadow-sm">
                       <span className="material-symbols-outlined text-[26px]">water_drop</span>
                     </div>
                     <h3 className="font-serif text-lg font-bold text-[#173D32] mb-2">
@@ -1600,7 +1628,7 @@ export default function App() {
                   </div>
 
                   <div className="bg-white rounded-2xl p-6 sm:p-7 border border-[#E8D4B5] hover:border-[#C59A45] hover:-translate-y-1.5 transition-all duration-300 shadow-sm flex flex-col items-start group">
-                    <div className="w-12 h-12 rounded-xl bg-[#FAF5EB] group-hover:bg-[#173D32] flex items-center justify-center text-[#7B5802] group-hover:text-[#ffdea6] transition-colors mb-4 shadow-sm">
+                    <div className="w-12 h-12 rounded-xl bg-white border border-[#E8D4B5]/60 group-hover:bg-[#173D32] flex items-center justify-center text-[#7B5802] group-hover:text-[#ffdea6] transition-colors mb-4 shadow-sm">
                       <span className="material-symbols-outlined text-[26px]">self_improvement</span>
                     </div>
                     <h3 className="font-serif text-lg font-bold text-[#173D32] mb-2">
@@ -1615,10 +1643,10 @@ export default function App() {
             </section>
 
             {/* 7. COMING SOON SECTION */}
-            <section className="w-full bg-[#FFF8F1] py-14 lg:py-20">
+            <section className="w-full bg-white py-14 lg:py-20">
               <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-12">
                 <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-10">
-                  <div className="inline-flex items-center gap-2 mb-2 px-4 py-1 rounded-full bg-[#FAF5EB] border border-[#C59A45]/30">
+                  <div className="inline-flex items-center gap-2 mb-2 px-4 py-1 rounded-full bg-white border border-[#C59A45]/30">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#C59A45]"></span>
                     <span className="font-label-sm text-[11px] uppercase tracking-[0.2em] text-[#7B5802] font-semibold">
                       Future Offerings
@@ -1633,37 +1661,12 @@ export default function App() {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
-                  {COMING_SOON_PRODUCTS.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="p-5 rounded-2xl bg-white border border-[#E8D4B5]/80 hover:border-[#C59A45] hover:shadow-md transition-all flex flex-col justify-between text-center items-center group"
-                    >
-                      <div className="w-12 h-12 rounded-full bg-[#FAF5EB] flex items-center justify-center text-[#7B5802] group-hover:bg-[#173D32] group-hover:text-[#ffdea6] transition-colors mb-3">
-                        <span className="material-symbols-outlined text-[24px]">{item.icon}</span>
-                      </div>
-                      <div>
-                        <h4 className="font-serif text-base font-bold text-[#173D32] mb-1">
-                          {item.title}
-                        </h4>
-                        <span className="font-label-sm text-[10px] uppercase tracking-wider text-[#7B5802] block mb-2 font-medium">
-                          {item.tagline}
-                        </span>
-                        <p className="text-xs text-[#414845] leading-relaxed">
-                          {item.desc}
-                        </p>
-                      </div>
-                      <span className="mt-4 inline-block text-[10px] font-bold uppercase tracking-widest text-[#7B5802] bg-[#FAF5EB] px-3 py-1 rounded-full border border-[#E8D4B5]">
-                        In Development
-                      </span>
-                    </div>
-                  ))}
-                </div>
+                <ComingSoonCoverflow items={COMING_SOON_PRODUCTS} autoplay={true} autoplayDelay={3.5} />
               </div>
             </section>
 
             {/* 8. NEWSLETTER */}
-            <section className="w-full bg-[#FFF8F1] pb-14 lg:pb-16">
+            <section className="w-full bg-white pb-14 lg:pb-16">
               <div className="max-w-[1000px] mx-auto px-4 sm:px-6">
                 <div className="rounded-3xl bg-[#173D32] p-8 sm:p-12 text-[#FFF8F1] text-center border border-[#C59A45]/40 shadow-xl relative overflow-hidden">
                   <div className="max-w-xl mx-auto relative z-10">
@@ -1706,7 +1709,7 @@ export default function App() {
         {(currentRoute.page === 'about' || currentRoute.page === 'our-story') && (
           <div className="w-full pb-8 lg:pb-12 relative overflow-hidden">
             {/* Story Hero Header with Ethereal Subtle Ambient Motion */}
-            <div className="w-full bg-[#FFF2DB] pt-6 sm:pt-8 pb-10 sm:pb-12 border-b border-[#E8D4B5]/60 mb-10 relative overflow-hidden">
+            <div className="w-full bg-white pt-6 sm:pt-8 pb-10 sm:pb-12 border-b border-white mb-10 relative overflow-hidden">
               {/* Subtle ambient rotating mandala watermark in background */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[460px] h-[460px] pointer-events-none opacity-[0.06] select-none z-0">
                 <img alt="Mandala Aura" className="w-full h-full object-contain animate-slow-spin" src={ASSETS.lotusMandala} />
@@ -1730,7 +1733,7 @@ export default function App() {
                 />
               </div>
               <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-12 text-center relative z-10">
-                <div className="inline-flex items-center gap-2 mb-3 px-4 py-1 rounded-full bg-[#FAF5EB] border border-[#C59A45]/30 shadow-xs">
+                <div className="inline-flex items-center gap-2 mb-3 px-4 py-1 rounded-full bg-white border border-[#C59A45]/30 shadow-xs">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#C59A45] animate-pulse"></span>
                   <span className="font-label-sm text-[11px] uppercase tracking-[0.2em] text-[#7B5802] font-semibold">
                     Ananta Vijaya • Lotica Glow Heritage
@@ -1783,7 +1786,7 @@ export default function App() {
                   <div className="absolute -inset-3 bg-gradient-to-tr from-[#fdcd73]/20 via-[#E8D4B5]/30 to-transparent blur-2xl rounded-3xl pointer-events-none animate-soft-glow"></div>
 
                   {/* Floating Sanctuary Card */}
-                  <div className="relative w-full rounded-3xl overflow-hidden shadow-xl border border-[#E8D4B5] group animate-gentle-float bg-[#FAF5EB] transition-all duration-500 hover:shadow-2xl">
+                  <div className="relative w-full rounded-3xl overflow-hidden shadow-xl border border-[#E8D4B5] group animate-gentle-float bg-white transition-all duration-500 hover:shadow-2xl">
                     <img
                       alt="Sanctuary Bathing Still Life"
                       className="w-full h-[360px] sm:h-[390px] object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
@@ -1800,7 +1803,7 @@ export default function App() {
 
               {/* Chapter 2: The Plant Extraction Craft */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                <div className="lg:col-span-6 order-2 lg:order-1 relative rounded-3xl overflow-hidden shadow-xl border border-[#E8D4B5] bg-[#FAF5EB] p-8 sm:p-10 flex flex-col justify-center items-center text-center group hover:border-[#C59A45] transition-colors">
+                <div className="lg:col-span-6 order-2 lg:order-1 relative rounded-3xl overflow-hidden shadow-xl border border-[#E8D4B5] bg-white p-8 sm:p-10 flex flex-col justify-center items-center text-center group hover:border-[#C59A45] transition-colors">
                   <div className="w-16 h-16 rounded-full bg-white/80 shadow-md flex items-center justify-center mb-4 border border-[#C59A45]/30 group-hover:scale-110 transition-transform duration-500">
                     <span className="material-symbols-outlined text-4xl text-[#C59A45] animate-pulse">hourglass_top</span>
                   </div>
@@ -1832,7 +1835,7 @@ export default function App() {
               </div>
 
               {/* Chapter 3: Our 5 Auspicious Offerings */}
-              <div className="bg-[#FAF5EB] rounded-3xl p-8 sm:p-12 border border-[#E8D4B5] text-center">
+              <div className="bg-white rounded-3xl p-8 sm:p-12 border border-[#E8D4B5] text-center">
                 <span className="font-label-sm text-xs uppercase tracking-widest text-[#7B5802] font-bold block mb-2">
                   Chapter III • The Formulations
                 </span>
@@ -1852,7 +1855,7 @@ export default function App() {
                       <img alt={soap.title} className="h-28 w-auto object-contain mb-3" src={soap.boxImage} />
                       <h4 className="font-serif text-base font-bold text-[#173D32]">{soap.title}</h4>
                       <span className="text-[11px] text-[#7B5802] font-medium mt-1">{soap.subtitle}</span>
-                      <span className="mt-3 text-xs font-bold text-[#173D32] bg-[#FAF5EB] px-3 py-1 rounded-full">
+                      <span className="mt-3 text-xs font-bold text-[#173D32] bg-white px-3 py-1 rounded-full border border-[#E8D4B5]">
                         View Details →
                       </span>
                     </div>
@@ -1881,7 +1884,7 @@ export default function App() {
         {(currentRoute.page === 'shop' || currentRoute.page === 'our-soaps') && (
           <div className="w-full">
             {/* Header banner */}
-            <div className="w-full bg-[#FFF2DB] pt-4 sm:pt-6 pb-6 sm:pb-8 border-b border-[#E8D4B5]/60 mb-6">
+            <div className="w-full bg-white pt-4 sm:pt-6 pb-6 sm:pb-8 border-b border-white mb-6">
               <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
                 <Breadcrumbs
                   items={[
@@ -1905,7 +1908,7 @@ export default function App() {
             </div>
 
             {/* The Exact 3-Column Interactive Showcase (Screenshot 2) */}
-            <section id="collection" className="w-full bg-[#FAF5EB] py-10 lg:py-16 relative overflow-hidden">
+            <section id="collection" className="w-full bg-white py-10 lg:py-16 relative overflow-hidden">
               <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
                   {/* LEFT COLUMN: Product Details */}
@@ -1961,7 +1964,7 @@ export default function App() {
 
                     {/* Quantity & CTA */}
                     <div className="flex items-center gap-3 mb-6">
-                      <div className="flex items-center border border-[#E8D4B5] rounded-full bg-[#FFF8F1] px-2 py-1">
+                      <div className="flex items-center border border-[#E8D4B5] rounded-full bg-white px-2 py-1">
                         <button
                           type="button"
                           aria-label="Decrease quantity"
@@ -1997,7 +2000,7 @@ export default function App() {
                       <button
                         aria-label="Add to Wishlist"
                         onClick={() => toggleWishlist(currentSoap.title)}
-                        className="p-3.5 rounded-full border border-[#E8D4B5] hover:border-[#C59A45] text-[#173D32] hover:text-[#C59A45] bg-[#FFF8F1] transition-colors flex items-center justify-center shadow-sm"
+                        className="p-3.5 rounded-full border border-[#E8D4B5] hover:border-[#C59A45] text-[#173D32] hover:text-[#C59A45] bg-white transition-colors flex items-center justify-center shadow-sm"
                         type="button"
                       >
                         <span className={`material-symbols-outlined text-[20px] ${wishlist.includes(currentSoap.title) ? 'text-[#C59A45] fill-current' : ''}`}>
@@ -2097,7 +2100,7 @@ export default function App() {
 
                   {/* RIGHT COLUMN: Vertical 5-Item Soap Selector */}
                   <div className="lg:col-span-3 flex flex-col order-3">
-                    <div className="flex items-center justify-between pb-3 mb-2 border-b border-[#E8D4B5]">
+                    <div className="flex items-center justify-between pb-3 mb-2 border-b border-white">
                       <div>
                         <h4 className="font-serif text-base text-[#173D32] font-semibold">Select Formulation</h4>
                         <span className="text-xs text-[#7B5802]/80">5 Sacred Varieties</span>
@@ -2164,7 +2167,7 @@ export default function App() {
             </section>
 
             {/* Complete 5-Soap Grid Comparison Card Set */}
-            <section className="w-full bg-[#FFF8F1] py-14 lg:py-20 border-t border-[#E8D4B5]">
+            <section className="w-full bg-white py-14 lg:py-20 border-t border-white">
               <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-12">
                 <div className="text-center max-w-2xl mx-auto mb-10">
                   <span className="font-label-sm text-[11px] uppercase tracking-[0.2em] text-[#7B5802] font-bold block mb-2">
@@ -2185,7 +2188,7 @@ export default function App() {
                       className="bg-white rounded-2xl p-5 border border-[#E8D4B5] hover:border-[#C59A45] hover:shadow-xl transition-all flex flex-col justify-between"
                     >
                       <div>
-                        <div className="w-full aspect-square bg-[#FAF5EB] rounded-xl flex items-center justify-center p-3 mb-4">
+                        <div className="w-full aspect-square bg-white border border-[#E8D4B5]/60 rounded-xl flex items-center justify-center p-3 mb-4">
                           <img alt={soap.title} className="max-h-40 w-auto object-contain drop-shadow" src={soap.boxImage} />
                         </div>
                         <h4 className="font-serif text-lg font-bold text-[#173D32]">{soap.title}</h4>
@@ -2225,7 +2228,7 @@ export default function App() {
         {currentRoute.page === 'product' && (
           <div className="w-full">
             {/* Breadcrumbs & Header Banner */}
-            <div className="w-full bg-[#FFF2DB] pt-4 sm:pt-6 pb-6 sm:pb-8 border-b border-[#E8D4B5]/60 mb-6">
+            <div className="w-full bg-white pt-4 sm:pt-6 pb-6 sm:pb-8 border-b border-white mb-6">
               <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
                 <Breadcrumbs
                   items={[
@@ -2236,7 +2239,7 @@ export default function App() {
                   onNavigate={(p, s) => navigateTo(p, s)}
                 />
                 <div className="mt-3">
-                  <div className="inline-flex items-center gap-2 mb-2 px-3.5 py-1 rounded-full bg-[#FAF5EB] border border-[#C59A45]/30">
+                  <div className="inline-flex items-center gap-2 mb-2 px-3.5 py-1 rounded-full bg-white border border-[#C59A45]/30">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#C59A45] animate-pulse"></span>
                     <span className="font-label-sm text-[11px] uppercase tracking-[0.2em] text-[#7B5802] font-semibold">
                       {currentSoap.badge} • SKU: {currentSoap.sku}
@@ -2253,7 +2256,7 @@ export default function App() {
             </div>
 
             {/* Product 3-Column Luxury Interactive Showcase */}
-            <section className="w-full bg-[#FAF5EB] py-8 lg:py-12 relative overflow-hidden">
+            <section className="w-full bg-white py-8 lg:py-12 relative overflow-hidden">
               <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
                   {/* LEFT COLUMN: Price, Reviews, Quantity, CTA, Key Benefits */}
@@ -2295,7 +2298,7 @@ export default function App() {
 
                     {/* Quantity & CTA */}
                     <div className="flex items-center gap-3 mb-6">
-                      <div className="flex items-center border border-[#E8D4B5] rounded-full bg-[#FFF8F1] px-2 py-1">
+                      <div className="flex items-center border border-[#E8D4B5] rounded-full bg-white px-2 py-1">
                         <button
                           type="button"
                           aria-label="Decrease quantity"
@@ -2408,7 +2411,7 @@ export default function App() {
                             }}
                             className={`flex items-center gap-3 p-2.5 rounded-xl border text-left transition-all ${isSelected
                               ? 'bg-[#173D32] text-[#FFF8F1] border-[#173D32] shadow-md'
-                              : 'bg-white hover:bg-[#FFF8F1] text-[#173D32] border-[#E8D4B5]'
+                              : 'bg-white hover:bg-gray-50 text-[#173D32] border-[#E8D4B5]'
                               }`}
                           >
                             <img
@@ -2439,7 +2442,7 @@ export default function App() {
             </section>
 
             {/* Product Detailed Ingredient Breakdown */}
-            <section className="w-full bg-[#FFF8F1] py-12 border-t border-[#E8D4B5]/60">
+            <section className="w-full bg-white py-12 border-t border-white">
               <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center max-w-2xl mx-auto mb-8">
                   <span className="font-label-sm text-[11px] uppercase tracking-[0.25em] text-[#7B5802] font-bold block mb-1">
@@ -2456,7 +2459,7 @@ export default function App() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {currentSoap.ingredients.map((ing, idx) => (
                     <div key={idx} className="bg-white p-4 rounded-2xl border border-[#E8D4B5] flex items-center gap-3.5 shadow-xs">
-                      <div className="w-10 h-10 rounded-full bg-[#FFF2DB] flex items-center justify-center text-[#7B5802] shrink-0">
+                      <div className="w-10 h-10 rounded-full bg-white border border-[#E8D4B5] flex items-center justify-center text-[#7B5802] shrink-0">
                         <span className="material-symbols-outlined text-[20px]">{ing.icon}</span>
                       </div>
                       <div className="flex-1 min-w-0">
@@ -2477,7 +2480,7 @@ export default function App() {
         {currentRoute.page === 'divine-collection' && (
           <div className="w-full">
             {/* Breadcrumbs & Header Banner */}
-            <div className="w-full bg-[#FFF2DB] pt-4 sm:pt-6 pb-6 sm:pb-8 border-b border-[#E8D4B5]/60 mb-6">
+            <div className="w-full bg-white pt-4 sm:pt-6 pb-6 sm:pb-8 border-b border-white mb-6">
               <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
                 <Breadcrumbs
                   items={[
@@ -2487,7 +2490,7 @@ export default function App() {
                   onNavigate={(p) => navigateTo(p)}
                 />
                 <div className="mt-3 text-center max-w-3xl mx-auto">
-                  <div className="inline-flex items-center gap-2 mb-2 px-4 py-1 rounded-full bg-[#FAF5EB] border border-[#C59A45]/30">
+                  <div className="inline-flex items-center gap-2 mb-2 px-4 py-1 rounded-full bg-white border border-[#C59A45]/30">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#C59A45] animate-pulse"></span>
                     <span className="font-label-sm text-[11px] uppercase tracking-[0.2em] text-[#7B5802] font-semibold">
                       Special Festive &amp; Celebration Edition • SKU: LG-GIFT-DIVINE-01
@@ -2701,107 +2704,84 @@ export default function App() {
           </div>
         )}
 
-        {/* PAGE 4: INGREDIENTS PAGE */}
+        {/* PAGE 4: 5 ELEMENTS PAGE (COMING SOON) */}
         {/* ============================================================ */}
-        {(currentRoute.page === 'ingredients') && (
-          <div className="w-full pb-8 lg:pb-12">
-            <div className="w-full bg-[#FFF2DB] pt-6 sm:pt-8 pb-8 sm:pb-10 border-b border-[#E8D4B5]/60 mb-8 text-center">
-              <div className="max-w-[1200px] mx-auto px-4 text-left mb-2">
+        {(currentRoute.page === '5-elements' || currentRoute.page === 'ingredients') && (
+          <div className="w-full bg-white pb-20 lg:pb-28 min-h-[75vh]">
+            {/* Top Breadcrumb Header - Clean White */}
+            <div className="w-full bg-white pt-4 sm:pt-6 pb-4 sm:pb-6 border-b border-white mb-8 sm:mb-12">
+              <div className="max-w-[1200px] mx-auto px-4">
                 <Breadcrumbs
                   items={[
                     { label: "Home", page: "home" },
-                    { label: "Ingredients", page: "ingredients" }
+                    { label: "5 Elements", page: "5-elements" }
                   ]}
                   onNavigate={(p) => navigateTo(p)}
                 />
               </div>
-              <div className="max-w-[1200px] mx-auto px-4 text-center">
-                <span className="font-label-sm text-[11px] uppercase tracking-[0.25em] text-[#7B5802] font-bold mb-1 block">
-                  Transparency &amp; Purity • Lotica Glow
-                </span>
-                <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#00271d] font-bold mb-2">
-                  Sacred Botanicals &amp; Verified Ingredients
-                </h1>
-                <p className="font-sans text-sm sm:text-base text-[#414845] max-w-xl mx-auto">
-                  Every botanical, oil, and herb we use is harvested ethically, sourced locally, and prepared with complete transparency.
-                </p>
-              </div>
             </div>
 
-            {/* Deep dive component */}
-            <div className="max-w-[1200px] mx-auto px-4 sm:px-6 mb-16">
-              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8">
-                {SOAP_PRODUCTS.map((soap, idx) => {
-                  const active = idx === ingredientTabSoap;
-                  return (
-                    <button
-                      key={soap.id}
-                      onClick={() => setIngredientTabSoap(idx)}
-                      type="button"
-                      className={
-                        active
-                          ? "px-5 py-2.5 rounded-full bg-[#173D32] text-[#ffdea6] font-semibold text-xs tracking-wider uppercase shadow-md border border-[#C59A45] transition-all"
-                          : "px-5 py-2.5 rounded-full bg-[#E8D4B5]/50 hover:bg-[#E8D4B5] text-[#173D32] font-semibold text-xs tracking-wider uppercase transition-colors"
-                      }
+            {/* Coming Soon Hero Card - Pure White */}
+            <div className="max-w-[850px] mx-auto px-4 sm:px-6">
+              <div className="relative rounded-3xl bg-white border border-[#E8D4B5] p-8 sm:p-14 lg:p-16 text-center shadow-[0_12px_36px_rgba(57,37,29,0.05)] overflow-hidden">
+                {/* Subtle Amber Glow */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-80 h-80 bg-[#C59A45]/8 blur-3xl rounded-full pointer-events-none"></div>
+
+                {/* Badge */}
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#173D32]/8 border border-[#C59A45]/40 text-[#7B5802] text-[11px] font-bold tracking-[0.25em] uppercase mb-6">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C59A45] animate-pulse"></span>
+                  Sacred Formulations • Coming Soon
+                </div>
+
+                {/* Main Heading */}
+                <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-[#00271d] font-bold tracking-tight mb-4 leading-tight">
+                  Coming Soon
+                </h1>
+
+                {/* Subtitle */}
+                <p className="font-serif italic text-lg sm:text-2xl text-[#7B5802] mb-4">
+                  The Five Sacred Elements
+                </p>
+                <p className="font-sans text-xs sm:text-sm text-[#414845] max-w-lg mx-auto leading-relaxed mb-10">
+                  We are preparing a transcendent Ayurvedic deep-dive into the five cosmic forces — Earth, Water, Fire, Air, and Space — harmonized in every bar of Lotica Glow soap.
+                </p>
+
+                {/* 5 Elements Badges - Pure White Background */}
+                <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 max-w-2xl mx-auto mb-10">
+                  {[
+                    { en: "Earth", sk: "Prithvi", icon: "landscape" },
+                    { en: "Water", sk: "Jal", icon: "water_drop" },
+                    { en: "Fire", sk: "Agni", icon: "local_fire_department" },
+                    { en: "Air", sk: "Vayu", icon: "air" },
+                    { en: "Space", sk: "Akasha", icon: "all_inclusive" }
+                  ].map((el, idx) => (
+                    <div
+                      key={idx}
+                      className="flex flex-col items-center justify-center p-3.5 rounded-2xl bg-white border border-[#E8D4B5] shadow-xs"
                     >
-                      {soap.title}
-                    </button>
-                  );
-                })}
-              </div>
-
-              <div className="rounded-3xl bg-white border border-[#E8D4B5] p-6 sm:p-10 shadow-sm">
-                <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 pb-6 border-b border-[#E8D4B5]/60 mb-8">
-                  <div className="w-16 h-20 bg-[#FAF5EB] rounded-xl flex items-center justify-center p-2 shrink-0 border border-[#E8D4B5]/70">
-                    <img alt={ingredientSoap.title} className="h-full w-auto object-contain" src={ingredientSoap.boxImage} />
-                  </div>
-                  <div className="text-center sm:text-left">
-                    <span className="text-xs font-bold uppercase tracking-widest text-[#7B5802]">
-                      Formulation Breakdown
-                    </span>
-                    <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#00271d]">
-                      {ingredientSoap.title}
-                    </h2>
-                    <p className="text-xs sm:text-sm text-[#414845] mt-1">
-                      {ingredientSoap.desc}
-                    </p>
-                  </div>
+                      <span className="material-symbols-outlined text-[#7B5802] text-2xl mb-1">{el.icon}</span>
+                      <span className="font-serif font-bold text-xs text-[#00271d]">{el.en}</span>
+                      <span className="font-sans text-[10px] text-[#7B5802] font-medium tracking-wider uppercase mt-0.5">{el.sk}</span>
+                    </div>
+                  ))}
                 </div>
 
-                <div className="mb-2">
-                  <span className="font-label-sm text-[10px] uppercase tracking-[0.2em] text-[#7B5802] font-bold block mb-4">
-                    Key Botanical Ingredients &amp; Properties
-                  </span>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {ingredientSoap.ingredients.map((ing, i) => (
-                      <div key={i} className="p-5 rounded-2xl bg-[#FFF8F1] border border-[#E8D4B5]/70 flex items-start gap-4">
-                        <div className="w-10 h-10 rounded-full bg-[#E8D4B5]/60 flex items-center justify-center text-[#173D32] shrink-0 mt-0.5">
-                          <span className="material-symbols-outlined text-[22px]">{ing.icon}</span>
-                        </div>
-                        <div>
-                          <h4 className="text-sm font-bold text-[#173D32] leading-snug">
-                            {ing.name}
-                          </h4>
-                          <p className="text-xs text-[#7B5802] font-medium mt-1">
-                            {ing.role}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mt-8 pt-5 border-t border-[#E8D4B5]/60 flex flex-wrap items-center justify-between gap-3 text-xs text-[#414845]">
-                  <span className="font-bold uppercase tracking-wider text-[#00271d]">
-                    100% Free From:
-                  </span>
-                  <div className="flex flex-wrap items-center gap-3 sm:gap-5 text-red-900/80 font-medium text-[11px] sm:text-xs">
-                    <span>✕ Parabens</span>
-                    <span>✕ Sulfates / SLS</span>
-                    <span>✕ Phthalates</span>
-                    <span>✕ Synthetic Perfume</span>
-                    <span>✕ Animal Fats</span>
-                  </div>
+                {/* Action Buttons */}
+                <div className="flex flex-wrap items-center justify-center gap-4">
+                  <button
+                    type="button"
+                    onClick={() => navigateTo('shop')}
+                    className="px-8 py-3.5 bg-[#173D32] hover:bg-[#00271d] text-[#ffdea6] font-serif font-bold text-xs sm:text-sm tracking-wider uppercase rounded-full shadow-md transition-all hover:scale-105"
+                  >
+                    Explore Our Soaps
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => navigateTo('divine-collection')}
+                    className="px-8 py-3.5 bg-transparent border border-[#C59A45] hover:bg-[#C59A45]/15 text-[#173D32] font-serif font-bold text-xs sm:text-sm tracking-wider uppercase rounded-full transition-all"
+                  >
+                    View Divine Collection
+                  </button>
                 </div>
               </div>
             </div>
@@ -2813,7 +2793,7 @@ export default function App() {
         {/* ============================================================ */}
         {(currentRoute.page === 'faqs' || currentRoute.page === 'faq') && (
           <div className="w-full pb-8 lg:pb-12">
-            <div className="w-full bg-[#FFF2DB] pt-6 sm:pt-8 pb-8 sm:pb-10 border-b border-[#E8D4B5]/60 mb-8 text-center">
+            <div className="w-full bg-white pt-6 sm:pt-8 pb-8 sm:pb-10 border-b border-white mb-8 text-center">
               <div className="max-w-[1200px] mx-auto px-4 text-left mb-2">
                 <Breadcrumbs
                   items={[
@@ -2867,7 +2847,7 @@ export default function App() {
                       <button
                         type="button"
                         onClick={() => setOpenFaqIndex(isOpen ? -1 : index)}
-                        className="w-full px-5 sm:px-6 py-4 flex items-center justify-between text-left gap-4 hover:bg-[#FFF8F1] transition-colors"
+                        className="w-full px-5 sm:px-6 py-4 flex items-center justify-between text-left gap-4 hover:bg-gray-50 transition-colors"
                       >
                         <span className="font-serif text-sm sm:text-base font-semibold text-[#173D32]">
                           {faq.question}
@@ -2877,7 +2857,7 @@ export default function App() {
                         </span>
                       </button>
                       {isOpen && (
-                        <div className="px-5 sm:px-6 pb-5 pt-1 text-xs sm:text-sm text-[#414845] leading-relaxed border-t border-[#E8D4B5]/40 bg-[#FFF8F1]/40">
+                        <div className="px-5 sm:px-6 pb-5 pt-1 text-xs sm:text-sm text-[#414845] leading-relaxed border-t border-[#E8D4B5]/40 bg-gray-50/60">
                           {faq.answer}
                         </div>
                       )}
@@ -2913,7 +2893,7 @@ export default function App() {
         {/* ============================================================ */}
         {(currentRoute.page === 'contact') && (
           <div className="w-full pb-8 lg:pb-12">
-            <div className="w-full bg-[#FFF2DB] pt-6 sm:pt-8 pb-8 sm:pb-10 border-b border-[#E8D4B5]/60 mb-8 text-center">
+            <div className="w-full bg-white pt-6 sm:pt-8 pb-8 sm:pb-10 border-b border-white mb-8 text-center">
               <div className="max-w-[1200px] mx-auto px-4 text-left mb-2">
                 <Breadcrumbs
                   items={[
@@ -2960,7 +2940,7 @@ export default function App() {
                           required
                           value={contactForm.name}
                           onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
-                          className="w-full px-4 py-2.5 rounded-xl border border-[#E8D4B5] bg-[#FFF8F1] text-xs sm:text-sm text-[#173D32] focus:outline-none focus:ring-2 focus:ring-[#C59A45]"
+                          className="w-full px-4 py-2.5 rounded-xl border border-[#E8D4B5] bg-white text-xs sm:text-sm text-[#173D32] focus:outline-none focus:ring-2 focus:ring-[#C59A45]"
                           placeholder="Your name"
                         />
                       </div>
@@ -2975,7 +2955,7 @@ export default function App() {
                             required
                             value={contactForm.email}
                             onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
-                            className="w-full px-4 py-2.5 rounded-xl border border-[#E8D4B5] bg-[#FFF8F1] text-xs sm:text-sm text-[#173D32] focus:outline-none focus:ring-2 focus:ring-[#C59A45]"
+                            className="w-full px-4 py-2.5 rounded-xl border border-[#E8D4B5] bg-white text-xs sm:text-sm text-[#173D32] focus:outline-none focus:ring-2 focus:ring-[#C59A45]"
                             placeholder="you@email.com"
                           />
                         </div>
@@ -2987,7 +2967,7 @@ export default function App() {
                             type="tel"
                             value={contactForm.phone}
                             onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
-                            className="w-full px-4 py-2.5 rounded-xl border border-[#E8D4B5] bg-[#FFF8F1] text-xs sm:text-sm text-[#173D32] focus:outline-none focus:ring-2 focus:ring-[#C59A45]"
+                            className="w-full px-4 py-2.5 rounded-xl border border-[#E8D4B5] bg-white text-xs sm:text-sm text-[#173D32] focus:outline-none focus:ring-2 focus:ring-[#C59A45]"
                             placeholder="+91 98765 43210"
                           />
                         </div>
@@ -3000,7 +2980,7 @@ export default function App() {
                         <select
                           value={contactForm.topic}
                           onChange={(e) => setContactForm({ ...contactForm, topic: e.target.value })}
-                          className="w-full px-4 py-2.5 rounded-xl border border-[#E8D4B5] bg-[#FFF8F1] text-xs sm:text-sm text-[#173D32] focus:outline-none focus:ring-2 focus:ring-[#C59A45]"
+                          className="w-full px-4 py-2.5 rounded-xl border border-[#E8D4B5] bg-white text-xs sm:text-sm text-[#173D32] focus:outline-none focus:ring-2 focus:ring-[#C59A45]"
                         >
                           <option>General Inquiry</option>
                           <option>Order &amp; Delivery Tracking</option>
@@ -3018,7 +2998,7 @@ export default function App() {
                           rows={4}
                           value={contactForm.message}
                           onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
-                          className="w-full px-4 py-2.5 rounded-xl border border-[#E8D4B5] bg-[#FFF8F1] text-xs sm:text-sm text-[#173D32] focus:outline-none focus:ring-2 focus:ring-[#C59A45]"
+                          className="w-full px-4 py-2.5 rounded-xl border border-[#E8D4B5] bg-white text-xs sm:text-sm text-[#173D32] focus:outline-none focus:ring-2 focus:ring-[#C59A45]"
                           placeholder="How may we assist you?"
                         ></textarea>
                       </div>
@@ -3035,7 +3015,7 @@ export default function App() {
 
                 {/* Atelier Info */}
                 <div className="lg:col-span-5 flex flex-col gap-6">
-                  <div className="bg-[#FAF5EB] rounded-3xl p-6 sm:p-8 border border-[#E8D4B5]">
+                  <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#E8D4B5]">
                     <h3 className="font-serif text-xl font-bold text-[#173D32] mb-4">Apothecary Atelier</h3>
                     <div className="flex flex-col gap-3 text-xs sm:text-sm text-[#414845]">
                       <div className="flex items-start gap-2.5">
@@ -3152,7 +3132,7 @@ export default function App() {
                 <li><button type="button" onClick={() => navigateTo('about')} className="hover:text-white transition-colors text-left">Our Story</button></li>
                 <li><button type="button" onClick={() => navigateTo('shop')} className="hover:text-white transition-colors text-left">Our Soaps</button></li>
                 <li><button type="button" onClick={() => navigateTo('divine-collection')} className="hover:text-white transition-colors text-left">The Divine Collection</button></li>
-                <li><button type="button" onClick={() => navigateTo('ingredients')} className="hover:text-white transition-colors text-left">Ingredients</button></li>
+                <li><button type="button" onClick={() => navigateTo('5-elements')} className="hover:text-white transition-colors text-left">5 Elements</button></li>
                 <li><button type="button" onClick={() => navigateTo('faqs')} className="hover:text-white transition-colors text-left">FAQ</button></li>
                 <li><button type="button" onClick={() => navigateTo('contact')} className="hover:text-white transition-colors text-left">Contact</button></li>
               </ul>

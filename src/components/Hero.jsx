@@ -3,11 +3,10 @@ import { ASSETS } from '../data/soaps';
 
 export default function Hero({ onSelectSoap }) {
   return (
-    <section id="home" className="relative w-full bg-surface-container-low overflow-hidden pt-28 pb-space-xl lg:pb-32">
+    <section id="home" className="relative w-full bg-white overflow-hidden pt-28 pb-space-xl lg:pb-32">
       {/* Subtle Architectural Arch & Radial Ambient Glow */}
-      <div className="absolute inset-0 pointer-events-none opacity-40">
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full bg-gradient-to-b from-secondary-fixed/40 via-surface-container to-transparent blur-3xl"></div>
-        <div className="absolute top-12 left-10 w-96 h-96 rounded-full bg-primary-fixed/20 blur-2xl"></div>
+      <div className="absolute inset-0 pointer-events-none opacity-20">
+        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full bg-gradient-to-b from-[#ffdea6]/20 to-transparent blur-3xl"></div>
       </div>
 
       <div className="max-w-[1440px] mx-auto px-margin-mobile lg:px-margin relative z-10">
@@ -213,32 +212,42 @@ export default function Hero({ onSelectSoap }) {
                 />
               </div>
 
-              {/* 11. Foreground Sacred Offerings (Resting directly along the front of the stone ledge - Moved Down) */}
-              <div className="absolute inset-x-0 bottom-[-4%] sm:bottom-[-5%] w-full h-[32%] pointer-events-none z-30">
+              {/* 11. Foreground Sacred Offerings (Directly aligned 1-to-1 beneath each soap box) */}
+              <div className="absolute inset-x-0 bottom-[-4%] sm:bottom-[-5%] w-[95%] sm:w-[93%] mx-auto flex items-end justify-center pointer-events-none z-30">
                 
-                {/* Lit Brass Diya (Bottom Left) */}
-                <div className="absolute bottom-[6%] left-[2.5%] sm:left-[3.5%] w-[13.5%] sm:w-[14.5%] drop-shadow-xl">
-                  <img alt="Traditional Brass Diya Flame" className="w-full h-auto object-contain" src={ASSETS.brassDiya} />
+                {/* Offering 1: Blooming Pink Lotus (Directly under Kamalam Lotus Soap) */}
+                <div className="w-[18%] sm:w-[17.5%] flex flex-col items-center justify-end z-25">
+                  <div className="w-[85%] sm:w-[90%] drop-shadow-xl">
+                    <img alt="Sacred Pink Lotus Flower" className="w-full h-auto object-contain" src={ASSETS.pinkLotus} />
+                  </div>
                 </div>
 
-                {/* White Ash Powder Bowl (Beside Diya) */}
-                <div className="absolute bottom-[6%] left-[16%] sm:left-[17%] w-[10.5%] sm:w-[11.5%] drop-shadow-lg">
-                  <img alt="Ayurvedic Herbal Powder Bowl" className="w-full h-auto object-contain" src={ASSETS.powderBowl} />
+                {/* Offering 2: Sacred Rudraksha Beads (Directly under Rudraksha Soap) */}
+                <div className="w-[20%] sm:w-[19.5%] -ml-[1.5%] flex flex-col items-center justify-end z-20">
+                  <div className="w-[72%] sm:w-[76%] drop-shadow-lg">
+                    <img alt="Sacred Rudraksha Beads" className="w-full h-auto object-contain" src={ASSETS.rudrakshaMala} />
+                  </div>
                 </div>
 
-                {/* Fresh White Jasmine Flowers (Center Front) */}
-                <div className="absolute bottom-[2%] left-1/2 -translate-x-1/2 w-[25%] sm:w-[27%] drop-shadow-2xl z-35">
-                  <img alt="White Jasmine Flowers" className="w-full h-auto object-contain" src={ASSETS.jasmineFlowers} />
+                {/* Offering 3: Sacred Vibhudi Ash Bowl (Directly under Vibhudi Soap - Center) */}
+                <div className="w-[27%] sm:w-[26.5%] -ml-[1.5%] -mr-[1.5%] flex flex-col items-center justify-end z-35">
+                  <div className="w-[90%] sm:w-[94%] drop-shadow-2xl transition-transform duration-300 hover:scale-105">
+                    <img alt="Sacred Vibhudi Ash Bowl with Holy Tulsi and Jasmine" className="w-full h-auto object-contain" src={ASSETS.powderBowl} />
+                  </div>
                 </div>
 
-                {/* Blooming Pink Lotus (Mid Right) */}
-                <div className="absolute bottom-[6%] right-[15%] sm:right-[16%] w-[14.5%] sm:w-[15.5%] drop-shadow-xl">
-                  <img alt="Sacred Pink Lotus Flower" className="w-full h-auto object-contain" src={ASSETS.pinkLotus} />
+                {/* Offering 4: Sacred Bilva Fruit & Leaves (Directly under Bilvam Soap) */}
+                <div className="w-[20%] sm:w-[19.5%] flex flex-col items-center justify-end z-35">
+                  <div className="w-[98%] sm:w-[105%] drop-shadow-2xl transition-transform duration-300 hover:scale-105">
+                    <img alt="Sacred Bilva Bael Fruit and Consecrated Leaves" className="w-full h-auto object-contain" src={ASSETS.bilvaFruit} />
+                  </div>
                 </div>
 
-                {/* Sacred Rudraksha Beads Cluster (Far Right) */}
-                <div className="absolute bottom-[6%] right-[2.5%] sm:right-[3.5%] w-[10.5%] sm:w-[11.5%] drop-shadow-lg">
-                  <img alt="Sacred Rudraksha Beads" className="w-full h-auto object-contain" src={ASSETS.rudrakshaMala} />
+                {/* Offering 5: Sacred Kadamba Flower (Directly under Kadamba Soap) */}
+                <div className="w-[18%] sm:w-[17.5%] -ml-[1.5%] flex flex-col items-center justify-end z-30">
+                  <div className="w-[82%] sm:w-[88%] drop-shadow-2xl transition-transform duration-300 hover:scale-105">
+                    <img alt="Sacred Kadamba Blossom Flower and Leaves" className="w-full h-auto object-contain" src={ASSETS.kadambaFlower} />
+                  </div>
                 </div>
 
               </div>
